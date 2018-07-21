@@ -1,6 +1,8 @@
-## Downloads block for Easy Digital Downloads and Gutenberg
+## Blocks for Easy Digital Downloads and Gutenberg
 
-Under development. To install:
+Currently includes a "Downloads" block but more could be built in future versions.
+
+To install:
 
 1. Make sure Gutenberg and Easy Digital Downloads are activated.
 2. Activate the EDD Blocks plugin.
