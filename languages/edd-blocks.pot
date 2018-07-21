@@ -1,0 +1,73 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Digital Downloads - Blocks\n"
+"POT-Creation-Date: 2018-07-21 17:51+1200\n"
+"PO-Revision-Date: 2015-04-04 11:12-0600\n"
+"Last-Translator: Andrew Munro, Sumobi <andrew@sumobi.com>\n"
+"Language-Team: Easy Digital Downloads <support@easydigitaldownloads.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.9\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+
+#: assets/js/editor.blocks.js:802 includes/blocks/downloads/index.js:14
+msgid "Downloads"
+msgstr ""
+
+#: assets/js/editor.blocks.js:804 includes/blocks/downloads/index.js:16
+msgid "Display downloads from Easy Digital Downloads."
+msgstr ""
+
+#: assets/js/editor.blocks.js:810 includes/blocks/downloads/index.js:23
+msgid "downloads"
+msgstr ""
+
+#: assets/js/editor.blocks.js:810 includes/blocks/downloads/index.js:24
+msgid "edd"
+msgstr ""
+
+#: assets/js/editor.blocks.js:961 includes/blocks/downloads/edit.js:97
+msgid "Download Settings"
+msgstr ""
+
+#: assets/js/editor.blocks.js:963 includes/blocks/downloads/edit.js:100
+msgid "Number of downloads"
+msgstr ""
+
+#: assets/js/editor.blocks.js:970 includes/blocks/downloads/edit.js:108
+msgid "Columns"
+msgstr ""
+
+#: assets/js/editor.blocks.js:977 includes/blocks/downloads/edit.js:116
+msgid "Show Buy Button"
+msgstr ""
+
+#: assets/js/editor.blocks.js:984 includes/blocks/downloads/edit.js:122
+msgid "Show Price"
+msgstr ""
+
+#: edd-blocks.php:91 edd-blocks.php:104
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: includes/class-activation.php:47
+msgid "This plugin"
+msgstr ""
+
+#: includes/class-activation.php:81
+#, php-format
+msgid " requires %sEasy Digital Downloads%s. Please activate it to continue."
+msgstr ""
+
+#: includes/class-activation.php:83
+#, php-format
+msgid " requires %sEasy Digital Downloads%s. Please install it to continue."
+msgstr ""
