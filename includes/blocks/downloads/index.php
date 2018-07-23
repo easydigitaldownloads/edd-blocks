@@ -48,6 +48,10 @@ function edd_blocks_register_block_downloads() {
 				'type'    => 'boolean',
 				'default' => true,
 			),
+			'showThumbnails' => array(
+				'type'    => 'boolean',
+				'default' => true,
+			),
 			'number' => array(
 				'type'    => 'number',
 				'default' => 9,
