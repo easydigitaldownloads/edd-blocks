@@ -56,6 +56,7 @@ class DownloadsEdit extends Component {
 		this.setColumns = this.setColumns.bind( this );
 		this.setAlignment = this.setAlignment.bind( this );
 		this.setDownloadsToShow = this.setDownloadsToShow.bind( this );
+		this.setOrderOption = this.setOrderOption.bind( this );
 	}
 
 	setColumns( columns ) {
@@ -68,6 +69,19 @@ class DownloadsEdit extends Component {
 
 	setDownloadsToShow( number ) {
 		this.props.setAttributes( { number } );
+	}
+
+	getOrderOptions() {
+		return [
+			{ value: 'asc', label: __( 'Ascending' ) },
+			{ value: 'desc', label: __( 'Descending' ) },
+		];
+	}
+
+	setOrderOption( value ) {
+		this.props.setAttributes( {
+			order: value,
+		} );
 	}
 
 	render() {
@@ -84,6 +98,7 @@ class DownloadsEdit extends Component {
 			showBuyButton,
 			showPrice,
 			showThumbnails,
+			order,
 		} = attributes;
 
 		return (
