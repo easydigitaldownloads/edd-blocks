@@ -5,6 +5,7 @@ const {
 	PanelBody,
 	ToggleControl,
 	RangeControl,
+	SelectControl,
 	ServerSideRender
 } = wp.components;
 
