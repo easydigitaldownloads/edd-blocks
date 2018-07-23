@@ -57,6 +57,7 @@ class DownloadsEdit extends Component {
 		this.setAlignment = this.setAlignment.bind( this );
 		this.setDownloadsToShow = this.setDownloadsToShow.bind( this );
 		this.setOrderOption = this.setOrderOption.bind( this );
+		this.setOrderByOption = this.setOrderByOption.bind( this );
 	}
 
 	setColumns( columns ) {
@@ -84,6 +85,22 @@ class DownloadsEdit extends Component {
 		} );
 	}
 
+	getOrderByOptions() {
+		return [
+			{ value: 'price', label: __( 'Price' ) },
+			{ value: 'id', label: __( 'ID' ) },
+			{ value: 'random', label: __( 'Random' ) },
+			{ value: 'post_date', label: __( 'Post Date' ) },
+			{ value: 'title', label: __( 'Title' ) },
+		];
+	}
+
+	setOrderByOption( value ) {
+		this.props.setAttributes( {
+			orderBy: value,
+		} );
+	}
+
 	render() {
 	
 		const {
@@ -99,6 +116,7 @@ class DownloadsEdit extends Component {
 			showPrice,
 			showThumbnails,
 			order,
+			orderBy,
 		} = attributes;
 
 		return (
@@ -146,6 +164,12 @@ class DownloadsEdit extends Component {
 							value={ order }
 							options={ this.getOrderOptions() }
 							onChange={ this.setOrderOption }
+						/>
+						<SelectControl
+							label={ __( 'Order By' ) }
+							value={ orderBy }
+							options={ this.getOrderByOptions() }
+							onChange={ this.setOrderByOption }
 						/>
 					</PanelBody>
 				</InspectorControls>

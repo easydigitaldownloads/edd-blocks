@@ -912,6 +912,7 @@ var DownloadsEdit = function (_Component) {
 		_this.setAlignment = _this.setAlignment.bind(_this);
 		_this.setDownloadsToShow = _this.setDownloadsToShow.bind(_this);
 		_this.setOrderOption = _this.setOrderOption.bind(_this);
+		_this.setOrderByOption = _this.setOrderByOption.bind(_this);
 		return _this;
 	}
 
@@ -943,6 +944,18 @@ var DownloadsEdit = function (_Component) {
 			});
 		}
 	}, {
+		key: 'getOrderByOptions',
+		value: function getOrderByOptions() {
+			return [{ value: 'price', label: __('Price') }, { value: 'id', label: __('ID') }, { value: 'random', label: __('Random') }, { value: 'post_date', label: __('Post Date') }, { value: 'title', label: __('Title') }];
+		}
+	}, {
+		key: 'setOrderByOption',
+		value: function setOrderByOption(value) {
+			this.props.setAttributes({
+				orderBy: value
+			});
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var _props = this.props,
@@ -954,7 +967,8 @@ var DownloadsEdit = function (_Component) {
 			    showBuyButton = attributes.showBuyButton,
 			    showPrice = attributes.showPrice,
 			    showThumbnails = attributes.showThumbnails,
-			    order = attributes.order;
+			    order = attributes.order,
+			    orderBy = attributes.orderBy;
 
 
 			return wp.element.createElement(
@@ -1015,6 +1029,12 @@ var DownloadsEdit = function (_Component) {
 							value: order,
 							options: this.getOrderOptions(),
 							onChange: this.setOrderOption
+						}),
+						wp.element.createElement(SelectControl, {
+							label: __('Order By'),
+							value: orderBy,
+							options: this.getOrderByOptions(),
+							onChange: this.setOrderByOption
 						})
 					)
 				),

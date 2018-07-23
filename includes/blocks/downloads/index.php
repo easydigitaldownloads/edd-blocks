@@ -12,6 +12,7 @@ function edd_blocks_render_block_downloads( $attributes = array() ) {
 		'price'      => $attributes['showPrice'] ? 'yes' : 'no',
 		'thumbnails' => $attributes['showThumbnails'] ? 'true' : 'false',
 		'order'      => $attributes['order'],
+		'orderby'    => $attributes['orderBy'],
 	);
 
 	$shortcode_options = array();
