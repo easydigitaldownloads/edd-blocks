@@ -10,6 +10,7 @@ function edd_blocks_render_block_downloads( $attributes = array() ) {
 		'columns'    => $attributes['columns'],
 		'buy_button' => ! $attributes['showBuyButton'] ? 'no' : 'yes',
 		'price'      => $attributes['showPrice'] ? 'yes' : 'no',
+		'thumbnails' => $attributes['showThumbnails'] ? 'true' : 'false',
 	);
 
 	$shortcode_classes = array();
