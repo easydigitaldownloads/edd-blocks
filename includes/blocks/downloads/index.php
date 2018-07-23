@@ -4,7 +4,7 @@ function edd_blocks_render_block_downloads( $attributes = array() ) {
 
 	ob_start();
 	
-	$classes = array(
+	$options = array(
 		'class'      => 'align' . $attributes['align'],
 		'number'     => $attributes['number'],
 		'columns'    => $attributes['columns'],
@@ -13,15 +13,15 @@ function edd_blocks_render_block_downloads( $attributes = array() ) {
 		'thumbnails' => $attributes['showThumbnails'] ? 'true' : 'false',
 	);
 
-	$shortcode_classes = array();
+	$shortcode_options = array();
 
-	foreach ( $classes as $att => $value ) {
-		$shortcode_classes[] = $att . '="' . $value . '"';
+	foreach ( $options as $att => $value ) {
+		$shortcode_options[] = $att . '="' . $value . '"';
 	}
 
-	$classes = implode( ' ', array_filter( $shortcode_classes ) );
+	$options = implode( ' ', array_filter( $shortcode_options ) );
 
-	echo do_shortcode( '[downloads ' . $classes . ']' );
+	echo do_shortcode( '[downloads ' . $options . ']' );
 	
 	$display = ob_get_clean();
 
