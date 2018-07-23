@@ -3,7 +3,7 @@
 function edd_blocks_render_block_downloads( $attributes = array() ) {
 
 	ob_start();
-	
+
 	$options = array(
 		'class'      => 'align' . $attributes['align'],
 		'number'     => $attributes['number'],
@@ -11,6 +11,7 @@ function edd_blocks_render_block_downloads( $attributes = array() ) {
 		'buy_button' => ! $attributes['showBuyButton'] ? 'no' : 'yes',
 		'price'      => $attributes['showPrice'] ? 'yes' : 'no',
 		'thumbnails' => $attributes['showThumbnails'] ? 'true' : 'false',
+		'order'      => $attributes['order'],
 	);
 
 	$shortcode_options = array();
