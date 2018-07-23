@@ -82,6 +82,7 @@ class DownloadsEdit extends Component {
 			columns,
 			showBuyButton,
 			showPrice,
+			showThumbnails,
 		} = attributes;
 
 		return (
