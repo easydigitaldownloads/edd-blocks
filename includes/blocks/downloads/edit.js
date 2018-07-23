@@ -119,6 +119,11 @@ class DownloadsEdit extends Component {
 							checked={ !! showPrice }
 							onChange={ () => setAttributes( { showPrice: ! showPrice } ) }
 						/>
+						<ToggleControl
+							label={ __( 'Show Thumbnails' ) }
+							checked={ !! showThumbnails }
+							onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<Disabled>
