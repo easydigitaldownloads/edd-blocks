@@ -126,6 +126,12 @@ class DownloadsEdit extends Component {
 							checked={ !! showThumbnails }
 							onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
 						/>
+						<SelectControl
+							label={ __( 'Order' ) }
+							value={ order }
+							options={ this.getOrderOptions() }
+							onChange={ this.setOrderOption }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<Disabled>
