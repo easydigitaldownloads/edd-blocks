@@ -938,7 +938,8 @@ var DownloadsEdit = function (_Component) {
 			    number = attributes.number,
 			    columns = attributes.columns,
 			    showBuyButton = attributes.showBuyButton,
-			    showPrice = attributes.showPrice;
+			    showPrice = attributes.showPrice,
+			    showThumbnails = attributes.showThumbnails;
 
 
 			return wp.element.createElement(
@@ -985,6 +986,13 @@ var DownloadsEdit = function (_Component) {
 							checked: !!showPrice,
 							onChange: function onChange() {
 								return setAttributes({ showPrice: !showPrice });
+							}
+						}),
+						wp.element.createElement(ToggleControl, {
+							label: __('Show Thumbnails'),
+							checked: !!showThumbnails,
+							onChange: function onChange() {
+								return setAttributes({ showThumbnails: !showThumbnails });
 							}
 						})
 					)
