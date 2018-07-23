@@ -72,7 +72,7 @@ function edd_blocks_register_block_downloads() {
 			),
 			'orderBy'  => array(
 				'type'    => 'string',
-				'default' => 'date',
+				'default' => 'post_date',
 			),
 		),
 		'render_callback' => 'edd_blocks_render_block_downloads',
