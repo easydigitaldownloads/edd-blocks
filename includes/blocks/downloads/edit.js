@@ -116,6 +116,7 @@ class DownloadsEdit extends Component {
 			showPrice,
 			showThumbnails,
 			showExcerpt,
+			showFullContent,
 			order,
 			orderBy,
 		} = attributes;
@@ -164,6 +165,11 @@ class DownloadsEdit extends Component {
 							label={ __( 'Show Excerpt' ) }
 							checked={ !! showExcerpt }
 							onChange={ () => setAttributes( { showExcerpt: ! showExcerpt } ) }
+						/>
+						<ToggleControl
+							label={ __( 'Show Full Content' ) }
+							checked={ !! showFullContent }
+							onChange={ () => setAttributes( { showFullContent: ! showFullContent } ) }
 						/>
 						<SelectControl
 							label={ __( 'Order' ) }

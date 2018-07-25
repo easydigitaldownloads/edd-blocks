@@ -5,15 +5,16 @@ function edd_blocks_render_block_downloads( $attributes = array() ) {
 	ob_start();
 
 	$options = array(
-		'class'      => 'align' . $attributes['align'],
-		'number'     => $attributes['number'],
-		'columns'    => $attributes['columns'],
-		'buy_button' => ! $attributes['showBuyButton'] ? 'no' : 'yes',
-		'price'      => $attributes['showPrice'] ? 'yes' : 'no',
-		'thumbnails' => $attributes['showThumbnails'] ? 'true' : 'false',
-		'order'      => $attributes['order'],
-		'orderby'    => $attributes['orderBy'],
-		'excerpt'    => $attributes['showExcerpt'] ? 'yes' : 'no',
+		'class'        => 'align' . $attributes['align'],
+		'number'       => $attributes['number'],
+		'columns'      => $attributes['columns'],
+		'buy_button'   => ! $attributes['showBuyButton'] ? 'no' : 'yes',
+		'price'        => $attributes['showPrice'] ? 'yes' : 'no',
+		'thumbnails'   => $attributes['showThumbnails'] ? 'true' : 'false',
+		'order'        => $attributes['order'],
+		'orderby'      => $attributes['orderBy'],
+		'excerpt'      => $attributes['showExcerpt'] ? 'yes' : 'no',
+		'full_content' => $attributes['showFullContent'] ? 'yes' : 'no',
 	);
 
 	$shortcode_options = array();
@@ -59,6 +60,10 @@ function edd_blocks_register_block_downloads() {
 			'showExcerpt' => array(
 				'type'    => 'boolean',
 				'default' => true,
+			),
+			'showFullContent' => array(
+				'type'    => 'boolean',
+				'default' => false,
 			),
 			'number' => array(
 				'type'    => 'number',

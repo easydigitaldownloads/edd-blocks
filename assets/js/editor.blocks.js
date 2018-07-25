@@ -968,6 +968,7 @@ var DownloadsEdit = function (_Component) {
 			    showPrice = attributes.showPrice,
 			    showThumbnails = attributes.showThumbnails,
 			    showExcerpt = attributes.showExcerpt,
+			    showFullContent = attributes.showFullContent,
 			    order = attributes.order,
 			    orderBy = attributes.orderBy;
 
@@ -1030,6 +1031,13 @@ var DownloadsEdit = function (_Component) {
 							checked: !!showExcerpt,
 							onChange: function onChange() {
 								return setAttributes({ showExcerpt: !showExcerpt });
+							}
+						}),
+						wp.element.createElement(ToggleControl, {
+							label: __('Show Full Content'),
+							checked: !!showFullContent,
+							onChange: function onChange() {
+								return setAttributes({ showFullContent: !showFullContent });
 							}
 						}),
 						wp.element.createElement(SelectControl, {
