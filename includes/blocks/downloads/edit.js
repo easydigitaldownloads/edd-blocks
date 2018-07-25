@@ -115,6 +115,7 @@ class DownloadsEdit extends Component {
 			showBuyButton,
 			showPrice,
 			showThumbnails,
+			showExcerpt,
 			order,
 			orderBy,
 		} = attributes;
@@ -158,6 +159,11 @@ class DownloadsEdit extends Component {
 							label={ __( 'Show Thumbnails' ) }
 							checked={ !! showThumbnails }
 							onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
+						/>
+						<ToggleControl
+							label={ __( 'Show Excerpt' ) }
+							checked={ !! showExcerpt }
+							onChange={ () => setAttributes( { showExcerpt: ! showExcerpt } ) }
 						/>
 						<SelectControl
 							label={ __( 'Order' ) }

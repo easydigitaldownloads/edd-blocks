@@ -13,6 +13,7 @@ function edd_blocks_render_block_downloads( $attributes = array() ) {
 		'thumbnails' => $attributes['showThumbnails'] ? 'true' : 'false',
 		'order'      => $attributes['order'],
 		'orderby'    => $attributes['orderBy'],
+		'excerpt'    => $attributes['showExcerpt'] ? 'yes' : 'no',
 	);
 
 	$shortcode_options = array();
@@ -52,6 +53,10 @@ function edd_blocks_register_block_downloads() {
 				'default' => true,
 			),
 			'showThumbnails' => array(
+				'type'    => 'boolean',
+				'default' => true,
+			),
+			'showExcerpt' => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),

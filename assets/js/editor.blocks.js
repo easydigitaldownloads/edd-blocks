@@ -967,6 +967,7 @@ var DownloadsEdit = function (_Component) {
 			    showBuyButton = attributes.showBuyButton,
 			    showPrice = attributes.showPrice,
 			    showThumbnails = attributes.showThumbnails,
+			    showExcerpt = attributes.showExcerpt,
 			    order = attributes.order,
 			    orderBy = attributes.orderBy;
 
@@ -1022,6 +1023,13 @@ var DownloadsEdit = function (_Component) {
 							checked: !!showThumbnails,
 							onChange: function onChange() {
 								return setAttributes({ showThumbnails: !showThumbnails });
+							}
+						}),
+						wp.element.createElement(ToggleControl, {
+							label: __('Show Excerpt'),
+							checked: !!showExcerpt,
+							onChange: function onChange() {
+								return setAttributes({ showExcerpt: !showExcerpt });
 							}
 						}),
 						wp.element.createElement(SelectControl, {
