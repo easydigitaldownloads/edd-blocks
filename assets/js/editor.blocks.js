@@ -913,6 +913,13 @@ var DownloadsEdit = function (_Component) {
 		_this.setDownloadsToShow = _this.setDownloadsToShow.bind(_this);
 		_this.setOrderOption = _this.setOrderOption.bind(_this);
 		_this.setOrderByOption = _this.setOrderByOption.bind(_this);
+		_this.showExcerpt = _this.showExcerpt.bind(_this);
+		_this.showFullContent = _this.showFullContent.bind(_this);
+
+		_this.state = {
+			'showExcerpt': true,
+			'showFullContent': false
+		};
 		return _this;
 	}
 
@@ -953,6 +960,28 @@ var DownloadsEdit = function (_Component) {
 		value: function setOrderByOption(value) {
 			this.props.setAttributes({
 				orderBy: value
+			});
+		}
+	}, {
+		key: 'showExcerpt',
+		value: function showExcerpt() {
+			var value = this.state.showExcerpt;
+
+			// Update the state.
+			this.setState({ 'showExcerpt': !value, 'showFullContent': value }, function () {
+				this.props.setAttributes({ showExcerpt: !value });
+				this.props.setAttributes({ showFullContent: false });
+			});
+		}
+	}, {
+		key: 'showFullContent',
+		value: function showFullContent() {
+			var value = this.state.showFullContent;
+
+			// Update the state.
+			this.setState({ 'showFullContent': !value, 'showExcerpt': value }, function () {
+				this.props.setAttributes({ showFullContent: !value });
+				this.props.setAttributes({ showExcerpt: false });
 			});
 		}
 	}, {
@@ -1029,16 +1058,12 @@ var DownloadsEdit = function (_Component) {
 						wp.element.createElement(ToggleControl, {
 							label: __('Show Excerpt'),
 							checked: !!showExcerpt,
-							onChange: function onChange() {
-								return setAttributes({ showExcerpt: !showExcerpt });
-							}
+							onChange: this.showExcerpt
 						}),
 						wp.element.createElement(ToggleControl, {
 							label: __('Show Full Content'),
 							checked: !!showFullContent,
-							onChange: function onChange() {
-								return setAttributes({ showFullContent: !showFullContent });
-							}
+							onChange: this.showFullContent
 						}),
 						wp.element.createElement(SelectControl, {
 							label: __('Order'),

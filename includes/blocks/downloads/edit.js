@@ -58,6 +58,13 @@ class DownloadsEdit extends Component {
 		this.setDownloadsToShow = this.setDownloadsToShow.bind( this );
 		this.setOrderOption = this.setOrderOption.bind( this );
 		this.setOrderByOption = this.setOrderByOption.bind( this );
+		this.showExcerpt = this.showExcerpt.bind( this );
+		this.showFullContent = this.showFullContent.bind( this );
+
+		this.state = {
+			'showExcerpt': true,
+			'showFullContent': false,
+		}
 	}
 
 	setColumns( columns ) {
@@ -99,6 +106,26 @@ class DownloadsEdit extends Component {
 		this.props.setAttributes( {
 			orderBy: value,
 		} );
+	}
+
+	showExcerpt() {
+		const value = this.state.showExcerpt;
+		
+		// Update the state.
+		this.setState({ 'showExcerpt': ! value, 'showFullContent': value }, function () {
+			this.props.setAttributes( { showExcerpt: ! value } );
+			this.props.setAttributes( { showFullContent: false } );
+		});
+	}
+
+	showFullContent() {
+		const value = this.state.showFullContent;
+		
+		// Update the state.
+		this.setState({ 'showFullContent': ! value, 'showExcerpt': value }, function () {
+			this.props.setAttributes( { showFullContent: ! value } );
+			this.props.setAttributes( { showExcerpt: false } );
+		});
 	}
 
 	render() {
@@ -164,12 +191,12 @@ class DownloadsEdit extends Component {
 						<ToggleControl
 							label={ __( 'Show Excerpt' ) }
 							checked={ !! showExcerpt }
-							onChange={ () => setAttributes( { showExcerpt: ! showExcerpt } ) }
+							onChange={ this.showExcerpt }
 						/>
 						<ToggleControl
 							label={ __( 'Show Full Content' ) }
 							checked={ !! showFullContent }
-							onChange={ () => setAttributes( { showFullContent: ! showFullContent } ) }
+							onChange={ this.showFullContent }
 						/>
 						<SelectControl
 							label={ __( 'Order' ) }
