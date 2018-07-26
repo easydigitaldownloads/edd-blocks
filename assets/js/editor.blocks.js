@@ -953,7 +953,7 @@ var DownloadsEdit = function (_Component) {
 	}, {
 		key: 'getOrderByOptions',
 		value: function getOrderByOptions() {
-			return [{ value: 'id', label: __('ID') }, { value: 'post_date', label: __('Post Date') }, { value: 'price', label: __('Price') }, { value: 'random', label: __('Random') }, { value: 'title', label: __('Title') }];
+			return [{ value: 'id', label: __('ID') }, { value: 'post_date', label: __('Post Date') }, { value: 'price', label: __('Price') }, { value: 'random', label: __('Random') }, { value: 'sales', label: __('Sales') }, { value: 'title', label: __('Title') }];
 		}
 	}, {
 		key: 'setOrderByOption',

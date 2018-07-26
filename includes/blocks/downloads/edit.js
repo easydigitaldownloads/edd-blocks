@@ -98,6 +98,7 @@ class DownloadsEdit extends Component {
 			{ value: 'post_date', label: __( 'Post Date' ) },
 			{ value: 'price', label: __( 'Price' ) },
 			{ value: 'random', label: __( 'Random' ) },
+			{ value: 'sales', label: __( 'Sales' ) },
 			{ value: 'title', label: __( 'Title' ) },
 		];
 	}
