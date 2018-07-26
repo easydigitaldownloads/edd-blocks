@@ -1,1 +1,144 @@
 // Blank for now.
+
+/** Gray (Default) */
+.edd-submit.button,
+.edd-submit.button,
+.edd-submit.button:visited,
+.edd-submit.button,
+.edd-submit.button.gray {
+	color: #333333;
+	background: #f0f0f0;
+	border-color: #cccccc;
+}
+.edd-submit.button:hover,
+.edd-submit.button:focus,
+.edd-submit.button:active,
+.edd-submit.button.gray:hover,
+.edd-submit.button.gray:focus,
+.edd-submit.button.gray:active {
+	color: #333333;
+	background: #ebebeb;
+	border-color: #adadad;
+}
+.edd-submit.button.gray:active {
+	background-image: none;
+}
+
+/** White */
+.edd-submit.button.white {
+	color: #333333;
+	background: #ffffff;
+	border-color: #cccccc;
+}
+.edd-submit.button.white:hover,
+.edd-submit.button.white:focus,
+.edd-submit.button.white:active {
+	color: #333333;
+	background: #ebebeb;
+	border-color: #adadad;
+}
+.edd-submit.button.white:active {
+	background-image: none;
+}
+
+/** Blue */
+.edd-submit.button.blue {
+	color: #ffffff;
+	background: #428bca;
+	border-color: #357ebd;
+}
+.edd-submit.button.blue:hover,
+.edd-submit.button.blue:focus,
+.edd-submit.button.blue.active {
+	color: #ffffff;
+	background: #3276b1;
+	border-color: #285e8e;
+}
+.edd-submit.button.blue.active {
+	background-image: none;
+}
+
+/** Red */
+.edd-submit.button.red {
+	color: #ffffff;
+	background: #d9534f;
+	border-color: #d43f3a;
+}
+.edd-submit.button.red:hover,
+.edd-submit.button.red:focus,
+.edd-submit.button.red:active {
+	color: #ffffff;
+	background: #d2322d;
+	border-color: #ac2925;
+}
+.edd-submit.button.red:active {
+	background-image: none;
+}
+
+/** Green */
+.edd-submit.button.green {
+	color: #ffffff;
+	background: #5cb85c;
+	border-color: #4cae4c;
+}
+.edd-submit.button.green:hover,
+.edd-submit.button.green:focus,
+.edd-submit.button.green:active {
+	color: #ffffff;
+	background: #47a447;
+	border-color: #398439;
+}
+.edd-submit.button.green:active {
+	background-image: none;
+}
+
+/** Yellow */
+.edd-submit.button.yellow {
+	color: #ffffff;
+	background: #f0ad4e;
+	border-color: #eea236;
+}
+.edd-submit.button.yellow:hover,
+.edd-submit.button.yellow:focus,
+.edd-submit.button.yellow:active {
+	color: #ffffff;
+	background: #ed9c28;
+	border-color: #d58512;
+}
+.edd-submit.button.yellow:active {
+	background-image: none;
+}
+
+/** Orange */
+.edd-submit.button.orange {
+	color: #ffffff;
+	background: #ed9c28;
+	border-color: #e3921e;
+}
+.edd-submit.button.orange:hover,
+.edd-submit.button.orange:focus,
+.edd-submit.button.orange:active {
+	color: #ffffff;
+	background: #e59016;
+	border-color: #d58512;
+}
+.edd-submit.button.orange:active {
+	background-image: none;
+}
+
+/** Dark Gray */
+.edd-submit.button.dark-gray {
+	color: #fff;
+	background: #363636;
+	border-color: #222;
+}
+.edd-submit.button.dark-gray:hover,
+.edd-submit.button.dark-gray:focus,
+.edd-submit.button.dark-gray:active {
+	color: #fff;
+	background: #333;
+	border-color: #adadad;
+}
+.edd-submit.button.dark-gray:active {
+	background-image: none;
+}
