@@ -39,7 +39,7 @@ function edd_blocks_register_block_downloads() {
 
 	register_block_type( 'easydigitaldownloads/downloads', array(
 		'attributes' => array(
-			'download_category' => array(
+			'category' => array(
 				'type' => 'string',
 			),
 			'className' => array(
