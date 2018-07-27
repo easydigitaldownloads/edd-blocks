@@ -17,6 +17,8 @@ const {
 	BlockAlignmentToolbar 
 } = wp.editor;
 
+const apiFetch = wp.apiFetch;
+
 /**
  * Internal dependencies.
  */
@@ -28,6 +30,7 @@ import './editor.scss';
  * @type {number}
  */
 const MIN_DOWNLOADS = 1;
+
 /**
  * Maximum number of comments a user can show using this block.
  *
@@ -41,6 +44,7 @@ const MAX_DOWNLOADS = 100;
  * @type {number}
  */
 const MIN_COLUMNS = 1;
+
 /**
  * Maximum number of columns a user can show using this block.
  *
@@ -58,13 +62,24 @@ class DownloadsEdit extends Component {
 		this.setDownloadsToShow = this.setDownloadsToShow.bind( this );
 		this.setOrderOption = this.setOrderOption.bind( this );
 		this.setOrderByOption = this.setOrderByOption.bind( this );
+		this.setDownloadCategory = this.setDownloadCategory.bind( this );
 		this.showExcerpt = this.showExcerpt.bind( this );
 		this.showFullContent = this.showFullContent.bind( this );
 
 		this.state = {
-			'showExcerpt': true,
-			'showFullContent': false,
+			showExcerpt: true,
+			showFullContent: false,
+			downloadCategories: [],
 		}
+
+	}
+
+	componentDidMount() {
+		 this.fetchDownloadCategories();
+	}
+
+	componentWillUnmount() {
+		delete this.downloadCategoriesRequest;
 	}
 
 	setColumns( columns ) {
@@ -101,6 +116,39 @@ class DownloadsEdit extends Component {
 			{ value: 'sales', label: __( 'Sales' ) },
 			{ value: 'title', label: __( 'Title' ) },
 		];
+	}
+
+	getDownloadCategories() {
+
+		const { downloadCategories } = this.state;
+
+		const categories = [ 
+			{ 
+				'value': 'all', 
+				'label': __( 'All' )
+			}
+		];
+
+		downloadCategories.forEach(function(category) {
+			categories.push( {
+				'value': category.slug,
+				'label': category.name 
+			} );
+		});
+
+		return categories;
+	}
+
+	setDownloadCategory( value ) {
+	
+		if ( 'all' === value ) {
+			value = undefined;
+		}
+
+		this.props.setAttributes( {
+			category: value,
+		} );
+
 	}
 
 	setOrderByOption( value ) {
@@ -165,6 +213,7 @@ class DownloadsEdit extends Component {
 			showFullContent,
 			order,
 			orderBy,
+			category
 		} = attributes;
 
 		return (
