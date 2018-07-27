@@ -181,7 +181,11 @@ class DownloadsEdit extends Component {
 
 	fetchDownloadCategories() {
 
-		const request = apiFetch( { path: '/wp/v2/download_category' } );
+		const request = apiFetch( {
+			path: `/wp/v2/download_category?${ stringify( {
+				per_page: -1,
+			} ) }`,
+		} );
 
 		request.then( ( downloadCategories ) => {
 
