@@ -1,13 +1,12 @@
 .edd_downloads_list {
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px; }
 
 .edd_download {
   padding-left: 15px;
   padding-right: 15px; }
-
-.editor-block-list__layout .editor-block-list__block[data-type="easydigitaldownloads/downloads"] .edd_downloads_list {
-  margin: 0; }
 
 .edd_purchase_submit_wrapper input.edd-add-to-cart {
   display: none; }

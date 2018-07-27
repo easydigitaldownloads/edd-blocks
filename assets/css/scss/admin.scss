@@ -1,4 +1,37 @@
-// Blank for now.
+.edd_download_columns_1 .edd_download { width: 100%; }
+.edd_download_columns_2 .edd_download { width: 50%; }
+.edd_download_columns_0 .edd_download,
+.edd_download_columns_3 .edd_download { width: 33.3333333333%; }
+.edd_download_columns_4 .edd_download { width: 25%; }
+.edd_download_columns_5 .edd_download { width: 20%; }
+.edd_download_columns_6 .edd_download { width: 16.6666666667%; }
+
+.edd_download_inner {
+	padding: 0;
+	margin: 0 0 20px;
+}
+
+.edit-post-visual-editor {
+	
+	.edd_download_purchase_form .edd_price_options ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+}
+
+.edd-submit.button {
+	box-shadow: none;
+	vertical-align: middle;
+	border-radius: 4px;
+	padding: 6px 12px;
+	height: inherit;
+	line-height: inherit;
+	border: 1px solid #cccccc;
+	font-size: 14px;
+	font-weight: normal;
+}
 
 /** Gray (Default) */
 .edd-submit.button,
