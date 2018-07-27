@@ -1,3 +1,5 @@
+import { stringify } from 'querystringify';
+
 const {	Component, Fragment } = wp.element;
 
 const {	
