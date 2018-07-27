@@ -218,7 +218,19 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 		 *
 		 * @return void
 		 */
-		private function hooks() {}
+		private function hooks() {
+			add_filter( 'edd_download_category_args', array( $this, 'show_in_rest' ) );
+		}
+
+		/**
+		 * Allow download_category taxonomy to be available via the REST API.
+		 *
+		 * @since 1.0
+		 */
+		public function show_in_rest( $args ) {
+			$args['show_in_rest'] = true; 
+			return $args;
+		}
 
 	}
 
