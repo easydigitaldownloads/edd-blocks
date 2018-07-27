@@ -129,6 +129,24 @@ class DownloadsEdit extends Component {
 		});
 	}
 
+	fetchDownloadCategories() {
+
+		const request = apiFetch( { path: '/wp/v2/download_category' } );
+
+		request.then( ( downloadCategories ) => {
+
+			if ( this.downloadCategoriesRequest !== request ) {
+				return;
+			}
+
+			this.setState( { downloadCategories } );
+
+		} );
+
+		this.downloadCategoriesRequest = request;
+
+	}
+
 	render() {
 	
 		const {
