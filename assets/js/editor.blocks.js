@@ -868,10 +868,12 @@ var _wp$editor = wp.editor,
     BlockControls = _wp$editor.BlockControls,
     BlockAlignmentToolbar = _wp$editor.BlockAlignmentToolbar;
 
+
+var apiFetch = wp.apiFetch;
+
 /**
  * Internal dependencies.
  */
-
 
 
 /**
@@ -880,6 +882,7 @@ var _wp$editor = wp.editor,
  * @type {number}
  */
 var MIN_DOWNLOADS = 1;
+
 /**
  * Maximum number of comments a user can show using this block.
  *
@@ -893,6 +896,7 @@ var MAX_DOWNLOADS = 100;
  * @type {number}
  */
 var MIN_COLUMNS = 1;
+
 /**
  * Maximum number of columns a user can show using this block.
  *
@@ -913,17 +917,30 @@ var DownloadsEdit = function (_Component) {
 		_this.setDownloadsToShow = _this.setDownloadsToShow.bind(_this);
 		_this.setOrderOption = _this.setOrderOption.bind(_this);
 		_this.setOrderByOption = _this.setOrderByOption.bind(_this);
+		_this.setDownloadCategory = _this.setDownloadCategory.bind(_this);
 		_this.showExcerpt = _this.showExcerpt.bind(_this);
 		_this.showFullContent = _this.showFullContent.bind(_this);
 
 		_this.state = {
-			'showExcerpt': true,
-			'showFullContent': false
+			showExcerpt: true,
+			showFullContent: false,
+			downloadCategories: []
 		};
+
 		return _this;
 	}
 
 	__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(DownloadsEdit, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			this.fetchDownloadCategories();
+		}
+	}, {
+		key: 'componentWillUnmount',
+		value: function componentWillUnmount() {
+			delete this.downloadCategoriesRequest;
+		}
+	}, {
 		key: 'setColumns',
 		value: function setColumns(columns) {
 			this.props.setAttributes({ columns: columns });
@@ -956,6 +973,38 @@ var DownloadsEdit = function (_Component) {
 			return [{ value: 'id', label: __('ID') }, { value: 'post_date', label: __('Post Date') }, { value: 'price', label: __('Price') }, { value: 'random', label: __('Random') }, { value: 'sales', label: __('Sales') }, { value: 'title', label: __('Title') }];
 		}
 	}, {
+		key: 'getDownloadCategories',
+		value: function getDownloadCategories() {
+			var downloadCategories = this.state.downloadCategories;
+
+
+			var categories = [{
+				'value': 'all',
+				'label': __('All')
+			}];
+
+			downloadCategories.forEach(function (category) {
+				categories.push({
+					'value': category.slug,
+					'label': category.name
+				});
+			});
+
+			return categories;
+		}
+	}, {
+		key: 'setDownloadCategory',
+		value: function setDownloadCategory(value) {
+
+			if ('all' === value) {
+				value = undefined;
+			}
+
+			this.props.setAttributes({
+				category: value
+			});
+		}
+	}, {
 		key: 'setOrderByOption',
 		value: function setOrderByOption(value) {
 			this.props.setAttributes({
@@ -985,6 +1034,24 @@ var DownloadsEdit = function (_Component) {
 			});
 		}
 	}, {
+		key: 'fetchDownloadCategories',
+		value: function fetchDownloadCategories() {
+			var _this2 = this;
+
+			var request = apiFetch({ path: '/wp/v2/download_category' });
+
+			request.then(function (downloadCategories) {
+
+				if (_this2.downloadCategoriesRequest !== request) {
+					return;
+				}
+
+				_this2.setState({ downloadCategories: downloadCategories });
+			});
+
+			this.downloadCategoriesRequest = request;
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var _props = this.props,
@@ -999,7 +1066,8 @@ var DownloadsEdit = function (_Component) {
 			    showExcerpt = attributes.showExcerpt,
 			    showFullContent = attributes.showFullContent,
 			    order = attributes.order,
-			    orderBy = attributes.orderBy;
+			    orderBy = attributes.orderBy,
+			    category = attributes.category;
 
 
 			return wp.element.createElement(
@@ -1076,6 +1144,12 @@ var DownloadsEdit = function (_Component) {
 							value: orderBy,
 							options: this.getOrderByOptions(),
 							onChange: this.setOrderByOption
+						}),
+						wp.element.createElement(SelectControl, {
+							label: __('Show Downloads From Category'),
+							value: category,
+							options: this.getDownloadCategories(),
+							onChange: this.setDownloadCategory
 						})
 					)
 				),
