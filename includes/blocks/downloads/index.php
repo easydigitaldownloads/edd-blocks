@@ -15,6 +15,7 @@ function edd_blocks_render_block_downloads( $attributes = array() ) {
 		'orderby'      => $attributes['orderBy'],
 		'excerpt'      => $attributes['showExcerpt'] ? 'yes' : 'no',
 		'full_content' => $attributes['showFullContent'] ? 'yes' : 'no',
+		'category'     => $attributes['category']
 	);
 
 	$shortcode_options = array();
