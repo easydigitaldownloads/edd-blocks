@@ -211,6 +211,12 @@ class DownloadsEdit extends Component {
 							options={ this.getOrderByOptions() }
 							onChange={ this.setOrderByOption }
 						/>
+						<SelectControl
+							label={ __( 'Show Downloads From Category' ) }
+							value={ category }
+							options={ this.getDownloadCategories() }
+							onChange={ this.setDownloadCategory }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<Disabled>
