@@ -18,6 +18,10 @@ function edd_blocks_render_block_downloads( $attributes = array() ) {
 		'pagination'   => ! $attributes['showPagination'] ? 'false' : 'true'
 	);
 
+	if ( $attributes['className'] ) {
+		$options['class'] .= ' ' .  $attributes['className'];
+	}
+
 	$shortcode_options = array();
 
 	foreach ( $options as $att => $value ) {
