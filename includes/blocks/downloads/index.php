@@ -30,6 +30,11 @@ function edd_blocks_render_block_downloads( $attributes = array() ) {
 
 	$options = implode( ' ', array_filter( $shortcode_options ) );
 
+	/**
+	 * In the future the shortcode can be swapped out for a dedicated function call
+	 * in EDD core. Then the shortcode itself, blocks, and even themes can call the function
+	 * to build a download grid.
+	 */
 	echo do_shortcode( '[downloads ' . $options . ']' );
 	
 	$display = ob_get_clean();

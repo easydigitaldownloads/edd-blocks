@@ -224,7 +224,8 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 
 		/**
 		 * Allow download_category taxonomy to be available via the REST API.
-		 *
+		 * This can be added directly to the taxonomy args once merged into core.
+		 * 
 		 * @since 1.0
 		 */
 		public function show_in_rest( $args ) {
