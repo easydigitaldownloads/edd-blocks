@@ -1073,6 +1073,7 @@ var DownloadsEdit = function (_Component) {
 			    showThumbnails = attributes.showThumbnails,
 			    showExcerpt = attributes.showExcerpt,
 			    showFullContent = attributes.showFullContent,
+			    showPagination = attributes.showPagination,
 			    order = attributes.order,
 			    orderBy = attributes.orderBy,
 			    category = attributes.category;
@@ -1140,6 +1141,13 @@ var DownloadsEdit = function (_Component) {
 							label: __('Show Full Content'),
 							checked: !!showFullContent,
 							onChange: this.showFullContent
+						}),
+						wp.element.createElement(ToggleControl, {
+							label: __('Show Pagination'),
+							checked: !!showPagination,
+							onChange: function onChange() {
+								return setAttributes({ showPagination: !showPagination });
+							}
 						}),
 						wp.element.createElement(SelectControl, {
 							label: __('Order'),

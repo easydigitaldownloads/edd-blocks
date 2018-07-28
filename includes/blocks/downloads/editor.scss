@@ -20,9 +20,9 @@
 	font-size: 18px;
 }
 
-// Hide the pagination, we don't need it.
 #edd_download_pagination {
-	display: none;
+	display: block;
+	width: 100%;
 }
 
 @media only screen and (min-width: 1200px) {

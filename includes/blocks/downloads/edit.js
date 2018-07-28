@@ -217,6 +217,7 @@ class DownloadsEdit extends Component {
 			showThumbnails,
 			showExcerpt,
 			showFullContent,
+			showPagination,
 			order,
 			orderBy,
 			category
@@ -271,6 +272,11 @@ class DownloadsEdit extends Component {
 							label={ __( 'Show Full Content' ) }
 							checked={ !! showFullContent }
 							onChange={ this.showFullContent }
+						/>
+						<ToggleControl
+							label={ __( 'Show Pagination' ) }
+							checked={ !! showPagination }
+							onChange={ () => setAttributes( { showPagination: ! showPagination } ) }
 						/>
 						<SelectControl
 							label={ __( 'Order' ) }

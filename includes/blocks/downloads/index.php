@@ -1,7 +1,6 @@
 <?php
 
 function edd_blocks_render_block_downloads( $attributes = array() ) {
-
 	ob_start();
 
 	$options = array(
@@ -15,7 +14,8 @@ function edd_blocks_render_block_downloads( $attributes = array() ) {
 		'orderby'      => $attributes['orderBy'],
 		'excerpt'      => $attributes['showExcerpt'] ? 'yes' : 'no',
 		'full_content' => $attributes['showFullContent'] ? 'yes' : 'no',
-		'category'     => $attributes['category']
+		'category'     => $attributes['category'],
+		'pagination'   => ! $attributes['showPagination'] ? 'false' : 'true'
 	);
 
 	$shortcode_options = array();
@@ -65,6 +65,10 @@ function edd_blocks_register_block_downloads() {
 			'showFullContent' => array(
 				'type'    => 'boolean',
 				'default' => false,
+			),
+			'showPagination' => array(
+				'type'    => 'boolean',
+				'default' => true,
 			),
 			'number' => array(
 				'type'    => 'number',
