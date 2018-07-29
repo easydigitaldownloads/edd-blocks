@@ -274,16 +274,16 @@ class DownloadsEdit extends Component {
 							onChange={ () => setAttributes( { showPagination: ! showPagination } ) }
 						/>
 						<SelectControl
-							label={ __( 'Order' ) }
-							value={ order }
-							options={ this.getOrderOptions() }
-							onChange={ this.setOrderOption }
-						/>
-						<SelectControl
 							label={ __( 'Order By' ) }
 							value={ orderBy }
 							options={ this.getOrderByOptions() }
 							onChange={ this.setOrderByOption }
+						/>
+						<SelectControl
+							label={ __( 'Order' ) }
+							value={ order }
+							options={ this.getOrderOptions() }
+							onChange={ this.setOrderOption }
 						/>
 						<SelectControl
 							label={ __( 'Show Downloads From Category' ) }
