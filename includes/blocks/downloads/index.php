@@ -47,6 +47,10 @@ function edd_blocks_render_block_downloads( $attributes = array() ) {
  */
 function edd_blocks_register_block_downloads() {
 
+	if ( ! function_exists( 'register_block_type' ) ) {
+		return;
+	}
+
 	register_block_type( 'easydigitaldownloads/downloads', array(
 		'attributes' => array(
 			'category' => array(
