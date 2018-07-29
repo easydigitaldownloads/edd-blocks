@@ -1,14 +1,8 @@
-const path = require( 'path' );
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
-const adminCSSPlugin = new ExtractTextPlugin( {
-	filename: './assets/css/admin.css',
-} );
-
-// CSS loader for styles specific to block editing.
-const editBlocksCSSPlugin = new ExtractTextPlugin( {
-	filename: './assets/css/edit-blocks.css',
+const stylesCSSPlugin = new ExtractTextPlugin( {
+	filename: './styles.css',
 } );
 
 // Configuration for the ExtractTextPlugin.
@@ -32,41 +26,28 @@ const extractConfig = {
 	],
 };
 
-const autoprefixer = require('autoprefixer');
-
 module.exports = {
-	entry: {
-		'./assets/js/editor.blocks' : './includes/blocks/index.js',
-		'./assets/js/edd.blocks' : './includes/index.js',
-	},
+	entry: { main: './src/index.js' },
 	output: {
-		path: path.resolve( __dirname ),
-		filename: '[name].js',
+		path: path.resolve(__dirname, 'dist'),
+		filename: 'main.js'
 	},
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
-				exclude: /(node_modules|bower_components)/,
+				exclude: /node_modules/,
 				use: {
-					loader: 'babel-loader',
-				},
+					loader: 'babel-loader'
+				}
 			},
 			{
-				test: /admin\.s?css$/,
-				use: adminCSSPlugin.extract( extractConfig ),
+				test: /styles\.s?css$/,
+				use: stylesCSSPlugin.extract( extractConfig ),
 			},
-			{
-				test: /editor\.s?css$/,
-				include: [
-					/blocks/,
-				],
-				use: editBlocksCSSPlugin.extract( extractConfig ),
-			},
-		],
+		]
 	},
 	plugins: [
-		adminCSSPlugin,
-		editBlocksCSSPlugin
-	],
+		stylesCSSPlugin
+	]
 };

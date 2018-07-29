@@ -1,21 +1,25 @@
-.edd_download_columns_1 .edd_download {
+.edd_downloads_list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px; }
+
+.edd_download {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.edd_purchase_submit_wrapper input.edd-add-to-cart {
+  display: none; }
+
+.editor-block-list__layout .editor-block-list__block[data-type="easydigitaldownloads/downloads"] h3 {
+  font-size: 18px; }
+
+#edd_download_pagination {
+  display: block;
   width: 100%; }
-
-.edd_download_columns_2 .edd_download {
-  width: 50%; }
-
-.edd_download_columns_0 .edd_download,
-.edd_download_columns_3 .edd_download {
-  width: 33.3333333333%; }
-
-.edd_download_columns_4 .edd_download {
-  width: 25%; }
-
-.edd_download_columns_5 .edd_download {
-  width: 20%; }
-
-.edd_download_columns_6 .edd_download {
-  width: 16.6666666667%; }
 
 .edd_download_inner {
   padding: 0;
@@ -27,7 +31,8 @@
   list-style: none; }
 
 .edd-submit.button {
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   vertical-align: middle;
   border-radius: 4px;
   padding: 6px 12px;
@@ -37,7 +42,6 @@
   font-size: 14px;
   font-weight: normal; }
 
-/** Gray (Default) */
 .edd-submit.button,
 .edd-submit.button,
 .edd-submit.button:visited,
@@ -60,7 +64,6 @@
 .edd-submit.button.gray:active {
   background-image: none; }
 
-/** White */
 .edd-submit.button.white {
   color: #333333;
   background: #ffffff;
@@ -76,7 +79,6 @@
 .edd-submit.button.white:active {
   background-image: none; }
 
-/** Blue */
 .edd-submit.button.blue {
   color: #ffffff;
   background: #428bca;
@@ -92,7 +94,6 @@
 .edd-submit.button.blue.active {
   background-image: none; }
 
-/** Red */
 .edd-submit.button.red {
   color: #ffffff;
   background: #d9534f;
@@ -108,7 +109,6 @@
 .edd-submit.button.red:active {
   background-image: none; }
 
-/** Green */
 .edd-submit.button.green {
   color: #ffffff;
   background: #5cb85c;
@@ -124,7 +124,6 @@
 .edd-submit.button.green:active {
   background-image: none; }
 
-/** Yellow */
 .edd-submit.button.yellow {
   color: #ffffff;
   background: #f0ad4e;
@@ -140,7 +139,6 @@
 .edd-submit.button.yellow:active {
   background-image: none; }
 
-/** Orange */
 .edd-submit.button.orange {
   color: #ffffff;
   background: #ed9c28;
@@ -156,7 +154,6 @@
 .edd-submit.button.orange:active {
   background-image: none; }
 
-/** Dark Gray */
 .edd-submit.button.dark-gray {
   color: #fff;
   background: #363636;
@@ -171,3 +168,13 @@
 
 .edd-submit.button.dark-gray:active {
   background-image: none; }
+
+@media only screen and (min-width: 1200px) {
+  .edd_download_columns_1 .edd_download {
+    width: 100%; }
+  .edd_download_columns_2 .edd_download {
+    width: 50%; }
+  .edd_download_columns_3 .edd_download {
+    width: 33.3333333333%; }
+  .edd_download_columns_4 .edd_download {
+    width: 25%; } }

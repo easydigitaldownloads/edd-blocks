@@ -22,11 +22,6 @@ const {
 const apiFetch = wp.apiFetch;
 
 /**
- * Internal dependencies.
- */
-import './editor.scss';
-
-/**
  * Minimum number of downloads a user can show using this block.
  *
  * @type {number}

@@ -10,20 +10,7 @@ class EDD_Blocks_Assets {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		// Enqueue styles for the editor.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'block_editor_assets' ) );
-
-		// Enqueue admin styles.
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
-	}
-
-	/**
-	 *  Load the admin scripts
-	 *
-	 *  @since 1.0.0
-	 */
-	public function admin_scripts() {
-		wp_enqueue_style( 'edd-blocks-admin', EDD_BLOCKS_PLUGIN_URL . 'assets/css/admin.css', array(), EDD_BLOCKS_VERSION );
 	}
 
 	/**
@@ -34,26 +21,17 @@ class EDD_Blocks_Assets {
 	public function block_editor_assets() {
 
 		wp_enqueue_script(
-			'edd-blocks-editor-js',
-			EDD_BLOCKS_PLUGIN_URL . 'assets/js/editor.blocks.js',
-			array(),
-			filemtime( EDD_BLOCKS_PLUGIN_DIR . 'assets/js/editor.blocks.js' ),
-			false
-		);
-
-		wp_enqueue_script(
 			'edd-blocks-js',
-			EDD_BLOCKS_PLUGIN_URL . 'assets/js/edd.blocks.js',
+			EDD_BLOCKS_PLUGIN_URL . 'dist/main.js',
 			array(),
-			filemtime( EDD_BLOCKS_PLUGIN_DIR . 'assets/js/edd.blocks.js' ),
+			filemtime( EDD_BLOCKS_PLUGIN_DIR . 'dist/main.js' ),
 			false
 		);
 
-		// Enqueue editor only styles.
 		wp_enqueue_style(
-			'edd-blocks-css',
-			EDD_BLOCKS_PLUGIN_URL . 'assets/css/edit-blocks.css',
-			filemtime( EDD_BLOCKS_PLUGIN_DIR . 'assets/css/edit-blocks.css' )
+			'edd-blocks',
+			EDD_BLOCKS_PLUGIN_URL . 'dist/styles.css',
+			filemtime( EDD_BLOCKS_PLUGIN_DIR . 'dist/styles.css' )
 		);
 
 	}

@@ -2,14 +2,15 @@
 	"name": "edd-blocks",
 	"version": "1.0.0",
 	"scripts": {
-		"dev": "cross-env BABEL_ENV=default webpack --watch",
-		"build": "cross-env BABEL_ENV=default NODE_ENV=production webpack"
+		"dev": "webpack --mode development --watch",
+		"build": "webpack --mode production"
 	},
 	"main": "includes/index.js",
-	"browserslist": "last 1 versions",
+	"browserslist": "last 2 versions",
 	"devDependencies": {
 		"@babel/cli": "^7.0.0-beta.54",
 		"@babel/preset-env": "^7.0.0-beta.54",
+		"autoprefixer": "^9.0.1",
 		"autoprefixer-loader": "^2.0.0",
 		"babel-core": "^6.26.3",
 		"babel-eslint": "^8.2.6",
@@ -30,13 +31,14 @@
 		"eslint-config-prettier": "^2.9.0",
 		"eslint-config-wordpress": "^2.0.0",
 		"eslint-plugin-prettier": "^2.6.2",
-		"extract-text-webpack-plugin": "^3.0.2",
+		"extract-text-webpack-plugin": "^4.0.0-beta.0",
 		"node-sass": "^4.9.2",
 		"postcss-loader": "^2.1.6",
 		"raw-loader": "^0.5.1",
 		"sass-loader": "^6.0.7",
 		"style-loader": "^0.19.1",
-		"webpack": "^3.12.0"
+		"webpack": "^4.16.3",
+		"webpack-cli": "^3.1.0"
 	},
 	"dependencies": {
 		"babel-polyfill": "^6.26.0",
