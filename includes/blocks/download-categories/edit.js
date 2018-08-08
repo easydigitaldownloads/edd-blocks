@@ -64,7 +64,7 @@ class DownloadCategoriesEdit extends Component {
 			if ( this.downloadCategoriesRequest !== request ) {
 				return;
 			}
-			
+
 			this.setState( { downloadCategories } );
 
 		} );
