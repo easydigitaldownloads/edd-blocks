@@ -35,7 +35,7 @@ class DownloadCategoriesEdit extends Component {
 			if ( this.downloadCategoriesRequest !== request ) {
 				return;
 			}
-
+			
 			this.setState( { downloadCategories } );
 
 		} );
@@ -60,6 +60,7 @@ class DownloadCategoriesEdit extends Component {
 		return (
 			<div key={ category.id }>
 				<a href={ category.link } target="_blank">{ this.renderDownloadCategoryName( category ) }</a>
+				<p>{ category.description }</p>
 			</div>
 		);
 	}
