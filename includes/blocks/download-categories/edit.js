@@ -5,6 +5,7 @@ import classnames from 'classnames';
 const {
 	PanelBody,
 	RangeControl,
+	ToggleControl,
 } = wp.components;
 
 const { __ } = wp.i18n;
@@ -136,6 +137,11 @@ class DownloadCategoriesEdit extends Component {
 						} }
 							min={ MIN_COLUMNS }
 							max={ MAX_COLUMNS }
+						/>
+						<ToggleControl
+							label={ __( 'Show Description' ) }
+							checked={ !! showDescription }
+							onChange={ () => setAttributes( { showDescription: ! showDescription } ) }
 						/>
 					</PanelBody>
 				</InspectorControls>

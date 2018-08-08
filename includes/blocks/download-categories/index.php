@@ -29,6 +29,10 @@ function edd_blocks_register_block_download_categories() {
 				'type'    => 'number',
 				'default' => 3,
 			),
+			'showDescription' => array(
+				'type'    => 'boolean',
+				'default' => true,
+			),
 		),
 		'render_callback' => 'edd_blocks_render_block_download_categories',
 	) );
