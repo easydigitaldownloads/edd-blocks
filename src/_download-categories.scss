@@ -6,10 +6,28 @@
 	display: flex;
 	flex-wrap: wrap;
 
+	// 1 column.
+	&.columns-1 div {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+
+	// 2 columns.
+	&.columns-2 div {
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+
 	// 3 columns.
-	div {
+	&.columns-3 div {
 		flex: 0 0 33.3333333333%;
 		max-width: 33.3333333333%;
 	}
 	
+	// 4 columns.
+	&.columns-4 div {
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+
 }
