@@ -48,9 +48,9 @@ class DownloadCategoriesEdit extends Component {
 		const categories = this.state.downloadCategories;
 
 		return (
-			<ul>
+			<div>
 				{ categories.map( ( category ) => this.renderDownloadCategoryListItem( category ) ) }
-			</ul>
+			</div>
 		);
 		
 	}
@@ -58,9 +58,9 @@ class DownloadCategoriesEdit extends Component {
 	renderDownloadCategoryListItem( category ) {
 
 		return (
-			<li key={ category.id }>
+			<div key={ category.id }>
 				<a href={ category.link } target="_blank">{ this.renderDownloadCategoryName( category ) }</a>
-			</li>
+			</div>
 		);
 	}
 
