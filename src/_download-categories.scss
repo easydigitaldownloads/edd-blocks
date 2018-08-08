@@ -5,6 +5,24 @@
 .edd-download-categories {
 	display: flex;
 	flex-wrap: wrap;
+	margin: 0 -15px;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	div {
+		padding-left: 15px;
+		padding-right: 15px;
+		width: 100%;
+		min-height: 1px;
+		position: relative;
+		margin-bottom: 2rem;
+	}
 
 	// 1 column.
 	&.columns-1 div {
