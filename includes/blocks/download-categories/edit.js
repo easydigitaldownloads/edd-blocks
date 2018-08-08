@@ -8,7 +8,7 @@ class DownloadCategoriesEdit extends Component {
 	render() {
 		return (
 			<Fragment>
-				<div>
+				<div className={ this.props.className }>
 					Download categories to show here
 				</div>
 			</Fragment>
