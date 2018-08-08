@@ -87,15 +87,19 @@ class DownloadCategoriesEdit extends Component {
 
 	renderDownloadCategoryListItem( category ) {
 
-		const { showDescription, showTitle } = this.props.attributes;
+		const { showDescription, showTitle, showThumbnails } = this.props.attributes;
 
 		return (
 			<div key={ category.id }>
 
+				{ showThumbnails && 
+				<a href={ category.link } target="_blank" className="edd-download-category-thumbnail"></a>
+				}
+
 				{ showTitle && 
 				<a href={ category.link } target="_blank">{ this.renderDownloadCategoryName( category ) }</a>
 				}
-				
+
 				{ showDescription &&
 				<p>{ category.description }</p>
 				}
@@ -122,6 +126,7 @@ class DownloadCategoriesEdit extends Component {
 			align,
 			columns,
 			showDescription,
+			showThumbnails,
 			showTitle,
 		} = attributes;
 
@@ -148,14 +153,19 @@ class DownloadCategoriesEdit extends Component {
 							max={ MAX_COLUMNS }
 						/>
 						<ToggleControl
-							label={ __( 'Show Description' ) }
-							checked={ !! showDescription }
-							onChange={ () => setAttributes( { showDescription: ! showDescription } ) }
+							label={ __( 'Show Thumbnails' ) }
+							checked={ !! showThumbnails }
+							onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
 						/>
 						<ToggleControl
 							label={ __( 'Show Title' ) }
 							checked={ !! showTitle }
 							onChange={ () => setAttributes( { showTitle: ! showTitle } ) }
+						/>
+						<ToggleControl
+							label={ __( 'Show Description' ) }
+							checked={ !! showDescription }
+							onChange={ () => setAttributes( { showDescription: ! showDescription } ) }
 						/>
 					</PanelBody>
 				</InspectorControls>
