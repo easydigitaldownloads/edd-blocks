@@ -105,13 +105,14 @@ class DownloadCategoriesEdit extends Component {
 	render() {
 
 		const {
-			align,
 			attributes,
 			setAttributes,
 		} = this.props;
 
-		const { 
+		const {
+			align,
 			columns,
+			showDescription,
 		} = attributes;
 
 		return (
