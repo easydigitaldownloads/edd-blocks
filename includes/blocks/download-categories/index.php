@@ -2,6 +2,8 @@
 
 function edd_blocks_render_block_download_categories( $attributes = array() ) {
 	ob_start();
+
+	echo '<p>Download categories to show here</p>';
 	
 	$display = ob_get_clean();
 
