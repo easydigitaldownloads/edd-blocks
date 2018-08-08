@@ -12,7 +12,9 @@ const { __ } = wp.i18n;
 const { Component, Fragment } = wp.element;
 
 const {	
-	InspectorControls
+	InspectorControls, 
+	BlockControls, 
+	BlockAlignmentToolbar 
 } = wp.editor;
 
 const apiFetch = wp.apiFetch;
@@ -35,8 +37,6 @@ class DownloadCategoriesEdit extends Component {
 	constructor() {
 		super( ...arguments );
 
-		this.setColumns = this.setColumns.bind( this );
-
 		this.state = {
 			downloadCategories: [],
 		}
@@ -48,10 +48,6 @@ class DownloadCategoriesEdit extends Component {
 
 	componentWillUnmount() {
 		delete this.downloadCategoriesRequest;
-	}
-
-	setColumns( columns ) {
-		this.props.setAttributes( { columns } );
 	}
 
 	fetchDownloadCategories() {
@@ -109,6 +105,7 @@ class DownloadCategoriesEdit extends Component {
 	render() {
 
 		const {
+			align,
 			attributes,
 			setAttributes,
 		} = this.props;
@@ -119,12 +116,23 @@ class DownloadCategoriesEdit extends Component {
 
 		return (
 			<Fragment>
+				<BlockControls>
+					<BlockAlignmentToolbar
+						value={ align }
+						onChange={ ( nextAlign ) => {
+							setAttributes( { align: nextAlign } );
+						} }
+						controls={ [ 'wide', 'full' ] }
+					/>
+				</BlockControls>
 				<InspectorControls>
 					<PanelBody title={ __( 'Download Category Settings' ) }>
 						<RangeControl
 							label={ __( 'Columns' ) }
 							value={ columns }
-							onChange={ this.setColumns }
+							onChange={ ( nextColumns ) => {
+							setAttributes( { columns: nextColumns } );
+						} }
 							min={ MIN_COLUMNS }
 							max={ MAX_COLUMNS }
 						/>
