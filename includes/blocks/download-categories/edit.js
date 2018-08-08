@@ -1,7 +1,7 @@
 import { stringify } from 'querystringify';
 import { unescape } from 'lodash';
 
-const {	Component, Fragment } = wp.element;
+const { Component, Fragment } = wp.element;
 
 const apiFetch = wp.apiFetch;
 
