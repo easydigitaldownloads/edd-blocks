@@ -1,4 +1,5 @@
 import { stringify } from 'querystringify';
+import { unescape } from 'lodash';
 
 const {	Component, Fragment } = wp.element;
 
@@ -29,7 +30,6 @@ class DownloadCategoriesEdit extends Component {
 			} ) }`,
 		} );
 
-		
 		request.then( ( downloadCategories ) => {
 
 			if ( this.downloadCategoriesRequest !== request ) {
@@ -45,12 +45,34 @@ class DownloadCategoriesEdit extends Component {
 	}
 
 	renderDownloadCategories() {
-		return 'Download categories to show here';
+		const categories = this.state.downloadCategories;
+
+		return (
+			<ul>
+				{ categories.map( ( category ) => this.renderDownloadCategoryListItem( category ) ) }
+			</ul>
+		);
+		
+	}
+
+	renderDownloadCategoryListItem( category ) {
+
+		return (
+			<li key={ category.id }>
+				<a href={ category.link } target="_blank">{ this.renderDownloadCategoryName( category ) }</a>
+			</li>
+		);
+	}
+
+	renderDownloadCategoryName( category ) {
+		if ( ! category.name ) {
+			return __( '(Untitled)' );
+		}
+
+		return unescape( category.name ).trim();
 	}
 
 	render() {
-
-		console.log( this.state.downloadCategories );
 
 		return (
 			<Fragment>
