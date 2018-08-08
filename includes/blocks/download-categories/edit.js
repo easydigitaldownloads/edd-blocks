@@ -87,10 +87,15 @@ class DownloadCategoriesEdit extends Component {
 
 	renderDownloadCategoryListItem( category ) {
 
+		const { showDescription } = this.props.attributes;
+
 		return (
 			<div key={ category.id }>
 				<a href={ category.link } target="_blank">{ this.renderDownloadCategoryName( category ) }</a>
+
+				{ showDescription &&
 				<p>{ category.description }</p>
+				}
 			</div>
 		);
 	}
