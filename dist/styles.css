@@ -178,3 +178,15 @@
     width: 33.3333333333%; }
   .edd_download_columns_4 .edd_download {
     width: 25%; } }
+
+.edd-download-categories {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  .edd-download-categories div {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.3333333333%;
+            flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%; }

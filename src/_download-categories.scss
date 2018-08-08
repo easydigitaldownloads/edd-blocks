@@ -1,3 +1,15 @@
 .wp-block-easydigitaldownloads-download-categories {
+
+}
+
+.edd-download-categories {
+	display: flex;
+	flex-wrap: wrap;
+
+	// 3 columns.
+	div {
+		flex: 0 0 33.3333333333%;
+		max-width: 33.3333333333%;
+	}
 	
 }

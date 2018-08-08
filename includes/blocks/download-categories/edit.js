@@ -48,7 +48,7 @@ class DownloadCategoriesEdit extends Component {
 		const categories = this.state.downloadCategories;
 
 		return (
-			<div>
+			<div className="edd-download-categories">
 				{ categories.map( ( category ) => this.renderDownloadCategoryListItem( category ) ) }
 			</div>
 		);
