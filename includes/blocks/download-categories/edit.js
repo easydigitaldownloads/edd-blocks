@@ -87,7 +87,7 @@ class DownloadCategoriesEdit extends Component {
 
 	renderDownloadCategoryListItem( category ) {
 
-		const { showDescription, showTitle, showThumbnails } = this.props.attributes;
+		const { showDescription, showName, showThumbnails } = this.props.attributes;
 
 		return (
 			<div key={ category.id }>
@@ -96,7 +96,7 @@ class DownloadCategoriesEdit extends Component {
 				<a href={ category.link } target="_blank" className="edd-download-category-thumbnail"></a>
 				}
 
-				{ showTitle && 
+				{ showName && 
 				<a href={ category.link } target="_blank">{ this.renderDownloadCategoryName( category ) }</a>
 				}
 
@@ -127,7 +127,7 @@ class DownloadCategoriesEdit extends Component {
 			columns,
 			showDescription,
 			showThumbnails,
-			showTitle,
+			showName,
 		} = attributes;
 
 		return (
@@ -158,12 +158,12 @@ class DownloadCategoriesEdit extends Component {
 							onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
 						/>
 						<ToggleControl
-							label={ __( 'Show Title' ) }
-							checked={ !! showTitle }
-							onChange={ () => setAttributes( { showTitle: ! showTitle } ) }
+							label={ __( 'Show Category Name' ) }
+							checked={ !! showName }
+							onChange={ () => setAttributes( { showName: ! showName } ) }
 						/>
 						<ToggleControl
-							label={ __( 'Show Description' ) }
+							label={ __( 'Show Category Description' ) }
 							checked={ !! showDescription }
 							onChange={ () => setAttributes( { showDescription: ! showDescription } ) }
 						/>

@@ -37,7 +37,7 @@ function edd_blocks_register_block_download_categories() {
 				'type'    => 'boolean',
 				'default' => true,
 			),
-			'showTitle' => array(
+			'showName' => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),
