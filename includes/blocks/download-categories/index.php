@@ -21,6 +21,10 @@ function edd_blocks_register_block_download_categories() {
 
 	register_block_type( 'easydigitaldownloads/download-categories', array(
 		'attributes' => array(
+			'columns' => array(
+				'type'    => 'number',
+				'default' => 3,
+			),
 		),
 		'render_callback' => 'edd_blocks_render_block_download_categories',
 	) );

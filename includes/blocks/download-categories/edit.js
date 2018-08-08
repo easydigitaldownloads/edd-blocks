@@ -1,14 +1,41 @@
 import { stringify } from 'querystringify';
 import { unescape } from 'lodash';
 
+const {
+	PanelBody,
+	RangeControl,
+} = wp.components;
+
+const { __ } = wp.i18n;
+
 const { Component, Fragment } = wp.element;
 
+const {	
+	InspectorControls
+} = wp.editor;
+
 const apiFetch = wp.apiFetch;
+
+/**
+ * Minimum number of columns.
+ *
+ * @type {number}
+ */
+const MIN_COLUMNS = 1;
+
+/**
+ * Maximum number of columns.
+ *
+ * @type {number}
+ */
+const MAX_COLUMNS = 4;
 
 class DownloadCategoriesEdit extends Component {
 	constructor() {
 		super( ...arguments );
 
+		this.setColumns = this.setColumns.bind( this );
+		
 		this.state = {
 			downloadCategories: [],
 		}
@@ -20,6 +47,10 @@ class DownloadCategoriesEdit extends Component {
 
 	componentWillUnmount() {
 		delete this.downloadCategoriesRequest;
+	}
+
+	setColumns( columns ) {
+		this.props.setAttributes( { columns } );
 	}
 
 	fetchDownloadCategories() {
@@ -75,8 +106,28 @@ class DownloadCategoriesEdit extends Component {
 
 	render() {
 
+		const {
+			attributes,
+			setAttributes,
+		} = this.props;
+
+		const { 
+			columns,
+		} = attributes;
+
 		return (
 			<Fragment>
+				<InspectorControls>
+					<PanelBody title={ __( 'Download Category Settings' ) }>
+						<RangeControl
+							label={ __( 'Columns' ) }
+							value={ columns }
+							onChange={ this.setColumns }
+							min={ MIN_COLUMNS }
+							max={ MAX_COLUMNS }
+						/>
+					</PanelBody>
+				</InspectorControls>
 				<div className={ this.props.className }>
 					{ this.renderDownloadCategories() }
 				</div>
