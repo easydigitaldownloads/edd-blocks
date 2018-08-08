@@ -1,4 +1,4 @@
-const {	Component } = wp.element;
+const {	Component, Fragment } = wp.element;
 
 class DownloadCategoriesEdit extends Component {
 	constructor() {
@@ -6,7 +6,13 @@ class DownloadCategoriesEdit extends Component {
 	}
 
 	render() {
-
+		return (
+			<Fragment>
+				<div>
+					Download categories to show here
+				</div>
+			</Fragment>
+		);
 	}
 }
 export default DownloadCategoriesEdit;
