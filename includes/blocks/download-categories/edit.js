@@ -119,6 +119,7 @@ class DownloadCategoriesEdit extends Component {
 			align,
 			columns,
 			showDescription,
+			showTitle,
 		} = attributes;
 
 		return (
@@ -147,6 +148,11 @@ class DownloadCategoriesEdit extends Component {
 							label={ __( 'Show Description' ) }
 							checked={ !! showDescription }
 							onChange={ () => setAttributes( { showDescription: ! showDescription } ) }
+						/>
+						<ToggleControl
+							label={ __( 'Show Title' ) }
+							checked={ !! showTitle }
+							onChange={ () => setAttributes( { showTitle: ! showTitle } ) }
 						/>
 					</PanelBody>
 				</InspectorControls>
