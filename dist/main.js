@@ -86,6 +86,30 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./includes/blocks/download-categories/edit.js":
+/*!*****************************************************!*\
+  !*** ./includes/blocks/download-categories/edit.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Component = wp.element.Component;\n\nvar DownloadCategoriesEdit = function (_Component) {\n\t_inherits(DownloadCategoriesEdit, _Component);\n\n\tfunction DownloadCategoriesEdit() {\n\t\t_classCallCheck(this, DownloadCategoriesEdit);\n\n\t\treturn _possibleConstructorReturn(this, (DownloadCategoriesEdit.__proto__ || Object.getPrototypeOf(DownloadCategoriesEdit)).apply(this, arguments));\n\t}\n\n\t_createClass(DownloadCategoriesEdit, [{\n\t\tkey: \"render\",\n\t\tvalue: function render() {}\n\t}]);\n\n\treturn DownloadCategoriesEdit;\n}(Component);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (DownloadCategoriesEdit);\n\n//# sourceURL=webpack:///./includes/blocks/download-categories/edit.js?");
+
+/***/ }),
+
+/***/ "./includes/blocks/download-categories/index.js":
+/*!******************************************************!*\
+  !*** ./includes/blocks/download-categories/index.js ***!
+  \******************************************************/
+/*! exports provided: name, settings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"name\", function() { return name; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"settings\", function() { return settings; });\n/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./edit */ \"./includes/blocks/download-categories/edit.js\");\n/**\n * Internal dependencies\n */\n\n\n/**\n * WordPress dependencies\n */\nvar __ = wp.i18n.__;\n\n\nvar name = 'easydigitaldownloads/download-categories';\n\nvar settings = {\n\ttitle: __('Download Categories'),\n\n\tdescription: __('Display download categories.'),\n\n\ticon: 'download',\n\n\tcategory: 'widgets',\n\n\tkeywords: [__('downloads'), __('edd')],\n\n\tsupports: {\n\t\thtml: false,\n\t\tmultiple: true\n\t},\n\n\tgetEditWrapperProps: function getEditWrapperProps(attributes) {\n\t\tvar align = attributes.align;\n\n\t\tif (['wide', 'full'].includes(align)) {\n\t\t\treturn { 'data-align': align, 'data-block-type': 'easy-digital-downloads' };\n\t\t}\n\t},\n\n\n\tedit: _edit__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n\n\tsave: function save() {\n\t\treturn null;\n\t}\n};\n\n//# sourceURL=webpack:///./includes/blocks/download-categories/index.js?");
+
+/***/ }),
+
 /***/ "./includes/blocks/downloads/edit.js":
 /*!*******************************************!*\
   !*** ./includes/blocks/downloads/edit.js ***!
@@ -130,7 +154,7 @@ eval("\n\nvar has = Object.prototype.hasOwnProperty;\n\n/**\n * Decode a URI enc
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.scss */ \"./src/styles.scss\");\n/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_styles_scss__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _includes_blocks_downloads__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../includes/blocks/downloads */ \"./includes/blocks/downloads/index.js\");\n\n\n\nvar registerBlockType = wp.blocks.registerBlockType;\n\n\nvar registerCoreBlocks = function registerCoreBlocks() {\n\t[_includes_blocks_downloads__WEBPACK_IMPORTED_MODULE_1__].forEach(function (_ref) {\n\t\tvar name = _ref.name,\n\t\t    settings = _ref.settings;\n\n\t\tregisterBlockType(name, settings);\n\t});\n};\nregisterCoreBlocks();\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.scss */ \"./src/styles.scss\");\n/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_styles_scss__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _includes_blocks_downloads__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../includes/blocks/downloads */ \"./includes/blocks/downloads/index.js\");\n/* harmony import */ var _includes_blocks_download_categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../includes/blocks/download-categories */ \"./includes/blocks/download-categories/index.js\");\n\n\n\n\nvar registerBlockType = wp.blocks.registerBlockType;\n\n\nvar registerCoreBlocks = function registerCoreBlocks() {\n\t[_includes_blocks_downloads__WEBPACK_IMPORTED_MODULE_1__, _includes_blocks_download_categories__WEBPACK_IMPORTED_MODULE_2__].forEach(function (_ref) {\n\t\tvar name = _ref.name,\n\t\t    settings = _ref.settings;\n\n\t\tregisterBlockType(name, settings);\n\t});\n};\nregisterCoreBlocks();\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
