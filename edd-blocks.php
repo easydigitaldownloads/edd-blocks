@@ -208,6 +208,7 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 		private function includes() {
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-assets.php';
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/blocks/downloads/index.php';
+			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/blocks/download-categories/index.php';
 		}
 
 		/**
