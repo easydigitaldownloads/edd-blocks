@@ -1,5 +1,6 @@
 import { stringify } from 'querystringify';
 import { unescape } from 'lodash';
+import classnames from 'classnames';
 
 const {
 	PanelBody,
@@ -35,7 +36,7 @@ class DownloadCategoriesEdit extends Component {
 		super( ...arguments );
 
 		this.setColumns = this.setColumns.bind( this );
-		
+
 		this.state = {
 			downloadCategories: [],
 		}
@@ -77,9 +78,10 @@ class DownloadCategoriesEdit extends Component {
 
 	renderDownloadCategories() {
 		const categories = this.state.downloadCategories;
+		const { columns } = this.props.attributes;
 
 		return (
-			<div className="edd-download-categories">
+			<div className={ classnames( 'edd-download-categories', 'columns-' + columns ) }>
 				{ categories.map( ( category ) => this.renderDownloadCategoryListItem( category ) ) }
 			</div>
 		);
