@@ -184,7 +184,20 @@
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
+      flex-wrap: wrap;
+  margin: 0 -15px; }
+  .edd-download-categories * {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
+  .edd-download-categories p {
+    margin: 0; }
+  .edd-download-categories div {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    min-height: 1px;
+    position: relative;
+    margin-bottom: 2rem; }
   .edd-download-categories.columns-1 div {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
@@ -205,3 +218,9 @@
         -ms-flex: 0 0 25%;
             flex: 0 0 25%;
     max-width: 25%; }
+  .edd-download-categories .edd-download-category-thumbnail {
+    background: #f7f7f7;
+    width: 100%;
+    height: 150px;
+    padding: 1rem;
+    display: block; }
