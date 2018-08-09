@@ -5,6 +5,7 @@ import classnames from 'classnames';
 const {
 	PanelBody,
 	RangeControl,
+	SelectControl,
 	ToggleControl,
 } = wp.components;
 
@@ -38,6 +39,8 @@ class DownloadCategoriesEdit extends Component {
 	constructor() {
 		super( ...arguments );
 
+		this.setOrderOption = this.setOrderOption.bind( this );
+
 		this.state = {
 			downloadCategories: [],
 		}
@@ -51,11 +54,26 @@ class DownloadCategoriesEdit extends Component {
 		delete this.downloadCategoriesRequest;
 	}
 
+	componentDidUpdate( prevProps ) {
+		const { order } = this.props.attributes;
+
+		if ( order !== prevProps.attributes.order ) {
+			this.fetchDownloadCategories();
+		}
+	}
+
 	fetchDownloadCategories() {
+		const { order } = this.props.attributes;
+
+		const query = {
+			per_page: -1,
+			orderby: 'count',
+			order: order,
+		};
 
 		const request = apiFetch( {
 			path: `/wp/v2/download_category?${ stringify( {
-				per_page: -1,
+				...query
 			} ) }`,
 		} );
 
@@ -120,6 +138,19 @@ class DownloadCategoriesEdit extends Component {
 		return unescape( category.name ).trim();
 	}
 
+	getOrderOptions() {
+		return [
+			{ value: 'asc', label: __( 'Ascending' ) },
+			{ value: 'desc', label: __( 'Descending' ) },
+		];
+	}
+
+	setOrderOption( value ) {
+		this.props.setAttributes( {
+			order: value,
+		} );
+	}
+
 	render() {
 
 		const {
@@ -130,6 +161,7 @@ class DownloadCategoriesEdit extends Component {
 		const {
 			align,
 			columns,
+			order,
 			showDescription,
 			showThumbnails,
 			showName,
@@ -180,6 +212,12 @@ class DownloadCategoriesEdit extends Component {
 							onChange={ () => setAttributes( { showCount: ! showCount } ) }
 						/>
 						}
+						<SelectControl
+							label={ __( 'Order' ) }
+							value={ order }
+							options={ this.getOrderOptions() }
+							onChange={ this.setOrderOption }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<div className={ this.props.className }>

@@ -29,6 +29,10 @@ function edd_blocks_register_block_download_categories() {
 				'type'    => 'number',
 				'default' => 3,
 			),
+			'order' => array(
+				'type'    => 'string',
+				'default' => 'desc',
+			),
 			'showDescription' => array(
 				'type'    => 'boolean',
 				'default' => true,
