@@ -151,6 +151,7 @@ class DownloadCategoriesEdit extends Component {
 			{ value: 'count', label: __( 'Count' ) },
 			{ value: 'name', label: __( 'Name' ) },
 			{ value: 'id', label: __( 'ID' ) },
+			{ value: 'slug', label: __( 'Slug' ) },
 		];
 	}
 
