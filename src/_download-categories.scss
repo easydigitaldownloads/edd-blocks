@@ -2,6 +2,14 @@
 
 }
 
+.editor-block-list__layout .editor-block-list__block[data-type="easydigitaldownloads/download-categories"] {
+
+	&[data-align="full"] .edd-download-categories {
+		margin: 0;
+	}
+
+}
+
 .edd-download-categories {
 	display: flex;
 	flex-wrap: wrap;
