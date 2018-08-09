@@ -149,8 +149,8 @@ class DownloadCategoriesEdit extends Component {
 	getOrderByOptions() {
 		return [
 			{ value: 'count', label: __( 'Count' ) },
-			{ value: 'name', label: __( 'Name' ) },
 			{ value: 'id', label: __( 'ID' ) },
+			{ value: 'name', label: __( 'Name' ) },
 			{ value: 'slug', label: __( 'Slug' ) },
 		];
 	}
