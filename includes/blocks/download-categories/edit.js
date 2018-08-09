@@ -1,5 +1,5 @@
 import { stringify } from 'querystringify';
-import { unescape } from 'lodash';
+import unescape from 'lodash/unescape';
 import classnames from 'classnames';
 
 const {
