@@ -40,6 +40,7 @@ class DownloadCategoriesEdit extends Component {
 		super( ...arguments );
 
 		this.setOrderOption = this.setOrderOption.bind( this );
+		this.setOrderByOption = this.setOrderByOption.bind( this );
 
 		this.state = {
 			downloadCategories: [],
@@ -55,19 +56,19 @@ class DownloadCategoriesEdit extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
-		const { order } = this.props.attributes;
+		const { order, orderBy } = this.props.attributes;
 
-		if ( order !== prevProps.attributes.order ) {
+		if ( order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
 			this.fetchDownloadCategories();
 		}
 	}
 
 	fetchDownloadCategories() {
-		const { order } = this.props.attributes;
+		const { order, orderBy } = this.props.attributes;
 
 		const query = {
 			per_page: -1,
-			orderby: 'count',
+			orderby: orderBy,
 			order: order,
 		};
 
@@ -145,9 +146,22 @@ class DownloadCategoriesEdit extends Component {
 		];
 	}
 
+	getOrderByOptions() {
+		return [
+			{ value: 'count', label: __( 'Count' ) },
+			{ value: 'name', label: __( 'Name' ) },
+		];
+	}
+
 	setOrderOption( value ) {
 		this.props.setAttributes( {
 			order: value,
+		} );
+	}
+
+	setOrderByOption( value ) {
+		this.props.setAttributes( {
+			orderBy: value,
 		} );
 	}
 
@@ -162,6 +176,7 @@ class DownloadCategoriesEdit extends Component {
 			align,
 			columns,
 			order,
+			orderBy,
 			showDescription,
 			showThumbnails,
 			showName,
@@ -212,6 +227,12 @@ class DownloadCategoriesEdit extends Component {
 							onChange={ () => setAttributes( { showCount: ! showCount } ) }
 						/>
 						}
+						<SelectControl
+							label={ __( 'Order By' ) }
+							value={ orderBy }
+							options={ this.getOrderByOptions() }
+							onChange={ this.setOrderByOption }
+						/>
 						<SelectControl
 							label={ __( 'Order' ) }
 							value={ order }
