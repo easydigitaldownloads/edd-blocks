@@ -192,31 +192,42 @@
   .edd-download-categories * {
     -webkit-box-sizing: border-box;
             box-sizing: border-box; }
-  .edd-download-categories p {
+  .edd-download-categories p, .edd-download-categories h3 {
     margin: 0; }
-  .edd-download-categories div {
+  .edd-download-categories .edd-download-category {
     padding-left: 15px;
     padding-right: 15px;
     width: 100%;
     min-height: 1px;
     position: relative;
     margin-bottom: 2rem; }
-  .edd-download-categories.columns-1 div {
+  .edd-download-categories .edd-download-category-title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 0.5rem; }
+  .edd-download-categories.columns-1 .edd-download-category {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
             flex: 0 0 100%;
     max-width: 100%; }
-  .edd-download-categories.columns-2 div {
+  .edd-download-categories.columns-2 .edd-download-category {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 50%;
             flex: 0 0 50%;
     max-width: 50%; }
-  .edd-download-categories.columns-3 div {
+  .edd-download-categories.columns-3 .edd-download-category {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 33.3333333333%;
             flex: 0 0 33.3333333333%;
     max-width: 33.3333333333%; }
-  .edd-download-categories.columns-4 div {
+  .edd-download-categories.columns-4 .edd-download-category {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 25%;
             flex: 0 0 25%;
@@ -226,4 +237,5 @@
     width: 100%;
     height: 150px;
     padding: 1rem;
-    display: block; }
+    display: block;
+    margin-bottom: 0.5rem; }

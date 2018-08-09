@@ -19,11 +19,12 @@
 		box-sizing: border-box;
 	}
 
-	p {
+	p, h3 {
 		margin: 0;
 	}
 
-	div {
+
+	.edd-download-category {
 		padding-left: 15px;
 		padding-right: 15px;
 		width: 100%;
@@ -32,26 +33,33 @@
 		margin-bottom: 2rem;
 	}
 
+	.edd-download-category-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.5rem;
+	}
+
 	// 1 column.
-	&.columns-1 div {
+	&.columns-1 .edd-download-category {
 		flex: 0 0 100%;
 		max-width: 100%;
 	}
 
 	// 2 columns.
-	&.columns-2 div {
+	&.columns-2 .edd-download-category {
 		flex: 0 0 50%;
 		max-width: 50%;
 	}
 
 	// 3 columns.
-	&.columns-3 div {
+	&.columns-3 .edd-download-category {
 		flex: 0 0 33.3333333333%;
 		max-width: 33.3333333333%;
 	}
 	
 	// 4 columns.
-	&.columns-4 div {
+	&.columns-4 .edd-download-category {
 		flex: 0 0 25%;
 		max-width: 25%;
 	}
@@ -62,5 +70,6 @@
 		height: 150px;
 		padding: 1rem;
 		display: block;
+		margin-bottom: 0.5rem;
 	}
 }

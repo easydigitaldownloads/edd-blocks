@@ -87,17 +87,22 @@ class DownloadCategoriesEdit extends Component {
 
 	renderDownloadCategoryListItem( category ) {
 
-		const { showDescription, showName, showThumbnails } = this.props.attributes;
+		const { showCount, showDescription, showName, showThumbnails } = this.props.attributes;
 
 		return (
-			<div key={ category.id }>
+			<div key={ category.id } className="edd-download-category">
 
 				{ showThumbnails && 
 				<a href={ category.link } target="_blank" className="edd-download-category-thumbnail"></a>
 				}
 
 				{ showName && 
-				<a href={ category.link } target="_blank">{ this.renderDownloadCategoryName( category ) }</a>
+				<div className="edd-download-category-title">
+					<h3><a href={ category.link } target="_blank">{ this.renderDownloadCategoryName( category ) }</a></h3>
+					{ showCount &&
+					<span className="edd-download-count">({ category.count })</span>
+					}
+				</div>	
 				}
 
 				{ showDescription &&
@@ -128,6 +133,7 @@ class DownloadCategoriesEdit extends Component {
 			showDescription,
 			showThumbnails,
 			showName,
+			showCount,
 		} = attributes;
 
 		return (
@@ -166,6 +172,11 @@ class DownloadCategoriesEdit extends Component {
 							label={ __( 'Show Category Description' ) }
 							checked={ !! showDescription }
 							onChange={ () => setAttributes( { showDescription: ! showDescription } ) }
+						/>
+						<ToggleControl
+							label={ __( 'Show Count' ) }
+							checked={ !! showCount }
+							onChange={ () => setAttributes( { showCount: ! showCount } ) }
 						/>
 					</PanelBody>
 				</InspectorControls>
