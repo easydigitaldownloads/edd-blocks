@@ -173,11 +173,13 @@ class DownloadCategoriesEdit extends Component {
 							checked={ !! showDescription }
 							onChange={ () => setAttributes( { showDescription: ! showDescription } ) }
 						/>
+						{ showName && 
 						<ToggleControl
 							label={ __( 'Show Count' ) }
 							checked={ !! showCount }
 							onChange={ () => setAttributes( { showCount: ! showCount } ) }
 						/>
+						}
 					</PanelBody>
 				</InspectorControls>
 				<div className={ this.props.className }>
