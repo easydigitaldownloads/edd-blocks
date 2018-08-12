@@ -56,20 +56,21 @@ class DownloadCategoriesEdit extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
-		const { order, orderBy } = this.props.attributes;
+		const { showEmpty, order, orderBy } = this.props.attributes;
 
-		if ( order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
+		if ( showEmpty !== prevProps.attributes.showEmpty || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
 			this.fetchDownloadCategories();
 		}
 	}
 
 	fetchDownloadCategories() {
-		const { order, orderBy } = this.props.attributes;
+		const { showEmpty, order, orderBy } = this.props.attributes;
 
 		const query = {
 			per_page: -1,
 			orderby: orderBy,
 			order: order,
+			hide_empty: true !== showEmpty ? true : false,
 		};
 
 		const request = apiFetch( {
@@ -188,6 +189,7 @@ class DownloadCategoriesEdit extends Component {
 		const {
 			align,
 			columns,
+			showEmpty,
 			order,
 			orderBy,
 			showDescription,
@@ -240,6 +242,11 @@ class DownloadCategoriesEdit extends Component {
 							onChange={ () => setAttributes( { showCount: ! showCount } ) }
 						/>
 						}
+						<ToggleControl
+							label={ __( 'Show Empty Categories' ) }
+							checked={ !! showEmpty }
+							onChange={ () => setAttributes( { showEmpty: ! showEmpty } ) }
+						/>
 						<SelectControl
 							label={ __( 'Order By' ) }
 							value={ orderBy }
