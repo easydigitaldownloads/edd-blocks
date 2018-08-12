@@ -25,6 +25,9 @@ function edd_blocks_register_block_download_categories() {
 				'type'    => 'string',
 				'default' => 'center',
 			),
+			'className' => array(
+				'type' => 'string',
+			),
 			'columns' => array(
 				'type'    => 'number',
 				'default' => 3,
