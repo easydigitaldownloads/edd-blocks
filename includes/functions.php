@@ -79,3 +79,23 @@ function edd_blocks_register_rest_fields() {
 	);
 }
 add_action( 'rest_api_init', 'edd_blocks_register_rest_fields' );
+
+/**
+ * Get term meta.
+ *
+ * @since 1.0.0
+ */
+function edd_blocks_term_meta_callback( $object, $field_name, $request ) {
+
+	// Get the term ID.
+	$term_id = $object['id'];
+
+	// Get the image ID.
+	$image_id = get_term_meta( $term_id, 'download_category_image_id', true );
+
+	// Build meta array.
+	$meta = array( 'image' => wp_get_attachment_image( $image_id ) );
+
+	return $meta;
+
+}
