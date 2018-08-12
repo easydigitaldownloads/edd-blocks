@@ -23,7 +23,7 @@ function edd_blocks_register_block_download_categories() {
 		'attributes' => array(
 			'align' => array(
 				'type'    => 'string',
-				'default' => 'center',
+				'default' => '',
 			),
 			'className' => array(
 				'type' => 'string',
