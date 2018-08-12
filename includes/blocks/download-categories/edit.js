@@ -11,12 +11,12 @@ const {
 
 const { __ } = wp.i18n;
 
-const { Component, Fragment } = wp.element;
+const { Component, Fragment, RawHTML } = wp.element;
 
 const {	
-	InspectorControls, 
-	BlockControls, 
-	BlockAlignmentToolbar 
+	InspectorControls,
+	BlockControls,
+	BlockAlignmentToolbar,
 } = wp.editor;
 
 const apiFetch = wp.apiFetch;
@@ -104,6 +104,19 @@ class DownloadCategoriesEdit extends Component {
 		
 	}
 
+	renderCategoryImage( category ) {
+
+		const { showThumbnails } = this.props.attributes;
+
+		const image = category.meta.image;
+
+		if ( ! showThumbnails || ! image ) {
+			return;
+		}
+
+		return <RawHTML>{ image }</RawHTML>
+	}
+
 	renderDownloadCategoryListItem( category ) {
 
 		const { showCount, showDescription, showName, showThumbnails } = this.props.attributes;
@@ -111,15 +124,13 @@ class DownloadCategoriesEdit extends Component {
 		return (
 			<div key={ category.id } className="edd-download-category">
 
-				{ showThumbnails && 
-				<a href={ category.link } target="_blank" className="edd-download-category-thumbnail"></a>
-				}
+				{ this.renderCategoryImage( category ) }
 
 				{ showName && 
 				<div className="edd-download-category-title">
 					<h3><a href={ category.link } target="_blank">{ this.renderDownloadCategoryName( category ) }</a></h3>
 					{ showCount &&
-					<span className="edd-download-count">({ category.count })</span>
+					<span className="edd-download-category-count">({ category.count })</span>
 					}
 				</div>	
 				}
