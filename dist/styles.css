@@ -232,10 +232,6 @@
         -ms-flex: 0 0 25%;
             flex: 0 0 25%;
     max-width: 25%; }
-  .edd-download-categories .edd-download-category-thumbnail {
-    background: #f7f7f7;
-    width: 100%;
-    height: 150px;
-    padding: 1rem;
+  .edd-download-categories .edd-download-category-image {
     display: block;
     margin-bottom: 0.5rem; }
