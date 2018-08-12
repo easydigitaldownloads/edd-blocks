@@ -4,8 +4,10 @@ import classnames from 'classnames';
 
 const {
 	PanelBody,
+	Placeholder,
 	RangeControl,
 	SelectControl,
+	Spinner,
 	ToggleControl,
 } = wp.components;
 
@@ -44,6 +46,7 @@ class DownloadCategoriesEdit extends Component {
 
 		this.state = {
 			downloadCategories: [],
+			isLoading: true,
 		}
 	}
 
@@ -85,7 +88,7 @@ class DownloadCategoriesEdit extends Component {
 				return;
 			}
 
-			this.setState( { downloadCategories } );
+			this.setState( { downloadCategories, isLoading: false } );
 
 		} );
 
@@ -197,6 +200,21 @@ class DownloadCategoriesEdit extends Component {
 			showName,
 			showCount,
 		} = attributes;
+
+		const isLoading = this.state.isLoading;
+
+		if ( isLoading ) {
+			return (
+				<Fragment>
+					<Placeholder
+						icon="download"
+						label={ __( 'Download Categories' ) }
+					>
+						<Spinner />
+					</Placeholder>
+				</Fragment>
+			);
+		}
 
 		return (
 			<Fragment>
