@@ -5,12 +5,10 @@ import classnames from 'classnames';
 const {	Component, Fragment } = wp.element;
 
 const {	
-	Disabled,
 	PanelBody,
 	ToggleControl,
 	RangeControl,
 	SelectControl,
-	ServerSideRender
 } = wp.components;
 
 const { __ } = wp.i18n;
