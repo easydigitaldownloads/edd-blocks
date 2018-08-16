@@ -6,9 +6,11 @@ const {	Component, Fragment } = wp.element;
 
 const {	
 	PanelBody,
+	Placeholder,
 	ToggleControl,
 	RangeControl,
 	SelectControl,
+	Spinner,
 } = wp.components;
 
 const { __ } = wp.i18n;
