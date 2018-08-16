@@ -199,6 +199,35 @@ class DownloadsEdit extends Component {
 
 	}
 
+	fetchDownloads() {
+		const { order, orderBy } = this.props.attributes;
+
+		const query = {
+			per_page: -1,
+			orderby: orderBy,
+			order: order,
+		};
+
+		const request = apiFetch( {
+			path: `/wp/v2/download?${ stringify( {
+				...query
+			} ) }`,
+		} );
+
+		request.then( ( downloads ) => {
+
+			if ( this.downloadRequest !== request ) {
+				return;
+			}
+
+			this.setState( { downloads, isLoading: false } );
+
+		} );
+
+		this.downloadRequest = request;
+
+	}
+
 	renderDownloads() {
 		const downloads = this.state.downloads;
 		const { columns } = this.props.attributes;
