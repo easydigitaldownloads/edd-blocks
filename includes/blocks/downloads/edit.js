@@ -86,9 +86,9 @@ class DownloadsEdit extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
-		const { order, orderBy } = this.props.attributes;
+		const { number, order, orderBy } = this.props.attributes;
 
-		if ( order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
+		if ( number !== prevProps.attributes.number || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
 			this.fetchDownloads();
 		}
 
