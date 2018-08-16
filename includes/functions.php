@@ -111,3 +111,23 @@ function edd_blocks_term_meta_callback( $object, $field_name, $request ) {
 	return $meta;
 
 }
+
+/**
+ * Get post meta.
+ *
+ * @since 1.0.0
+ */
+function edd_blocks_download_post_meta_callback( $object, $field_name, $request ) {
+
+	// Get the post ID.
+	$post_id = $object['id'];
+
+	// Get the image ID.
+	$image_id = get_post_meta( $post_id, '_thumbnail_id', true );
+
+	// Build meta array.
+	$meta = array( 'image' => wp_get_attachment_image( $image_id ) );
+
+	return $meta;
+
+}
