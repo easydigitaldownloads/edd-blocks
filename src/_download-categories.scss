@@ -1,0 +1,19 @@
+// Styling for the download categories block.
+// Used by both the front-end and admin (imported into each stylesheet).
+
+.edd-download-category-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.5rem;
+
+	// Reset bottom margin on h3 headings that themes may add.
+	h3 {
+		margin-bottom: 0;
+	}
+}
+
+.edd-download-category-image {
+	display: block;
+	margin-bottom: 0.5rem;
+}
