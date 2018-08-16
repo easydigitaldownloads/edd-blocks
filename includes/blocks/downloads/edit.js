@@ -1,4 +1,5 @@
 import { stringify } from 'querystringify';
+import unescape from 'lodash/unescape';
 import classnames from 'classnames';
 
 const {	Component, Fragment } = wp.element;
