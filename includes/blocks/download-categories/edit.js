@@ -123,7 +123,7 @@ class DownloadCategoriesEdit extends Component {
 
 	renderDownloadCategoryListItem( category ) {
 
-		const { showCount, showDescription, showName, showThumbnails } = this.props.attributes;
+		const { showCount, showDescription, showName } = this.props.attributes;
 
 		return (
 			<div key={ category.id } className="edd-download-category">
