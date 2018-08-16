@@ -66,6 +66,7 @@ class DownloadsEdit extends Component {
 		this.showFullContent = this.showFullContent.bind( this );
 
 		this.state = {
+			isLoading: true,
 			showExcerpt: true,
 			showFullContent: false,
 			downloads: [],
@@ -80,8 +81,8 @@ class DownloadsEdit extends Component {
 	}
 
 	componentWillUnmount() {
-		delete this.downloadCategoriesRequest;
 		delete this.downloadsRequest;
+		delete this.downloadCategoriesRequest;	
 	}
 
 	setColumns( columns ) {
