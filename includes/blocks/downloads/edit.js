@@ -212,6 +212,7 @@ class DownloadsEdit extends Component {
 	}
 
 	fetchDownloads() {
+		
 		const { order, orderBy } = this.props.attributes;
 
 		const query = {
@@ -221,22 +222,20 @@ class DownloadsEdit extends Component {
 		};
 
 		const request = apiFetch( {
-			path: `/wp/v2/download?${ stringify( {
-				...query
-			} ) }`,
+			path: '/wp/v2/download',
 		} );
-
+		
 		request.then( ( downloads ) => {
 
-			if ( this.downloadRequest !== request ) {
+			if ( this.downloadsRequest !== request ) {
 				return;
 			}
-
+			
 			this.setState( { downloads, isLoading: false } );
 
 		} );
 
-		this.downloadRequest = request;
+		this.downloadsRequest = request;
 
 	}
 
