@@ -101,7 +101,7 @@ class DownloadCategoriesEdit extends Component {
 		const { columns } = this.props.attributes;
 
 		return (
-			<div className={ classnames( 'edd-download-categories', 'columns-' + columns ) }>
+			<div className={ classnames( 'edd_downloads_list', 'edd-download-categories', 'edd_download_columns_' + columns ) }>
 				{ categories.map( ( category ) => this.renderDownloadCategoryListItem( category ) ) }
 			</div>
 		);
