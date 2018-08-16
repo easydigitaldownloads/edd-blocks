@@ -213,10 +213,10 @@ class DownloadsEdit extends Component {
 
 	fetchDownloads() {
 		
-		const { order, orderBy } = this.props.attributes;
+		const { number, order, orderBy } = this.props.attributes;
 
 		const query = {
-			per_page: 100,
+			per_page: number,
 			orderby: orderBy, 
 			order: order,
 		};
