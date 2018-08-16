@@ -66,6 +66,7 @@ class DownloadsEdit extends Component {
 		this.state = {
 			showExcerpt: true,
 			showFullContent: false,
+			downloads: [],
 			downloadCategories: [],
 		}
 
