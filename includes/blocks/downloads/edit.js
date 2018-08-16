@@ -78,6 +78,7 @@ class DownloadsEdit extends Component {
 
 	componentWillUnmount() {
 		delete this.downloadCategoriesRequest;
+		delete this.downloadsRequest;
 	}
 
 	setColumns( columns ) {
