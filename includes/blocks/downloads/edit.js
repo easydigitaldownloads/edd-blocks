@@ -226,6 +226,14 @@ class DownloadsEdit extends Component {
 		);
 	}
 
+	renderDownloadName( download ) {
+		if ( ! download.name ) {
+			return __( '(Untitled)' );
+		}
+
+		return unescape( download.name ).trim();
+	}
+
 	render() {
 	
 		const {
