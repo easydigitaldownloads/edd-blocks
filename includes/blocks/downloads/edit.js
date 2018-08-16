@@ -208,6 +208,24 @@ class DownloadsEdit extends Component {
 		
 	}
 
+	renderDownloadListItem( download ) {
+
+		const { showDescription } = this.props.attributes;
+
+		return (
+			<div key={ download.id } className="edd-download-category">
+
+				{ this.renderDownloadImage( download ) }
+
+				<h3><a href={ download.link } target="_blank">{ this.renderDownloadName( download ) }</a></h3>
+
+				{ showDescription &&
+				<p>{ download.description }</p>
+				}
+			</div>
+		);
+	}
+
 	render() {
 	
 		const {
