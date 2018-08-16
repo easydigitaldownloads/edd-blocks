@@ -10,14 +10,22 @@ class EDD_Blocks_Assets {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		// Enqueue block assets for both editor and front-end.
-		add_action( 'enqueue_block_assets', array( $this, 'block_assets' ) );
+
+		/**
+		 * Enqueue block assets for the front-end. 
+		 * We're purposely not using the enqueue_block_assets hook.
+		 */
+		add_action( 'wp_enqueue_scripts', array( $this, 'block_assets' ), 500 ); // Make sure it's loaded after EDD.
+		
 		// Enqueue block assets for the editor only.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'block_editor_assets' ) );
 	}
 
 	/**
 	 * Enqueue block assets.
+	 * 
+	 * This is temporary until https://github.com/easydigitaldownloads/easy-digital-downloads/issues/6852 is merged.
+	 * Once merged, we'll remove the method below since any styling will exist in EDD's stylesheet.
 	 * 
 	 * @since 1.0.0
 	 */
