@@ -70,6 +70,16 @@ function edd_blocks_list( $atts = array() ) {
  * @since 1.0.0
  */
 function edd_blocks_register_rest_fields() {
+
+	register_rest_field( 'download',
+		'meta',
+		array(
+			'get_callback'    => 'edd_blocks_download_post_meta_callback',
+			'update_callback' => null,
+			'schema'          => null,
+		)
+	);
+
 	register_rest_field( 'download_category',
 		'meta',
 		array(
@@ -78,6 +88,7 @@ function edd_blocks_register_rest_fields() {
 			'schema'          => null,
 		)
 	);
+
 }
 add_action( 'rest_api_init', 'edd_blocks_register_rest_fields' );
 
