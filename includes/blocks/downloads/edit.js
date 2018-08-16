@@ -288,6 +288,21 @@ class DownloadsEdit extends Component {
 			category
 		} = attributes;
 
+		const isLoading = this.state.isLoading;
+
+		if ( isLoading ) {
+			return (
+				<Fragment>
+					<Placeholder
+						icon="download"
+						label={ __( 'Downloads' ) }
+					>
+						<Spinner />
+					</Placeholder>
+				</Fragment>
+			);
+		}
+
 		return (
 			<Fragment>
 				<BlockControls>
