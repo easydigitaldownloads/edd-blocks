@@ -384,9 +384,7 @@ class DownloadsEdit extends Component {
 					{ this.renderDownloads() }
 				</div>
 			</Fragment>
-
 		);
-
 	}
 }
 
