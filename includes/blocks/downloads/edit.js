@@ -85,6 +85,15 @@ class DownloadsEdit extends Component {
 		delete this.downloadCategoriesRequest;	
 	}
 
+	componentDidUpdate( prevProps ) {
+		const { order, orderBy } = this.props.attributes;
+
+		if ( order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
+			this.fetchDownloads();
+		}
+
+	}
+
 	setColumns( columns ) {
 		this.props.setAttributes( { columns } );
 	}
