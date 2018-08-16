@@ -49,7 +49,7 @@ const MIN_COLUMNS = 1;
  *
  * @type {number}
  */
-const MAX_COLUMNS = 4;
+const MAX_COLUMNS = 6;
 
 class DownloadsEdit extends Component {
 
