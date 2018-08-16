@@ -196,6 +196,18 @@ class DownloadsEdit extends Component {
 
 	}
 
+	renderDownloads() {
+		const downloads = this.state.downloads;
+		const { columns } = this.props.attributes;
+
+		return (
+			<div className={ classnames( 'edd_downloads_list', 'edd_download_columns_' + columns ) }>
+				{ downloads.map( ( download ) => this.renderDownloadListItem( download ) ) }
+			</div>
+		);
+		
+	}
+
 	render() {
 	
 		const {
