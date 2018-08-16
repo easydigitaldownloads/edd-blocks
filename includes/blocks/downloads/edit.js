@@ -1,4 +1,5 @@
 import { stringify } from 'querystringify';
+import classnames from 'classnames';
 
 const {	Component, Fragment } = wp.element;
 
