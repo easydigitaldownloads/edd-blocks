@@ -216,15 +216,17 @@ class DownloadsEdit extends Component {
 		const { order, orderBy } = this.props.attributes;
 
 		const query = {
-			per_page: -1,
-			orderby: orderBy,
+			per_page: 100,
+			orderby: orderBy, 
 			order: order,
 		};
 
 		const request = apiFetch( {
-			path: '/wp/v2/download',
+			path: `/wp/v2/download?${ stringify( {
+				...query
+			} ) }`,
 		} );
-		
+
 		request.then( ( downloads ) => {
 
 			if ( this.downloadsRequest !== request ) {
