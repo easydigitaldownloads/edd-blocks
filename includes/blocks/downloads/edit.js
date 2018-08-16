@@ -280,6 +280,18 @@ class DownloadsEdit extends Component {
 		return unescape( title ).trim();
 	}
 
+	renderDownloadImage( download ) {
+
+		const { showThumbnails } = this.props.attributes;
+		const image = download.meta.image;
+
+		if ( ! showThumbnails || ! image ) {
+			return;
+		}
+
+		return <RawHTML>{ image }</RawHTML>
+	}
+
 	render() {
 	
 		const {
