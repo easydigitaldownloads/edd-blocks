@@ -44,6 +44,12 @@ class EDD_Blocks_Assets {
 			false
 		);
 
+		wp_enqueue_style(
+			'edd-blocks-admin',
+			EDD_BLOCKS_PLUGIN_URL . 'dist/admin.css',
+			filemtime( EDD_BLOCKS_PLUGIN_DIR . 'dist/admin.css' )
+		);
+
 	}
 
 }
