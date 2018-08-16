@@ -293,12 +293,9 @@ class DownloadsEdit extends Component {
 						/>
 					</PanelBody>
 				</InspectorControls>
-				<Disabled>
-					<ServerSideRender
-						block="easydigitaldownloads/downloads"
-						attributes={ this.props.attributes }
-					/>
-				</Disabled>
+				<div className={ this.props.className }>
+					{ this.renderDownloads() }
+				</div>
 			</Fragment>
 
 		);
