@@ -5,6 +5,10 @@ const stylesCSSPlugin = new ExtractTextPlugin( {
 	filename: './styles.css',
 } );
 
+const adminCSSPlugin = new ExtractTextPlugin( {
+	filename: './admin.css',
+} );
+
 // Configuration for the ExtractTextPlugin.
 const extractConfig = {
 	use: [
@@ -45,9 +49,14 @@ module.exports = {
 				test: /styles\.s?css$/,
 				use: stylesCSSPlugin.extract( extractConfig ),
 			},
+			{
+				test: /admin\.s?css$/,
+				use: adminCSSPlugin.extract( extractConfig ),
+			},
 		]
 	},
 	plugins: [
-		stylesCSSPlugin
+		stylesCSSPlugin,
+		adminCSSPlugin
 	]
 };
