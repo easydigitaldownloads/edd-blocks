@@ -89,6 +89,9 @@
   display: block;
   margin-bottom: 0.5rem; }
 
-.edd_downloads_list.alignfull {
+.editor-block-list__layout .editor-block-list__block[data-block-type="easy-digital-downloads"][data-align="full"] .edd_downloads_list {
   padding-left: 2rem;
   padding-right: 2rem; }
+
+.edd_downloads_list p, .edd_downloads_list h3 {
+  margin: 0; }
