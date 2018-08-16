@@ -1,71 +1,19 @@
-.wp-block-easydigitaldownloads-download-categories {
+// Styling for the download categories block.
+// Used by both the front-end and admin (imported into each stylesheet).
 
-}
-
-.editor-block-list__layout .editor-block-list__block[data-type="easydigitaldownloads/download-categories"] {
-
-	&[data-align="full"] .edd-download-categories {
-		margin: 0;
-	}
-
-}
-
-.edd-download-categories {
+.edd-download-category-title {
 	display: flex;
-	flex-wrap: wrap;
-	margin: 0 -15px;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.5rem;
 
-	* {
-		box-sizing: border-box;
+	// Reset bottom margin on h3 headings that themes may add.
+	h3 {
+		margin-bottom: 0;
 	}
+}
 
-	p, h3 {
-		margin: 0;
-	}
-
-
-	.edd-download-category {
-		padding-left: 15px;
-		padding-right: 15px;
-		width: 100%;
-		min-height: 1px;
-		position: relative;
-		margin-bottom: 2rem;
-	}
-
-	.edd-download-category-title {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 0.5rem;
-	}
-
-	// 1 column.
-	&.columns-1 .edd-download-category {
-		flex: 0 0 100%;
-		max-width: 100%;
-	}
-
-	// 2 columns.
-	&.columns-2 .edd-download-category {
-		flex: 0 0 50%;
-		max-width: 50%;
-	}
-
-	// 3 columns.
-	&.columns-3 .edd-download-category {
-		flex: 0 0 33.3333333333%;
-		max-width: 33.3333333333%;
-	}
-	
-	// 4 columns.
-	&.columns-4 .edd-download-category {
-		flex: 0 0 25%;
-		max-width: 25%;
-	}
-
-	.edd-download-category-image {
-		display: block;
-		margin-bottom: 0.5rem;
-	}
+.edd-download-category-image {
+	display: block;
+	margin-bottom: 0.5rem;
 }
