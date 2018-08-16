@@ -17,8 +17,8 @@ function edd_blocks_list( $atts = array() ) {
 	) );
 	
 	// Classes.
-	$classes = array( 'edd-download-categories' );
-	$classes[] = 'columns-' . $atts['columns'];
+	$classes = array( 'edd-download-categories edd_downloads_list' );
+	$classes[] = 'edd_download_columns_' . $atts['columns'];
 	$classes[] = $atts['align'] ? 'align' . $atts['align'] : '';
 	$classes[] = $atts['className'];
 	$classes = implode( ' ', array_filter( $classes ) );
@@ -30,11 +30,12 @@ function edd_blocks_list( $atts = array() ) {
 			$count         = $term->count;
 			$attachment_id = get_term_meta( $term->term_id, 'download_category_image_id', true );
 		?>
-			<div class="edd-download-category">
+			<div class="edd-download-category edd_download">
+				<div class="edd_download_inner">
 
 				<?php if ( true === $atts['showThumbnails'] && $attachment_id ) : ?>
 				<a href="<?php echo esc_url( get_term_link( $term ) ); ?>" class="edd-download-category-image">
-				<?php echo wp_get_attachment_image( $attachment_id, 'thumbnail' );  ?>
+				<?php echo wp_get_attachment_image( $attachment_id, 'large' );  ?>
 				</a>
 				<?php endif; ?>
 
@@ -47,10 +48,10 @@ function edd_blocks_list( $atts = array() ) {
 				</div>
 				<?php endif; ?>
 
-				<?php if ( true === $atts['showDescription'] ) : ?>
+				<?php if ( true === $atts['showDescription'] && $description ) : ?>
 				<p class="edd-download-category-description"><?php echo $description; ?></p>
 				<?php endif; ?>
-
+				</div>
 			</div>
 		<?php endforeach; ?>
 		</div>
