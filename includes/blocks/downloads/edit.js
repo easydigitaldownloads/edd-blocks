@@ -53,7 +53,7 @@ const MAX_COLUMNS = 4;
 
 class DownloadsEdit extends Component {
 
-	constructor( props ) {
+	constructor() {
 		super( ...arguments );
 
 		this.setColumns = this.setColumns.bind( this );
