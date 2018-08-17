@@ -253,7 +253,7 @@ class DownloadsEdit extends Component {
 
 	renderDownloadListItem( download ) {
 
-		const { showBuyButton, showExcerpt, showPrice } = this.props.attributes;
+		const { showBuyButton, showExcerpt, showFullContent, showPrice } = this.props.attributes;
 
 		return (
 			<div className="edd_download" key={ download.id }>
@@ -264,6 +264,10 @@ class DownloadsEdit extends Component {
 
 				{ showExcerpt &&
 					<RawHTML>{ download.excerpt }</RawHTML>
+				}
+				
+				{ showFullContent &&
+					<RawHTML>{ download.content.rendered }</RawHTML>
 				}
 
 				{ showPrice &&
