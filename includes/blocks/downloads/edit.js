@@ -252,7 +252,7 @@ class DownloadsEdit extends Component {
 
 	renderDownloadListItem( download ) {
 
-		const { showExcerpt } = this.props.attributes;
+		const { showExcerpt, showPrice } = this.props.attributes;
 
 		return (
 			<div key={ download.id }>
@@ -260,6 +260,10 @@ class DownloadsEdit extends Component {
 				{ this.renderDownloadImage( download ) }
 
 				<h3 className="edd_download_title"><a href={ download.link } target="_blank">{ this.renderDownloadName( download ) }</a></h3>
+
+				{ showPrice &&
+				<div className="edd_price"><RawHTML>{ download.meta.price }</RawHTML></div>
+				}
 
 				{ showExcerpt &&
 					<RawHTML>{ download.excerpt.rendered }</RawHTML>
