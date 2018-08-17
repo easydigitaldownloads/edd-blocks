@@ -135,6 +135,7 @@ function edd_blocks_download_block_callback( $object, $field_name, $request ) {
 	$meta = array( 
 		'image' => wp_get_attachment_image( $image_id ),
 		'price' => $price,
+		'purchase_link' => edd_get_purchase_link( array( 'download_id' => $download_id ) ),
 	);
 
 	return $meta;
