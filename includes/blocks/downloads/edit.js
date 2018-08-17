@@ -4,7 +4,8 @@ import classnames from 'classnames';
 
 const {	Component, Fragment, RawHTML } = wp.element;
 
-const {	
+const {
+	Disabled,
 	PanelBody,
 	Placeholder,
 	ToggleControl,
@@ -270,9 +271,11 @@ class DownloadsEdit extends Component {
 				}
 				
 				{ showBuyButton &&
-				<div className="edd_download_buy_button">
-					<RawHTML>{ download.meta.purchase_link }</RawHTML>
-				</div>
+				<Disabled>
+					<div className="edd_download_buy_button">
+						<RawHTML>{ download.meta.purchase_link }</RawHTML>
+					</div>
+				</Disabled>
 				}
 			</div>
 		);
