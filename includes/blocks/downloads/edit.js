@@ -263,7 +263,7 @@ class DownloadsEdit extends Component {
 				<h3 className="edd_download_title"><a href={ download.link } target="_blank">{ this.renderDownloadName( download ) }</a></h3>
 
 				{ showExcerpt &&
-					<RawHTML>{ download.excerpt.rendered }</RawHTML>
+					<RawHTML>{ download.excerpt }</RawHTML>
 				}
 
 				{ showPrice &&
