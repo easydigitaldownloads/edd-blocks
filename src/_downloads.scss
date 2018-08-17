@@ -1,15 +1,3 @@
-.edd_downloads_list {
-	display: flex;
-	flex-wrap: wrap;
-	margin-left: -15px;
-	margin-right: -15px;
-}
-
-.edd_download {
-	padding-left: 15px;
-	padding-right: 15px;
-}
-
 // Hide the input button.
 .edd_purchase_submit_wrapper input.edd-add-to-cart {
 	display: none;
@@ -18,11 +6,6 @@
 // Provide a better heading size default.
 .editor-block-list__layout .editor-block-list__block[data-type="easydigitaldownloads/downloads"] h3 {
 	font-size: 18px;
-}
-
-#edd_download_pagination {
-	display: block;
-	width: 100%;
 }
 
 .edd_download_inner {
@@ -38,6 +21,11 @@
 		list-style: none;
 	}
 
+}
+
+.edd_download .edd_download_title,
+.edd_download .edd_price {
+	margin-bottom: 10px;
 }
 
 .edd-submit.button {
@@ -193,24 +181,4 @@
 }
 .edd-submit.button.dark-gray:active {
 	background-image: none;
-}
-
-@media only screen and (min-width: 1200px) {
-
-	.edd_download_columns_1 .edd_download { 
-		width: 100%;
-	}
-
-	.edd_download_columns_2 .edd_download { 
-		width: 50%;
-	}
-
-	.edd_download_columns_3 .edd_download { 
-		width: 33.3333333333%;
-	}
-
-	.edd_download_columns_4 .edd_download { 
-		width: 25%;
-	}
-
 }
