@@ -141,3 +141,15 @@ function edd_blocks_download_block_callback( $object, $field_name, $request ) {
 	return $meta;
 
 }
+
+/**
+ * Filter the post data for a response.
+ *
+ * @since 1.0.0
+ */
+function edd_blocks_rest_prepare_download( $response, $post, $request ) {
+	$response->data['excerpt'] = $post->post_excerpt;
+
+	return $response;
+}
+add_filter( 'rest_prepare_download', 'edd_blocks_rest_prepare_download', 10, 3 );
