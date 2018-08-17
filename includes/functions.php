@@ -74,7 +74,7 @@ function edd_blocks_register_rest_fields() {
 	register_rest_field( 'download',
 		'meta',
 		array(
-			'get_callback'    => 'edd_blocks_download_post_meta_callback',
+			'get_callback'    => 'edd_blocks_download_block_callback',
 			'update_callback' => null,
 			'schema'          => null,
 		)
@@ -113,20 +113,29 @@ function edd_blocks_term_meta_callback( $object, $field_name, $request ) {
 }
 
 /**
- * Get post meta.
+ * Download block callback.
  *
  * @since 1.0.0
  */
-function edd_blocks_download_post_meta_callback( $object, $field_name, $request ) {
+function edd_blocks_download_block_callback( $object, $field_name, $request ) {
 
-	// Get the post ID.
-	$post_id = $object['id'];
+	// Get the download ID.
+	$download_id = $object['id'];
 
 	// Get the image ID.
-	$image_id = get_post_meta( $post_id, '_thumbnail_id', true );
+	$image_id = get_post_meta( $download_id, '_thumbnail_id', true );
+
+	if ( ! edd_has_variable_prices( $download_id ) ) {
+		$price = edd_price( $download_id, false );
+	} else {
+		$price = '';
+	}
 
 	// Build meta array.
-	$meta = array( 'image' => wp_get_attachment_image( $image_id ) );
+	$meta = array( 
+		'image' => wp_get_attachment_image( $image_id ),
+		'price' => $price,
+	);
 
 	return $meta;
 
