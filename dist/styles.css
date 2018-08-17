@@ -44,9 +44,6 @@
 .edd_download_image {
   max-width: 100%; }
 
-.edd_download .edd_price {
-  margin-bottom: 10px; }
-
 @media (min-width: 768px) {
   .edd_downloads_list:not(.edd_download_columns_1) {
     grid-template-columns: repeat(2, 1fr); } }
