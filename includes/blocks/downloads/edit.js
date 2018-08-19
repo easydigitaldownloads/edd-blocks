@@ -132,6 +132,7 @@ class DownloadsEdit extends Component {
 			{ value: 'ID', label: __( 'ID' ) },
 			{ value: 'date', label: __( 'Date Created' ) },
 			{ value: 'random', label: __( 'Random' ) },
+			{ value: 'sales', label: __( 'Sales' ) },
 			{ value: 'name', label: __( 'Slug' ) },
 			{ value: 'price', label: __( 'Price' ) },
 			{ value: 'title', label: __( 'Title' ) },
