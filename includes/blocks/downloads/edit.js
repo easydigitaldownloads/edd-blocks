@@ -154,7 +154,7 @@ class DownloadsEdit extends Component {
 		downloadCategories.forEach(function(category) {
 			categories.push( {
 				'value': category.slug,
-				'label': category.name 
+				'label': category.name
 			} );
 		});
 
@@ -346,6 +346,7 @@ class DownloadsEdit extends Component {
 			category
 		} = attributes;
 
+		const downloads = this.state.downloads.products;
 		const isLoading = this.state.isLoading;
 
 		if ( isLoading ) {
@@ -361,8 +362,97 @@ class DownloadsEdit extends Component {
 			);
 		}
 
+		const inspectorControls = (
+			<InspectorControls>
+				<PanelBody title={ __( 'Download Settings' ) }>
+					<RangeControl
+						label={ __( 'Number of downloads' ) }
+						value={ number }
+						onChange={ this.setDownloadsToShow }
+						min={ MIN_DOWNLOADS }
+						max={ MAX_DOWNLOADS }
+					/>
+					<RangeControl
+						label={ __( 'Columns' ) }
+						value={ columns }
+						onChange={ this.setColumns }
+						min={ MIN_COLUMNS }
+						max={ MAX_COLUMNS }
+					/>
+					<ToggleControl
+						label={ __( 'Show Buy Button' ) }
+						checked={ !! showBuyButton }
+						onChange={ () => setAttributes( { showBuyButton: ! showBuyButton } ) }
+					/>
+					<ToggleControl
+						label={ __( 'Show Price' ) }
+						checked={ !! showPrice }
+						onChange={ () => setAttributes( { showPrice: ! showPrice } ) }
+					/>
+					<ToggleControl
+						label={ __( 'Show Thumbnails' ) }
+						checked={ !! showThumbnails }
+						onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
+					/>
+					<ToggleControl
+						label={ __( 'Show Excerpt' ) }
+						checked={ !! showExcerpt }
+						onChange={ this.showExcerpt }
+					/>
+					<ToggleControl
+						label={ __( 'Show Full Content' ) }
+						checked={ !! showFullContent }
+						onChange={ this.showFullContent }
+					/>
+					<ToggleControl
+						label={ __( 'Show Pagination' ) }
+						checked={ !! showPagination }
+						onChange={ () => setAttributes( { showPagination: ! showPagination } ) }
+					/>
+					<SelectControl
+						label={ __( 'Order By' ) }
+						value={ orderBy }
+						options={ this.getOrderByOptions() }
+						onChange={ this.setOrderByOption }
+					/>
+					<SelectControl
+						label={ __( 'Order' ) }
+						value={ order }
+						options={ this.getOrderOptions() }
+						onChange={ this.setOrderOption }
+					/>
+					<SelectControl
+						label={ __( 'Show Downloads From Category' ) }
+						value={ category }
+						options={ this.getDownloadCategories() }
+						onChange={ this.setDownloadCategory }
+					/>
+				</PanelBody>
+			</InspectorControls>
+		);
+
+		const hasDownloads = Array.isArray( downloads ) && downloads.length;
+
+		if ( ! hasDownloads ) {
+			return (
+				<Fragment>
+					{ inspectorControls }
+					<Placeholder
+						icon="download"
+						label={ __( 'Downloads' ) }
+					>
+						{ ! Array.isArray( downloads ) ?
+							<Spinner /> :
+							__( 'No downloads found.' )
+						}
+					</Placeholder>
+				</Fragment>
+			);
+		}
+
 		return (
 			<Fragment>
+				{ inspectorControls }
 				<BlockControls>
 					<BlockAlignmentToolbar
 						value={ align }
@@ -370,72 +460,6 @@ class DownloadsEdit extends Component {
 						controls={ [ 'wide', 'full' ] }
 					/>
 				</BlockControls>
-				<InspectorControls>
-					<PanelBody title={ __( 'Download Settings' ) }>
-						<RangeControl
-							label={ __( 'Number of downloads' ) }
-							value={ number }
-							onChange={ this.setDownloadsToShow }
-							min={ MIN_DOWNLOADS }
-							max={ MAX_DOWNLOADS }
-						/>
-						<RangeControl
-							label={ __( 'Columns' ) }
-							value={ columns }
-							onChange={ this.setColumns }
-							min={ MIN_COLUMNS }
-							max={ MAX_COLUMNS }
-						/>
-						<ToggleControl
-							label={ __( 'Show Buy Button' ) }
-							checked={ !! showBuyButton }
-							onChange={ () => setAttributes( { showBuyButton: ! showBuyButton } ) }
-						/>
-						<ToggleControl
-							label={ __( 'Show Price' ) }
-							checked={ !! showPrice }
-							onChange={ () => setAttributes( { showPrice: ! showPrice } ) }
-						/>
-						<ToggleControl
-							label={ __( 'Show Thumbnails' ) }
-							checked={ !! showThumbnails }
-							onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
-						/>
-						<ToggleControl
-							label={ __( 'Show Excerpt' ) }
-							checked={ !! showExcerpt }
-							onChange={ this.showExcerpt }
-						/>
-						<ToggleControl
-							label={ __( 'Show Full Content' ) }
-							checked={ !! showFullContent }
-							onChange={ this.showFullContent }
-						/>
-						<ToggleControl
-							label={ __( 'Show Pagination' ) }
-							checked={ !! showPagination }
-							onChange={ () => setAttributes( { showPagination: ! showPagination } ) }
-						/>
-						<SelectControl
-							label={ __( 'Order By' ) }
-							value={ orderBy }
-							options={ this.getOrderByOptions() }
-							onChange={ this.setOrderByOption }
-						/>
-						<SelectControl
-							label={ __( 'Order' ) }
-							value={ order }
-							options={ this.getOrderOptions() }
-							onChange={ this.setOrderOption }
-						/>
-						<SelectControl
-							label={ __( 'Show Downloads From Category' ) }
-							value={ category }
-							options={ this.getDownloadCategories() }
-							onChange={ this.setDownloadCategory }
-						/>
-					</PanelBody>
-				</InspectorControls>
 				<div className={ this.props.className }>
 					{ this.renderDownloads() }
 				</div>
