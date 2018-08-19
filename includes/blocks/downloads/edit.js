@@ -223,8 +223,8 @@ class DownloadsEdit extends Component {
 
 		const query = {
 			number,
-		//	orderBy, // EDD API does not support this yet.
-		//	order,   // EDD API does not support this yet.
+			orderby: orderBy,
+			order,
 		};
 
 		// Query downloads by category.
