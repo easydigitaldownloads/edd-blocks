@@ -131,6 +131,7 @@ class DownloadsEdit extends Component {
 		return [
 			{ value: 'ID', label: __( 'ID' ) },
 			{ value: 'date', label: __( 'Date Created' ) },
+			{ value: 'random', label: __( 'Random' ) },
 			{ value: 'name', label: __( 'Slug' ) },
 			{ value: 'title', label: __( 'Title' ) },
 		];
