@@ -129,12 +129,13 @@ class DownloadsEdit extends Component {
 
 	getOrderByOptions() {
 		return [
-			{ value: 'ID', label: __( 'ID' ) },
 			{ value: 'date', label: __( 'Date Created' ) },
+			{ value: 'earnings', label: __( 'Earnings' ) },
+			{ value: 'ID', label: __( 'ID' ) },
+			{ value: 'price', label: __( 'Price' ) },
 			{ value: 'random', label: __( 'Random' ) },
 			{ value: 'sales', label: __( 'Sales' ) },
 			{ value: 'name', label: __( 'Slug' ) },
-			{ value: 'price', label: __( 'Price' ) },
 			{ value: 'title', label: __( 'Title' ) },
 		];
 	}
