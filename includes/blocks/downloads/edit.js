@@ -116,8 +116,8 @@ class DownloadsEdit extends Component {
 
 	getOrderOptions() {
 		return [
-			{ value: 'asc', label: __( 'Ascending' ) },
-			{ value: 'desc', label: __( 'Descending' ) },
+			{ value: 'ASC', label: __( 'Ascending' ) },
+			{ value: 'DESC', label: __( 'Descending' ) },
 		];
 	}
 
