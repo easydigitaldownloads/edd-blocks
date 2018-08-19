@@ -1,7 +1,14 @@
-import { stringify } from 'querystringify';
+/**
+ * External dependencies
+ */
+import isUndefined from 'lodash/isundefined';
 import unescape from 'lodash/unescape';
 import classnames from 'classnames';
+import { stringify } from 'querystringify';
 
+/**
+ * WordPress dependencies
+ */
 const {	Component, Fragment, RawHTML } = wp.element;
 
 const {
