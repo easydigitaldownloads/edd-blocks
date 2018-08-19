@@ -222,9 +222,9 @@ class DownloadsEdit extends Component {
 		const { category, number, order, orderBy } = this.props.attributes;
 
 		const query = {
-			number: number,
-		//	orderby: orderBy, // EDD API does not support this yet.
-		//	order: order,     // EDD API does not support this yet.
+			number,
+		//	orderBy, // EDD API does not support this yet.
+		//	order,   // EDD API does not support this yet.
 		};
 
 		// Query downloads by category.
