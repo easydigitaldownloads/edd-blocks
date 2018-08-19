@@ -94,9 +94,9 @@ class DownloadsEdit extends Component {
 	}
 
 	componentDidUpdate( prevProps ) {
-		const { number, order, orderBy } = this.props.attributes;
+		const { category, number, order, orderBy } = this.props.attributes;
 
-		if ( number !== prevProps.attributes.number || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
+		if ( category !== prevProps.attributes.category || number !== prevProps.attributes.number || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
 			this.fetchDownloads();
 		}
 
@@ -219,13 +219,18 @@ class DownloadsEdit extends Component {
 
 	fetchDownloads() {
 		
-		const { number, order, orderBy } = this.props.attributes;
+		const { category, number, order, orderBy } = this.props.attributes;
 
 		const query = {
 			number: number,
 		//	orderby: orderBy, // EDD API does not support this yet.
 		//	order: order,     // EDD API does not support this yet.
 		};
+
+		// Query downloads by category.
+		if ( ! isUndefined( category ) ) {
+			query['category'] = category;
+		}
 
 		const request = apiFetch( {
 			url: `/edd-api/products?${ stringify( {
