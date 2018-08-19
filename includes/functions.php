@@ -71,15 +71,6 @@ function edd_blocks_list( $atts = array() ) {
  */
 function edd_blocks_register_rest_fields() {
 
-	register_rest_field( 'download',
-		'meta',
-		array(
-			'get_callback'    => 'edd_blocks_download_block_callback',
-			'update_callback' => null,
-			'schema'          => null,
-		)
-	);
-
 	register_rest_field( 'download_category',
 		'meta',
 		array(
@@ -113,43 +104,25 @@ function edd_blocks_term_meta_callback( $object, $field_name, $request ) {
 }
 
 /**
- * Download block callback.
+ * Add data to the products API output. 
  *
  * @since 1.0.0
  */
-function edd_blocks_download_block_callback( $object, $field_name, $request ) {
+function edd_blocks_api_products_product( $product ) {
 
-	// Get the download ID.
-	$download_id = $object['id'];
+	// Get the product ID.
+	$product_id = $product['info']['id'];
 
-	// Get the image ID.
-	$image_id = get_post_meta( $download_id, '_thumbnail_id', true );
+	// Download Image.
+	$product['info']['image'] = wp_get_attachment_image( get_post_meta( $product_id, '_thumbnail_id', true ) );
 
-	if ( ! edd_has_variable_prices( $download_id ) ) {
-		$price = edd_price( $download_id, false );
-	} else {
-		$price = '';
-	}
+	// Purchase link.
+	$product['info']['purchase_link'] = edd_get_purchase_link( array( 'download_id' => $product_id ) );
+	
+	// Price.
+	$product['info']['price'] = edd_price( $product_id, false );
 
-	// Build meta array.
-	$meta = array( 
-		'image' => wp_get_attachment_image( $image_id ),
-		'price' => $price,
-		'purchase_link' => edd_get_purchase_link( array( 'download_id' => $download_id ) ),
-	);
-
-	return $meta;
+	return $product;
 
 }
-
-/**
- * Filter the post data for a response.
- *
- * @since 1.0.0
- */
-function edd_blocks_rest_prepare_download( $response, $post, $request ) {
-	$response->data['excerpt'] = $post->post_excerpt;
-
-	return $response;
-}
-add_filter( 'rest_prepare_download', 'edd_blocks_rest_prepare_download', 10, 3 );
+add_filter( 'edd_api_products_product', 'edd_blocks_api_products_product' );

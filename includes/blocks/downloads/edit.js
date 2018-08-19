@@ -215,13 +215,13 @@ class DownloadsEdit extends Component {
 		const { number, order, orderBy } = this.props.attributes;
 
 		const query = {
-			per_page: number,
-			orderby: orderBy, 
-			order: order,
+			number: number,
+		//	orderby: orderBy, // EDD API does not support this yet.
+		//	order: order,     // EDD API does not support this yet.
 		};
 
 		const request = apiFetch( {
-			path: `/wp/v2/download?${ stringify( {
+			url: `/edd-api/products?${ stringify( {
 				...query
 			} ) }`,
 		} );
@@ -231,7 +231,7 @@ class DownloadsEdit extends Component {
 			if ( this.downloadsRequest !== request ) {
 				return;
 			}
-			
+
 			this.setState( { downloads, isLoading: false } );
 
 		} );
@@ -241,7 +241,7 @@ class DownloadsEdit extends Component {
 	}
 
 	renderDownloads() {
-		const downloads = this.state.downloads;
+		const downloads = this.state.downloads.products;
 		const { columns } = this.props.attributes;
 
 		return (
@@ -257,28 +257,28 @@ class DownloadsEdit extends Component {
 		const { showBuyButton, showExcerpt, showFullContent, showPrice } = this.props.attributes;
 
 		return (
-			<div className="edd_download" key={ download.id }>
+			<div className="edd_download" key={ download.info.id }>
 
 				{ this.renderDownloadImage( download ) }
 
-				<h3 className="edd_download_title"><a href={ download.link } target="_blank">{ this.renderDownloadName( download ) }</a></h3>
+				<h3 className="edd_download_title"><a href={ download.info.link } target="_blank">{ this.renderDownloadName( download ) }</a></h3>
 
 				{ showExcerpt &&
-					<RawHTML>{ download.excerpt }</RawHTML>
+					<RawHTML>{ download.info.excerpt }</RawHTML>
 				}
 				
 				{ showFullContent &&
-					<RawHTML>{ download.content.rendered }</RawHTML>
+					<RawHTML>{ download.info.content }</RawHTML>
 				}
 
 				{ showPrice &&
-				<div className="edd_price"><RawHTML>{ download.meta.price }</RawHTML></div>
+				<div className="edd_price"><RawHTML>{ download.info.price }</RawHTML></div>
 				}
 				
 				{ showBuyButton &&
 				<Disabled>
 					<div className="edd_download_buy_button">
-						<RawHTML>{ download.meta.purchase_link }</RawHTML>
+						<RawHTML>{ download.info.purchase_link }</RawHTML>
 					</div>
 				</Disabled>
 				}
@@ -287,7 +287,7 @@ class DownloadsEdit extends Component {
 	}
 
 	renderDownloadName( download ) {
-		const title = download.title.rendered;
+		const title = download.info.title;
 
 		if ( ! title ) {
 			return __( '(Untitled)' );
@@ -299,7 +299,7 @@ class DownloadsEdit extends Component {
 	renderDownloadImage( download ) {
 
 		const { showThumbnails } = this.props.attributes;
-		const image = download.meta.image;
+		const image = download.info.image;
 
 		if ( ! showThumbnails || ! image ) {
 			return;
