@@ -97,11 +97,11 @@ function edd_blocks_register_block_downloads() {
 			),
 			'order' => array(
 				'type'    => 'string',
-				'default' => 'desc',
+				'default' => 'DESC',
 			),
 			'orderBy'  => array(
 				'type'    => 'string',
-				'default' => 'create_date',
+				'default' => 'date',
 			),
 		),
 		'render_callback' => 'edd_blocks_render_block_downloads',
