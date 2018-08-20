@@ -22,6 +22,11 @@ function edd_blocks_render_block_downloads( $attributes = array() ) {
 		$options['class'] .= ' ' .  $attributes['className'];
 	}
 
+	// Shortcode requires "random" instead of "rand".
+	if ( 'rand' === $attributes['orderBy'] ) {
+		$options['orderby'] = 'random';
+	}
+
 	$shortcode_options = array();
 
 	foreach ( $options as $att => $value ) {

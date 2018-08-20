@@ -133,7 +133,7 @@ class DownloadsEdit extends Component {
 			{ value: 'earnings', label: __( 'Earnings' ) },
 			{ value: 'ID', label: __( 'ID' ) },
 			{ value: 'price', label: __( 'Price' ) },
-			{ value: 'random', label: __( 'Random' ) },
+			{ value: 'rand', label: __( 'Random' ) },
 			{ value: 'sales', label: __( 'Sales' ) },
 			{ value: 'name', label: __( 'Slug' ) },
 			{ value: 'title', label: __( 'Title' ) },
