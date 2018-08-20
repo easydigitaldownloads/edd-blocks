@@ -227,7 +227,6 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 		 */
 		private function hooks() {
 			add_filter( 'edd_download_category_args', array( $this, 'show_in_rest' ) );
-			add_filter( 'edd_download_post_type_args', array( $this, 'show_in_rest' ) );
 		}
 
 		/**
