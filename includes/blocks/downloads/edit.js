@@ -223,11 +223,26 @@ class DownloadsEdit extends Component {
 
 	fetchDownloads() {
 		
-		const { category, number, order, orderBy } = this.props.attributes;
+		const { category, number, order } = this.props.attributes;
+
+		let orderby = this.props.attributes.orderBy;
+
+		switch (orderby) {
+			case 'id':
+				orderby = 'ID'
+				break;
+
+			case 'random':
+				orderby = 'rand'
+				break;	
+		
+			default:
+				break;
+		}
 
 		const query = {
 			number,
-			orderby: orderBy,
+			orderby,
 			order,
 		};
 
