@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Output a list of download categories
+ * Output a list of download categories.
  *
  * @since 1.0.0
  */
-function edd_blocks_list( $atts = array() ) {
+function edd_blocks_download_categories_list( $atts = array() ) {
 	ob_start();
 	
 	// Get the terms.

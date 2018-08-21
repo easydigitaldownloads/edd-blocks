@@ -3,7 +3,7 @@
 function edd_blocks_render_block_download_categories( $attributes = array() ) {
 	ob_start();
 
-	echo edd_blocks_list( $attributes );
+	echo edd_blocks_download_categories_list( $attributes );
 
 	$display = ob_get_clean();
 
