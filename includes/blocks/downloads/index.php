@@ -1,47 +1,35 @@
 <?php
 
-function edd_blocks_render_block_downloads( $attributes = array() ) {
+function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 	ob_start();
 
-	$options = array(
-		'class'        => 'align' . $attributes['align'],
-		'number'       => $attributes['number'],
-		'columns'      => $attributes['columns'],
-		'buy_button'   => ! $attributes['showBuyButton'] ? 'no' : 'yes',
-		'price'        => $attributes['showPrice'] ? 'yes' : 'no',
-		'thumbnails'   => $attributes['showThumbnails'] ? 'true' : 'false',
-		'order'        => $attributes['order'],
-		'orderby'      => $attributes['orderBy'],
-		'excerpt'      => $attributes['showExcerpt'] ? 'yes' : 'no',
-		'full_content' => $attributes['showFullContent'] ? 'yes' : 'no',
-		'category'     => $attributes['category'],
-		'pagination'   => ! $attributes['showPagination'] ? 'false' : 'true'
+	$atts = array(
+		'class'        => 'align' . $block_attributes['align'],
+		'number'       => $block_attributes['number'],
+		'columns'      => $block_attributes['columns'],
+		'buy_button'   => ! $block_attributes['showBuyButton'] ? 'no' : 'yes',
+		'price'        => $block_attributes['showPrice'] ? 'yes' : 'no',
+		'thumbnails'   => $block_attributes['showThumbnails'] ? 'true' : 'false',
+		'order'        => $block_attributes['order'],
+		'orderby'      => $block_attributes['orderBy'],
+		'excerpt'      => $block_attributes['showExcerpt'] ? 'yes' : 'no',
+		'full_content' => $block_attributes['showFullContent'] ? 'yes' : 'no',
+		'category'     => $block_attributes['category'],
+		'pagination'   => ! $block_attributes['showPagination'] ? 'false' : 'true'
 	);
 
-	if ( $attributes['className'] ) {
-		$options['class'] .= ' ' .  $attributes['className'];
+	if ( $block_attributes['className'] ) {
+		$atts['class'] .= ' ' .  $block_attributes['className'];
 	}
 
 	// Shortcode requires "random" instead of "rand".
-	if ( 'rand' === $attributes['orderBy'] ) {
-		$options['orderby'] = 'random';
+	if ( 'rand' === $block_attributes['orderBy'] ) {
+		$atts['orderby'] = 'random';
 	}
 
-	$shortcode_options = array();
+	// Output a list of downloads.
+	echo edd_blocks_downloads_list( $atts, 'block' );
 
-	foreach ( $options as $att => $value ) {
-		$shortcode_options[] = $att . '="' . $value . '"';
-	}
-
-	$options = implode( ' ', array_filter( $shortcode_options ) );
-
-	/**
-	 * In the future the shortcode can be swapped out for a dedicated function call
-	 * in EDD core. Then the shortcode itself, blocks, and even themes can call the function
-	 * to build a download grid.
-	 */
-	echo do_shortcode( '[downloads ' . $options . ']' );
-	
 	$display = ob_get_clean();
 
 	return $display;
