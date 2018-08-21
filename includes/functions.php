@@ -1,6 +1,120 @@
 <?php
 
 /**
+ * Outputs a list of downloads in a grid.
+ * In the future this could be used by the [downloads] shortcode and themes.
+ *
+ * @since 1.0.0
+ */
+function edd_blocks_downloads_list( $atts = array(), $type = '' ) {
+
+	$query = array(
+		'post_type'      => 'download',
+		'orderby'        => $atts['orderby'],
+		'order'          => $atts['order']
+	);
+
+	if ( filter_var( $atts['pagination'], FILTER_VALIDATE_BOOLEAN ) || ( ! filter_var( $atts['pagination'], FILTER_VALIDATE_BOOLEAN ) && $atts[ 'number' ] ) ) {
+
+		$query['posts_per_page'] = (int) $atts['number'];
+
+		if ( $query['posts_per_page'] < 0 ) {
+			$query['posts_per_page'] = abs( $query['posts_per_page'] );
+		}
+	} else {
+		$query['nopaging'] = true;
+	}
+
+	if ( 'random' == $atts['orderby'] ) {
+		$atts['pagination'] = false;
+	}
+
+	switch ( $atts['orderby'] ) {
+		case 'price':
+		//	$atts['orderby']   = 'meta_value';
+			$query['meta_key'] = 'edd_price';
+			$query['orderby']  = 'meta_value_num';
+		break;
+
+		case 'sales':
+		//	$atts['orderby']   = 'meta_value';
+			$query['meta_key'] = '_edd_download_sales';
+			$query['orderby']  = 'meta_value_num';
+		break;
+
+		case 'earnings':
+		//	$atts['orderby']   = 'meta_value';
+			$query['meta_key'] = '_edd_download_earnings';
+			$query['orderby']  = 'meta_value_num';
+		break;
+
+		case 'title':
+			$query['orderby'] = 'title';
+		break;
+
+		case 'id':
+			$query['orderby'] = 'ID';
+		break;
+
+		case 'random':
+			$query['orderby'] = 'rand';
+		break;
+
+		case 'post__in':
+			$query['orderby'] = 'post__in';
+		break;
+
+		case 'name':
+			$query['orderby'] = 'name';
+		break;
+
+		default:
+			$query['orderby'] = 'post_date';
+		break;
+	}
+
+	// Allow the query to be manipulated by other plugins
+	$query = apply_filters( 'edd_downloads_query', $query, $atts );
+
+	$downloads = new WP_Query( $query );
+
+	do_action( 'edd_downloads_list_before', $atts );
+
+	if ( $downloads->have_posts() ) :
+		$i = 1;
+		$columns_class   = array( 'edd_download_columns_' . $atts['columns'] );
+		$custom_classes  = array_filter( explode( ',', $atts['class'] ) );
+		$wrapper_classes = array_unique( array_merge( $columns_class, $custom_classes ) );
+		$wrapper_classes = implode( ' ', $wrapper_classes );
+		ob_start(); ?>
+
+		<div class="edd_downloads_list <?php echo apply_filters( 'edd_downloads_list_wrapper_class', $wrapper_classes, $atts ); ?>">
+
+			<?php do_action( 'edd_downloads_list_top', $atts, $downloads ); ?>
+
+			<?php while ( $downloads->have_posts() ) : $downloads->the_post(); ?>
+				<?php do_action( 'edd_download_shortcode_item', $atts, $i ); ?>
+			<?php $i++; endwhile; ?>
+
+			<?php wp_reset_postdata(); ?>
+
+			<?php do_action( 'edd_downloads_list_bottom', $atts ); ?>
+
+		</div>
+
+	<?php
+	$display = ob_get_clean();
+	else:
+		$display = sprintf( _x( 'No %s found', 'download post type name', 'easy-digital-downloads' ), edd_get_label_plural() );
+	endif;
+
+	do_action( 'edd_downloads_list_after', $atts, $downloads );
+
+	return $display;
+
+}
+
+/**
  * Output a list of download categories.
  *
  * @since 1.0.0
