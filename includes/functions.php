@@ -123,11 +123,11 @@ function edd_blocks_downloads_list( $atts = array(), $type = '' ) {
 		printf( _x( 'No %s found', 'download post type name', 'easy-digital-downloads' ), edd_get_label_plural() );
 	endif;
 
-	do_action( 'edd_downloads_list_after', $atts, $downloads, $query );
+	do_action( 'edd_blocks_downloads_list_after', $atts, $downloads, $query );
 
 	$display = ob_get_clean();
 
-	return $display;
+	return apply_filters( 'downloads_shortcode', $display, $atts, $atts['buy_button'], $atts['columns'], '', $downloads, $atts['excerpt'], $atts['full_content'], $atts['price'], $atts['thumbnails'], $query );
 }
 
 /**
@@ -182,7 +182,7 @@ function edd_blocks_downloads_pagination( $atts, $downloads, $query ) {
 
 	<?php endif;
 }
-add_action( 'edd_downloads_list_after', 'edd_blocks_downloads_pagination', 10, 3 );
+add_action( 'edd_blocks_downloads_list_after', 'edd_blocks_downloads_pagination', 10, 3 );
 
 /**
  * Output a list of download categories.
