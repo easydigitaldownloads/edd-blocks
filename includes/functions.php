@@ -32,19 +32,16 @@ function edd_blocks_downloads_list( $atts = array(), $type = '' ) {
 
 	switch ( $atts['orderby'] ) {
 		case 'price':
-		//	$atts['orderby']   = 'meta_value';
 			$query['meta_key'] = 'edd_price';
 			$query['orderby']  = 'meta_value_num';
 		break;
 
 		case 'sales':
-		//	$atts['orderby']   = 'meta_value';
 			$query['meta_key'] = '_edd_download_sales';
 			$query['orderby']  = 'meta_value_num';
 		break;
 
 		case 'earnings':
-		//	$atts['orderby']   = 'meta_value';
 			$query['meta_key'] = '_edd_download_earnings';
 			$query['orderby']  = 'meta_value_num';
 		break;
