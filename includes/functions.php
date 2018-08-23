@@ -86,7 +86,7 @@ function edd_blocks_downloads_list( $atts = array(), $type = '' ) {
 		$query['paged'] = 1;
 	}
 
-	// Allow the query to be manipulated by other plugins
+	// Allow the query to be manipulated by other plugins.
 	$query = apply_filters( 'edd_downloads_query', $query, $atts );
 
 	$downloads = new WP_Query( $query );
@@ -101,7 +101,7 @@ function edd_blocks_downloads_list( $atts = array(), $type = '' ) {
 		$custom_classes  = array_filter( explode( ',', $atts['class'] ) );
 		$wrapper_classes = array_unique( array_merge( $columns_class, $custom_classes ) );
 		$wrapper_classes = implode( ' ', $wrapper_classes );
-		 ?>
+	?>
 
 		<div class="edd_downloads_list <?php echo apply_filters( 'edd_downloads_list_wrapper_class', $wrapper_classes, $atts ); ?>">
 
