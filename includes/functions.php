@@ -25,9 +25,10 @@ function edd_blocks_downloads_list( $atts = array(), $type = '' ) {
 		$query['nopaging'] = true;
 	}
 
-	// if ( 'random' == $atts['orderby'] ) {
-	// 	$atts['pagination'] = false;
-	// }
+	// Turn off pagination if the downloads are ordered randomly.
+	if ( 'random' == $atts['orderby'] ) {
+		$atts['pagination'] = false;
+	}
 
 	switch ( $atts['orderby'] ) {
 		case 'price':
