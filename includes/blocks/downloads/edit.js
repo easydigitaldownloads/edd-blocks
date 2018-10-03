@@ -251,8 +251,10 @@ class DownloadsEdit extends Component {
 			query['category'] = category;
 		}
 
+		const url = edd_blocks_global_vars.url;
+
 		const request = apiFetch( {
-			url: `/edd-api/products?${ stringify( {
+			url: `${url}/edd-api/products?${ stringify( {
 				...query
 			} ) }`,
 		} );
