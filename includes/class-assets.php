@@ -52,6 +52,10 @@ class EDD_Blocks_Assets {
 			false
 		);
 
+		wp_localize_script( 'edd-blocks-js', 'edd_blocks_global_vars', array(
+			'url' => site_url(),
+		) );
+
 		wp_enqueue_style(
 			'edd-blocks-admin',
 			EDD_BLOCKS_PLUGIN_URL . 'dist/admin.css',
