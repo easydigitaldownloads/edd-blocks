@@ -49,6 +49,10 @@ function edd_blocks_register_block_downloads() {
 			'category' => array(
 				'type' => 'string',
 			),
+			'type' => array(
+				'type' => 'string',
+				'default' => 'downloads',
+			),
 			'className' => array(
 				'type' => 'string',
 			),
