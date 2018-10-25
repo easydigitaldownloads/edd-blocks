@@ -31,34 +31,6 @@ const {
 
 const apiFetch = wp.apiFetch;
 
-/**
- * Minimum number of downloads a user can show using this block.
- *
- * @type {number}
- */
-const MIN_DOWNLOADS = 1;
-
-/**
- * Maximum number of comments a user can show using this block.
- *
- * @type {number}
- */
-const MAX_DOWNLOADS = 100;
-
-/**
- * Minimum number of columns a user can show using this block.
- *
- * @type {number}
- */
-const MIN_COLUMNS = 1;
-
-/**
- * Maximum number of columns a user can show using this block.
- *
- * @type {number}
- */
-const MAX_COLUMNS = 6;
-
 class DownloadsEdit extends Component {
 
 	constructor() {
