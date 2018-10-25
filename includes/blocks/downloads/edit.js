@@ -244,62 +244,6 @@ class DownloadsEdit extends Component {
 		
 	}
 
-	renderDownloadListItem( download ) {
-
-		const { showBuyButton, showExcerpt, showFullContent, showPrice } = this.props.attributes;
-
-		return (
-			<div className="edd_download" key={ download.info.id }>
-
-				{ this.renderDownloadImage( download ) }
-
-				<h3 className="edd_download_title"><a href={ download.info.link } target="_blank">{ this.renderDownloadName( download ) }</a></h3>
-
-				{ showExcerpt &&
-					<RawHTML>{ download.info.excerpt }</RawHTML>
-				}
-				
-				{ showFullContent &&
-					<RawHTML>{ download.info.content }</RawHTML>
-				}
-
-				{ showPrice &&
-				<div className="edd_price"><RawHTML>{ download.info.price }</RawHTML></div>
-				}
-				
-				{ showBuyButton &&
-				<Disabled>
-					<div className="edd_download_buy_button">
-						<RawHTML>{ download.info.purchase_link }</RawHTML>
-					</div>
-				</Disabled>
-				}
-			</div>
-		);
-	}
-
-	renderDownloadName( download ) {
-		const title = download.info.title;
-
-		if ( ! title ) {
-			return __( '(Untitled)' );
-		}
-
-		return unescape( title ).trim();
-	}
-
-	renderDownloadImage( download ) {
-
-		const { showThumbnails } = this.props.attributes;
-		const image = download.info.image;
-
-		if ( ! showThumbnails || ! image ) {
-			return;
-		}
-
-		return <RawHTML>{ image }</RawHTML>
-	}
-
 	render() {
 	
 		const {
