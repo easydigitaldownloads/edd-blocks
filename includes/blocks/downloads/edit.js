@@ -110,6 +110,19 @@ class DownloadsEdit extends Component {
 		return categories;
 	}
 
+	getBlockTypes() {
+		return [
+			{ 
+				'value': 'downloads', 
+				'label': __( 'Downloads' )
+			},
+			{ 
+				'value': 'download_categories', 
+				'label': __( 'Download Categories' )
+			}
+		];
+	}
+
 	setDownloadCategory( value ) {
 	
 		if ( 'all' === value ) {
