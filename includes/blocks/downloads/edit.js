@@ -6,6 +6,8 @@ import unescape from 'lodash/unescape';
 import classnames from 'classnames';
 import { stringify } from 'querystringify';
 
+import Download from './components/Download';
+
 /**
  * WordPress dependencies
  */
