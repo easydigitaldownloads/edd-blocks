@@ -64,7 +64,6 @@ class DownloadsEdit extends Component {
 	constructor() {
 		super( ...arguments );
 
-		this.setColumns = this.setColumns.bind( this );
 		this.setAlignment = this.setAlignment.bind( this );
 		this.setDownloadsToShow = this.setDownloadsToShow.bind( this );
 		this.setOrderOption = this.setOrderOption.bind( this );
@@ -100,10 +99,6 @@ class DownloadsEdit extends Component {
 			this.fetchDownloads();
 		}
 
-	}
-
-	setColumns( columns ) {
-		this.props.setAttributes( { columns } );
 	}
 
 	setAlignment( align ) {
