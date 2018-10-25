@@ -64,10 +64,6 @@ class DownloadsEdit extends Component {
 	constructor() {
 		super( ...arguments );
 
-		this.setAlignment = this.setAlignment.bind( this );
-		this.setDownloadsToShow = this.setDownloadsToShow.bind( this );
-		this.setOrderOption = this.setOrderOption.bind( this );
-		this.setOrderByOption = this.setOrderByOption.bind( this );
 		this.setDownloadCategory = this.setDownloadCategory.bind( this );
 		this.showExcerpt = this.showExcerpt.bind( this );
 		this.showFullContent = this.showFullContent.bind( this );
