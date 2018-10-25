@@ -69,27 +69,19 @@ class DownloadsEdit extends Component {
 
 	}
 
-	setAlignment( align ) {
-		this.props.setAttributes( { align } );
-	}
-
-	setDownloadsToShow( number ) {
-		this.props.setAttributes( { number } );
-	}
-
 	getOrderOptions() {
 		return [
 			{ value: 'ASC', label: __( 'Ascending' ) },
 			{ value: 'DESC', label: __( 'Descending' ) },
 		];
 	}
-
+	
 	setOrderOption( value ) {
 		this.props.setAttributes( {
 			order: value,
 		} );
 	}
-
+	
 	getOrderByOptions() {
 		return [
 			{ value: 'date', label: __( 'Date Created' ) },
