@@ -76,12 +76,6 @@ class DownloadsEdit extends Component {
 		];
 	}
 	
-	setOrderOption( value ) {
-		this.props.setAttributes( {
-			order: value,
-		} );
-	}
-	
 	getOrderByOptions() {
 		return [
 			{ value: 'date', label: __( 'Date Created' ) },
