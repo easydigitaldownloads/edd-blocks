@@ -2,7 +2,6 @@
  * External dependencies
  */
 import isUndefined from 'lodash/isundefined';
-import unescape from 'lodash/unescape';
 import classnames from 'classnames';
 import { stringify } from 'querystringify';
 
