@@ -355,7 +355,8 @@ class DownloadsEdit extends Component {
 			showPagination,
 			order,
 			orderBy,
-			category
+			category,
+			type
 		} = attributes;
 
 		const downloads = this.state.downloads.products;
