@@ -6,6 +6,9 @@ import unescape from 'lodash/unescape';
 import classnames from 'classnames';
 import { stringify } from 'querystringify';
 
+/**
+ * Components
+ */
 import Download from './components/Download';
 
 /**
