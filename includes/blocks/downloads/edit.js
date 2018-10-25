@@ -432,7 +432,7 @@ class DownloadsEdit extends Component {
 				<BlockControls>
 					<BlockAlignmentToolbar
 						value={ align }
-						onChange={ this.setAlignment }
+						onChange={ ( align ) => setAttributes( { align } ) }
 						controls={ [ 'wide', 'full' ] }
 					/>
 				</BlockControls>
