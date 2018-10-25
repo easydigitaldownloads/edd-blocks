@@ -285,69 +285,105 @@ class DownloadsEdit extends Component {
 
 		const inspectorControls = (
 			<InspectorControls>
-				<PanelBody title={ __( 'Download Settings' ) }>
+				<PanelBody title={ __( 'Settings' ) }>
+					
+					<SelectControl
+						label={ __( 'Display' ) }
+						value={ type }
+						options={ this.getBlockTypes() }
+						onChange={ (value) => setAttributes( { type: value } ) }
+					/>
+
+					{ type === 'downloads' &&
 					<RangeControl
 						label={ __( 'Number of downloads' ) }
 						value={ number }
-						onChange={ this.setDownloadsToShow }
-						min={ MIN_DOWNLOADS }
-						max={ MAX_DOWNLOADS }
+						onChange={ (number) => setAttributes( { number } ) }
+						min={ 1 }
+						max={ 100 }
 					/>
+					}
+
 					<RangeControl
 						label={ __( 'Columns' ) }
 						value={ columns }
-						onChange={ this.setColumns }
-						min={ MIN_COLUMNS }
-						max={ MAX_COLUMNS }
+						onChange={ (columns) => setAttributes( { columns } ) }
+						min={ 1 }
+						max={ 6 }
 					/>
+					
+					{ type === 'downloads' &&
 					<ToggleControl
 						label={ __( 'Show Buy Button' ) }
 						checked={ !! showBuyButton }
 						onChange={ () => setAttributes( { showBuyButton: ! showBuyButton } ) }
 					/>
+					}
+					
+					{ type === 'downloads' &&
 					<ToggleControl
 						label={ __( 'Show Price' ) }
 						checked={ !! showPrice }
 						onChange={ () => setAttributes( { showPrice: ! showPrice } ) }
 					/>
+					}
+
 					<ToggleControl
 						label={ __( 'Show Thumbnails' ) }
 						checked={ !! showThumbnails }
 						onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
 					/>
+
+					{ type === 'downloads' &&
 					<ToggleControl
 						label={ __( 'Show Excerpt' ) }
 						checked={ !! showExcerpt }
 						onChange={ this.showExcerpt }
 					/>
+					}
+
+					{ type === 'downloads' &&
 					<ToggleControl
 						label={ __( 'Show Full Content' ) }
 						checked={ !! showFullContent }
 						onChange={ this.showFullContent }
 					/>
+					}
+
+					{ type === 'downloads' &&
 					<ToggleControl
 						label={ __( 'Show Pagination' ) }
 						checked={ !! showPagination }
 						onChange={ () => setAttributes( { showPagination: ! showPagination } ) }
 					/>
+					}
+
+					{ type === 'downloads' &&
 					<SelectControl
 						label={ __( 'Order By' ) }
 						value={ orderBy }
 						options={ this.getOrderByOptions() }
-						onChange={ this.setOrderByOption }
+						onChange={ (orderBy) => setAttributes( { orderBy } ) }
 					/>
+					}
+
 					<SelectControl
 						label={ __( 'Order' ) }
 						value={ order }
 						options={ this.getOrderOptions() }
-						onChange={ this.setOrderOption }
+						onChange={ ( order ) => setAttributes( { order } ) }
 					/>
+				
+
+					{ type === 'downloads' &&
 					<SelectControl
 						label={ __( 'Show Downloads From Category' ) }
 						value={ category }
 						options={ this.getDownloadCategories() }
 						onChange={ this.setDownloadCategory }
 					/>
+					}
+
 				</PanelBody>
 			</InspectorControls>
 		);
