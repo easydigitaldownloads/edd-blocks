@@ -134,13 +134,7 @@ class DownloadsEdit extends Component {
 		} );
 
 	}
-
-	setOrderByOption( value ) {
-		this.props.setAttributes( {
-			orderBy: value,
-		} );
-	}
-
+	
 	showExcerpt() {
 		const value = this.state.showExcerpt;
 		
