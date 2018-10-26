@@ -426,7 +426,7 @@ class DownloadsEdit extends Component {
 					/>
 				</BlockControls>
 				<div className={ this.props.className }>
-					{ this.renderDownloads() }
+					{ type === 'downloads' ? this.renderDownloads() : this.renderDownloadCategories() }
 				</div>
 			</Fragment>
 		);
