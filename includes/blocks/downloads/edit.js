@@ -233,6 +233,7 @@ class DownloadsEdit extends Component {
 
 	}
 
+	// Render the downloads in a grid.
 	renderDownloads() {
 		const downloads = this.state.downloads.products;
 		const { columns } = this.props.attributes;
@@ -244,6 +245,11 @@ class DownloadsEdit extends Component {
 			</div>
 		);
 		
+	}
+
+	// Render the download categories in a grid.
+	renderDownloadCategories() {
+		return 'download categories to show here.';
 	}
 
 	render() {
