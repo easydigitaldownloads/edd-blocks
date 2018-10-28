@@ -32,7 +32,7 @@ function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 		}
 	
 		// Output a list of downloads.
-		echo edd_blocks_downloads_list( $atts, 'block' );
+		echo edd_blocks_downloads_list( $atts );
 	}
 
 	$display = ob_get_clean();
