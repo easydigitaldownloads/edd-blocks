@@ -28,6 +28,17 @@
 	margin: 0 0 10px 0;
 }
 
+// Download image
+.edd_download_image {
+	img {
+		display: block;
+	}
+
+	+ .edd_download_title {
+		margin-top: 10px;
+	}
+}
+
 .edd-submit.button {
 	box-shadow: none;
 	vertical-align: middle;
