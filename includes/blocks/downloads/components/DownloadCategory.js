@@ -29,6 +29,7 @@ const DownloadCategory = (props) => {
 			<Description 
 				description={description} 
 				showDescription={showDescription}
+				className="edd-download-category-description"
 			/>
 			}
 		</div>
