@@ -24,6 +24,7 @@ const Download = (props) => {
 			<Excerpt 
 				description={description} 
 				showDescription={showDescription}
+				className="edd_download_excerpt"
 			/>
 			<Content 
 				content={content} 
