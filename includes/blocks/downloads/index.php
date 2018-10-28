@@ -108,6 +108,10 @@ function edd_blocks_register_block_downloads() {
 				'type'    => 'boolean',
 				'default' => true,
 			),
+			'showEmpty' => array(
+				'type'    => 'boolean',
+				'default' => true,
+			),
 		),
 		'render_callback' => 'edd_blocks_render_block_downloads',
 	) );
