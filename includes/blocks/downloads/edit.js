@@ -275,17 +275,30 @@ class DownloadsEdit extends Component {
 			showBuyButton,
 			showPrice,
 			showThumbnails,
-			showExcerpt,
+			showDescription,
 			showFullContent,
 			showPagination,
 			order,
 			orderBy,
 			category,
-			type
+			type,
+			showTitle,
+			showCount,
+			showEmpty,
 		} = attributes;
 
 		const downloads = this.state.downloads.products;
 		const isLoading = this.state.isLoading;
+
+		let showDescriptionLabel;
+
+		if ( type === 'downloads' ) {
+			showDescriptionLabel = __( 'Show Excerpt' );
+		} else if ( type === 'download_categories' ) {
+			showDescriptionLabel = __( 'Show Category Description' );
+		} else {
+			showDescriptionLabel = __( 'Show Description' );
+		}
 
 		if ( isLoading ) {
 			return (
@@ -350,12 +363,34 @@ class DownloadsEdit extends Component {
 						checked={ !! showThumbnails }
 						onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
 					/>
-
-					{ type === 'downloads' &&
+					
+					{ type === 'download_categories' &&
 					<ToggleControl
-						label={ __( 'Show Excerpt' ) }
-						checked={ !! showExcerpt }
-						onChange={ this.showExcerpt }
+						label={ __( 'Show Category Name' ) }
+						checked={ !! showTitle }
+						onChange={ () => setAttributes( { showTitle: ! showTitle } ) }
+					/>
+					}
+
+					<ToggleControl
+						label={ showDescriptionLabel }
+						checked={ !! showDescription }
+						onChange={ this.showDescription }
+					/>
+
+					{ showTitle && type === 'download_categories' &&
+					<ToggleControl
+						label={ __( 'Show Count' ) }
+						checked={ !! showCount }
+						onChange={ () => setAttributes( { showCount: ! showCount } ) }
+					/>
+					}
+					
+					{ type === 'download_categories' &&
+					<ToggleControl
+						label={ __( 'Show Empty Categories' ) }
+						checked={ !! showEmpty }
+						onChange={ () => setAttributes( { showEmpty: ! showEmpty } ) }
 					/>
 					}
 
@@ -375,14 +410,12 @@ class DownloadsEdit extends Component {
 					/>
 					}
 
-					{ type === 'downloads' &&
 					<SelectControl
 						label={ __( 'Order By' ) }
 						value={ orderBy }
 						options={ this.getOrderByOptions() }
 						onChange={ (orderBy) => setAttributes( { orderBy } ) }
 					/>
-					}
 
 					<SelectControl
 						label={ __( 'Order' ) }
@@ -390,7 +423,6 @@ class DownloadsEdit extends Component {
 						options={ this.getOrderOptions() }
 						onChange={ ( order ) => setAttributes( { order } ) }
 					/>
-				
 
 					{ type === 'downloads' &&
 					<SelectControl
