@@ -292,7 +292,7 @@ function edd_blocks_downloads_list( $atts = array() ) {
 		printf( _x( 'No %s found', 'download post type name', 'easy-digital-downloads' ), edd_get_label_plural() );
 	endif;
 
-	do_action( 'edd_blocks_downloads_list_after', $atts, $downloads, $query );
+	do_action( 'edd_downloads_list_after', $atts, $downloads, $query );
 
 	$display = ob_get_clean();
 
