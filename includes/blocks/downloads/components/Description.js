@@ -1,13 +1,13 @@
 const {	RawHTML } = wp.element;
 
-const Description = ({description, showDescription}) => {
+const Description = ({description, showDescription, className}) => {
 
 	if ( ! showDescription ) {
 		return null;
 	}
 	
 	return (
-		<RawHTML>
+		<RawHTML className={className}>
 			{description}
 		</RawHTML>
 	)
