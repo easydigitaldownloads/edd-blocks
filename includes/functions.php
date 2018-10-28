@@ -6,7 +6,7 @@
  *
  * @since 1.0.0
  */
-function edd_blocks_downloads_list( $atts = array(), $type = '' ) {
+function edd_blocks_downloads_list( $atts = array() ) {
 
 	// Set up the base $query.
 	$query = array(
