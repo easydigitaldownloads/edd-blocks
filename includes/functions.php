@@ -387,9 +387,11 @@ function edd_blocks_download_categories_list( $atts = array() ) {
 				<div class="edd_download_inner">
 
 				<?php if ( true === $atts['showThumbnails'] && $attachment_id ) : ?>
-				<a href="<?php echo esc_url( get_term_link( $term ) ); ?>" class="edd-download-category-image">
-				<?php echo wp_get_attachment_image( $attachment_id, 'large' );  ?>
-				</a>
+				<div class="edd_download_image">
+					<a href="<?php echo esc_url( get_term_link( $term ) ); ?>">
+					<?php echo wp_get_attachment_image( $attachment_id, 'large' );  ?>
+					</a>
+				</div>	
 				<?php endif; ?>
 
 				<?php if ( true === $atts['showTitle'] ) : ?>
