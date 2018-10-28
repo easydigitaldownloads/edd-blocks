@@ -250,7 +250,15 @@ class DownloadsEdit extends Component {
 
 	// Render the download categories in a grid.
 	renderDownloadCategories() {
-		return 'download categories to show here.';
+		const { downloadCategories } = this.state;
+		const { attributes } = this.props;
+		const { columns } = attributes;
+
+		return (
+			<div className={ classnames( 'edd_downloads_list', 'edd-download-categories', 'edd_download_columns_' + columns ) }>
+				{ downloadCategories.map( ( category ) => <DownloadCategory key={category.id} category={category} attributes={attributes} /> ) }
+			</div>
+		);
 	}
 
 	render() {
