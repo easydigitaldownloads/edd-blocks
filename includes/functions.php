@@ -392,7 +392,7 @@ function edd_blocks_download_categories_list( $atts = array() ) {
 				</a>
 				<?php endif; ?>
 
-				<?php if ( true === $atts['showName'] ) : ?>
+				<?php if ( true === $atts['showTitle'] ) : ?>
 				<div class="edd-download-category-title">
 					<h3 class="edd_download_title"><a href="<?php echo esc_url( get_term_link( $term ) ); ?>"><?php echo $term->name; ?></a></h3>
 					<?php if ( true === $atts['showCount'] ) : ?>
