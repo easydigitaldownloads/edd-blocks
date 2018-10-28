@@ -77,15 +77,18 @@
           justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
-  margin-bottom: 0.5rem; }
+          align-items: center; }
   .edd-download-category-title h3 {
-    margin-bottom: 0; }
+    margin: 0; }
 
-.edd-download-category-image {
-  display: block;
-  margin-bottom: 0.5rem; }
+.edd-download-category-description {
+  margin-bottom: 0; }
 
-.edd_downloads_list.alignfull {
-  padding-left: 2rem;
-  padding-right: 2rem; }
+.edd-download-category .edd_download_image a,
+.edd-download-category .edd_download_image img {
+  display: block; }
+
+.edd-download-category-title + .edd-download-category-description,
+.edd_download_image + .edd-download-category-title,
+.edd_download_image + .edd-download-category-description {
+  margin-top: 0.5rem; }
