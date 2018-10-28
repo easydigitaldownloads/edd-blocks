@@ -7,9 +7,9 @@ const Image = ( {showThumbnails, image} ) => {
 	}
 
 	return (
-		<RawHTML>
+		<RawHTML className="edd_download_image">
 			{image}
-		</RawHTML>	
+		</RawHTML>
 	)
 
 }
