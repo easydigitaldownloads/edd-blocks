@@ -161,7 +161,7 @@ class DownloadsEdit extends Component {
 		} );
 
 	}
-	
+
 	showDescription() {
 		const value = this.state.showDescription;
 		
