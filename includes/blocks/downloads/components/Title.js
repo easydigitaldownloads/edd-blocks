@@ -17,8 +17,8 @@ const Title = ({link, title, className, showCount, count, type}) => {
 	if ( 'download-category' === type ) {
 		return (
 			<Fragment>
-				<div className={className}>
-				<h3>
+				<div className="edd-download-category-title">
+				<h3 className={className}>
 					<a href={ link } target="_blank">{renderTitle(title)}</a>
 				</h3>
 				{ showCount &&
