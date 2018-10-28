@@ -68,7 +68,7 @@ function edd_blocks_register_block_downloads() {
 				'type'    => 'boolean',
 				'default' => true,
 			),
-			'showExcerpt' => array(
+			'showDescription' => array(
 				'type'    => 'boolean',
 				'default' => true,
 			),
