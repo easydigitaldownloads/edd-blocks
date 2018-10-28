@@ -1,6 +1,7 @@
 import unescape from 'lodash/unescape';
 
 const { __ } = wp.i18n;
+const {	Fragment } = wp.element;
 
 function renderTitle(title) {
 
@@ -11,12 +12,30 @@ function renderTitle(title) {
 	return unescape( title ).trim();
 }
 
-const Title = ({link, title}) => {
+const Title = ({link, title, className, showCount, count, type}) => {
+
+	if ( 'download-category' === type ) {
+		return (
+			<Fragment>
+				<div className={className}>
+				<h3>
+					<a href={ link } target="_blank">{renderTitle(title)}</a>
+				</h3>
+				{ showCount &&
+				<span className="edd-download-category-count">({ count })</span>
+				}
+				</div>
+			</Fragment>
+		)
+
+	} 
 
 	return (
-		<h3 className="edd_download_title">
-			<a href={ link } target="_blank">{renderTitle(title)}</a>
-		</h3>
+		<Fragment>
+			<h3 className={className}>
+				<a href={ link } target="_blank">{renderTitle(title)}</a>
+			</h3>
+		</Fragment>
 	)
 
 }
