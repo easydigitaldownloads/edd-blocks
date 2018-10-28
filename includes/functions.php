@@ -314,7 +314,7 @@ function edd_blocks_download_categories_list( $atts = array() ) {
 		'order'      => $atts['order'],
 		'hide_empty' => true !== $atts['showEmpty'] ? true : false,
 	) );
-	
+
 	// Classes.
 	$classes = array( 'edd-download-categories edd_downloads_list' );
 	$classes[] = 'edd_download_columns_' . $atts['columns'];
