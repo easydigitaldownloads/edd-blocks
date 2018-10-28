@@ -1,14 +1,14 @@
 import Image from './Image';
 import Title from './Title';
-import Excerpt from './Excerpt';
+import Excerpt from './Description';
 import Content from './Content';
 import Price from './Price';
 import PurchaseLink from './PurchaseLink';
 
 const Download = (props) => {
 
-	const { showThumbnails, showExcerpt, showFullContent, showPrice, showBuyButton } = props.attributes;
-	const { image, link, title, excerpt, content, price, purchase_link } = props.download.info;
+	const { showThumbnails, showDescription, showFullContent, showPrice, showBuyButton } = props.attributes;
+	const { image, link, title, excerpt: description, content, price, purchase_link } = props.download.info;
 
 	return (
 		<div className="edd_download">
@@ -19,10 +19,11 @@ const Download = (props) => {
 			<Title 
 				title={title} 
 				link={link} 
+				className="edd_download_title"
 			/>
 			<Excerpt 
-				excerpt={excerpt} 
-				showExcerpt={showExcerpt}
+				description={description} 
+				showDescription={showDescription}
 			/>
 			<Content 
 				content={content} 
