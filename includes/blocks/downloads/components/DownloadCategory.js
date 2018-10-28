@@ -19,7 +19,7 @@ const DownloadCategory = (props) => {
 			<Title 
 				title={name} 
 				link={link} 
-				className="edd-download-category-title"
+				className="edd_download_title"
 				showCount={showCount}
 				count={count}
 				type="download-category"
