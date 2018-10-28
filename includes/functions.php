@@ -300,60 +300,6 @@ function edd_blocks_downloads_list( $atts = array() ) {
 }
 
 /**
- * Load the pagination.
- * 
- * This will be removed once https://github.com/easydigitaldownloads/easy-digital-downloads/issues/6808
- * is merged into EDD core.
- *
- * @since 1.0
- *
- * @param array  $atts The [downloads] shortcode attributes.
- * @param object $downloads The WP_Query.
- * @param array  $query EDD's array of attributes used to construct the main WP_Query.
- */
-function edd_blocks_downloads_pagination( $atts, $downloads, $query ) {
-
-	if ( 
-		has_action( 'edd_downloads_list_after', 'edd_downloads_pagination' ) ||
-		has_action( 'edd_downloads_list_after', 'themedd_edd_downloads_pagination' )
-	) {
-		return false;
-	}
-
-	if ( filter_var( $atts['pagination'], FILTER_VALIDATE_BOOLEAN ) ) :
-
-		$pagination = false;
-
-		if ( is_single() ) {
-			$pagination = paginate_links( apply_filters( 'edd_download_pagination_args', array(
-				'base'    => get_permalink() . '%#%',
-				'format'  => '?paged=%#%',
-				'current' => max( 1, $query['paged'] ),
-				'total'   => $downloads->max_num_pages
-			), $atts, $downloads, $query ) );
-		} else {
-			$big = 999999;
-			$search_for   = array( $big, '#038;' );
-			$replace_with = array( '%#%', '&' );
-			$pagination = paginate_links( apply_filters( 'edd_download_pagination_args', array(
-				'base'    => str_replace( $search_for, $replace_with, get_pagenum_link( $big ) ),
-				'format'  => '?paged=%#%',
-				'current' => max( 1, $query['paged'] ),
-				'total'   => $downloads->max_num_pages
-			), $atts, $downloads, $query ) );
-		}
-
-		if ( ! empty( $pagination ) ) : ?>
-		<div id="edd_download_pagination" class="navigation">
-			<?php echo $pagination; ?>
-		</div>
-		<?php endif; ?>
-
-	<?php endif;
-}
-add_action( 'edd_blocks_downloads_list_after', 'edd_blocks_downloads_pagination', 10, 3 );
-
-/**
  * Output a list of download categories.
  *
  * @since 1.0.0
