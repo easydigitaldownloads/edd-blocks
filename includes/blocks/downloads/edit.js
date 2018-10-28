@@ -140,12 +140,12 @@ class DownloadsEdit extends Component {
 
 	}
 	
-	showExcerpt() {
-		const value = this.state.showExcerpt;
+	showDescription() {
+		const value = this.state.showDescription;
 		
 		// Update the state.
-		this.setState({ 'showExcerpt': ! value, 'showFullContent': value }, function () {
-			this.props.setAttributes( { showExcerpt: ! value } );
+		this.setState({ 'showDescription': ! value, 'showFullContent': value }, function () {
+			this.props.setAttributes( { showDescription: ! value } );
 			this.props.setAttributes( { showFullContent: false } );
 		});
 	}
@@ -154,17 +154,34 @@ class DownloadsEdit extends Component {
 		const value = this.state.showFullContent;
 		
 		// Update the state.
-		this.setState({ 'showFullContent': ! value, 'showExcerpt': value }, function () {
+		this.setState({ 'showFullContent': ! value, 'showDescription': value }, function () {
 			this.props.setAttributes( { showFullContent: ! value } );
-			this.props.setAttributes( { showExcerpt: false } );
+			this.props.setAttributes( { showDescription: false } );
 		});
 	}
 
 	fetchDownloadCategories() {
 
+		const { showEmpty, order, orderBy, type } = this.props.attributes;
+
+		const query = {
+			per_page: -1,
+		};
+
+		// Set additional parameters for download categories.
+		if ( 'download_categories' === type ) {
+
+			// Must be lowercase.
+			query['order'] = order.toLowerCase();
+			query['orderby'] = orderBy.toLowerCase();
+
+			// Hide download categories that have no downloads.
+			query['hide_empty'] = true !== showEmpty ? true : false;
+		}
+
 		const request = apiFetch( {
 			path: `/wp/v2/download_category?${ stringify( {
-				per_page: -1,
+				...query
 			} ) }`,
 		} );
 
