@@ -42,12 +42,12 @@ class DownloadsEdit extends Component {
 		super( ...arguments );
 
 		this.setDownloadCategory = this.setDownloadCategory.bind( this );
-		this.showExcerpt = this.showExcerpt.bind( this );
+		this.showDescription = this.showDescription.bind( this );
 		this.showFullContent = this.showFullContent.bind( this );
 
 		this.state = {
 			isLoading: true,
-			showExcerpt: true,
+			showDescription: true,
 			showFullContent: false,
 			downloads: [],
 			downloadCategories: [],
@@ -62,14 +62,20 @@ class DownloadsEdit extends Component {
 
 	componentWillUnmount() {
 		delete this.downloadsRequest;
-		delete this.downloadCategoriesRequest;	
+		delete this.downloadCategoriesRequest;
 	}
 
 	componentDidUpdate( prevProps ) {
-		const { category, number, order, orderBy } = this.props.attributes;
+		const { category, number, order, orderBy, showEmpty, type } = this.props.attributes;
 
 		if ( category !== prevProps.attributes.category || number !== prevProps.attributes.number || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
 			this.fetchDownloads();
+		}
+
+		if ( 'download_categories' === type ) {
+			if ( showEmpty !== prevProps.attributes.showEmpty || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
+				this.fetchDownloadCategories();
+			}
 		}
 
 	}
@@ -82,16 +88,32 @@ class DownloadsEdit extends Component {
 	}
 	
 	getOrderByOptions() {
-		return [
-			{ value: 'date', label: __( 'Date Created' ) },
-			{ value: 'earnings', label: __( 'Earnings' ) },
-			{ value: 'id', label: __( 'ID' ) },
-			{ value: 'price', label: __( 'Price' ) },
-			{ value: 'random', label: __( 'Random' ) },
-			{ value: 'sales', label: __( 'Sales' ) },
-			{ value: 'name', label: __( 'Slug' ) },
-			{ value: 'title', label: __( 'Title' ) },
-		];
+
+		const { type } = this.props.attributes;
+
+		let options;
+
+		if ( 'downloads' === type ) {
+			options = [
+				{ value: 'date', label: __( 'Date Created' ) },
+				{ value: 'earnings', label: __( 'Earnings' ) },
+				{ value: 'id', label: __( 'ID' ) },
+				{ value: 'price', label: __( 'Price' ) },
+				{ value: 'random', label: __( 'Random' ) },
+				{ value: 'sales', label: __( 'Sales' ) },
+				{ value: 'name', label: __( 'Slug' ) },
+				{ value: 'title', label: __( 'Title' ) },
+			];
+		} else if ( 'download_categories' === type ) {
+			options = [
+				{ value: 'count', label: __( 'Count' ) },
+				{ value: 'id', label: __( 'ID' ) },
+				{ value: 'name', label: __( 'Name' ) },
+				{ value: 'slug', label: __( 'Slug' ) },
+			];
+		}
+
+		return options;
 	}
 
 	getDownloadCategories() {
