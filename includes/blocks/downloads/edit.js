@@ -81,7 +81,7 @@ class DownloadsEdit extends Component {
 		}
 
 		if ( 'download_categories' === type ) {
-			if ( showEmpty !== prevProps.attributes.showEmpty || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
+			if ( showEmpty !== prevProps.attributes.showEmpty || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy || number !== prevProps.attributes.number ) {
 				this.fetchDownloadCategories();
 			}
 		}
@@ -91,7 +91,7 @@ class DownloadsEdit extends Component {
 			this.fetchDownloadTags();
 			
 			// Fetch new download tags when various controls are selected.
-			if ( showEmpty !== prevProps.attributes.showEmpty || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
+			if ( showEmpty !== prevProps.attributes.showEmpty || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy || number !== prevProps.attributes.number ) {
 				this.fetchDownloadTags();
 			}
 
