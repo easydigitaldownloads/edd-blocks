@@ -226,11 +226,12 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 		 */
 		private function hooks() {
 			add_filter( 'edd_download_category_args', array( $this, 'show_in_rest' ) );
+			add_filter( 'edd_download_tag_args', array( $this, 'show_in_rest' ) );
 		}
 
 		/**
-		 * Allow download_category taxonomy to be available via the REST API.
-		 * This can be added directly to the taxonomy args once merged into core.
+		 * Allows the download_category and download_tag taxonomies to be available via the REST API.
+		 * This can be added directly to each of the taxonomy's args once merged into core.
 		 * 
 		 * @since 1.0
 		 */
