@@ -56,8 +56,15 @@ class DownloadsEdit extends Component {
 	}
 
 	componentDidMount() {
+		const { type } = this.props.attributes;
+
 		this.fetchDownloads();
 		this.fetchDownloadCategories();
+
+		// Only fetch tags on component mount if type is already set to download_tags.
+		if ( 'download_tags' === type ) {
+			this.fetchDownloadTags();
+		}
 	}
 
 	componentWillUnmount() {
