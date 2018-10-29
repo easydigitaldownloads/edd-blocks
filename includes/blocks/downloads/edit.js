@@ -10,6 +10,7 @@ import { stringify } from 'querystringify';
  */
 import Download from './components/Download';
 import DownloadCategory from './components/DownloadCategory';
+import DownloadTag from './components/DownloadTag';
 
 /**
  * WordPress dependencies
