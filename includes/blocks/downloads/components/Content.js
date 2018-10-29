@@ -1,13 +1,13 @@
 const {	RawHTML } = wp.element;
 
-const Content = ({content, showFullContent}) => {
+const Content = ({content, showFullContent, className}) => {
 
 	if ( ! showFullContent ) {
 		return null;
 	}
 	
 	return (
-		<RawHTML>
+		<RawHTML className={className}>
 			{content}
 		</RawHTML>
 	)
