@@ -428,7 +428,7 @@ class DownloadsEdit extends Component {
 						onChange={ (value) => setAttributes( { type: value } ) }
 					/>
 
-					{ type === 'downloads' &&
+					{ type === 'downloads' || isDownloadTaxonomy &&
 					<RangeControl
 						label={ __( 'Number of downloads' ) }
 						value={ number }
