@@ -2,15 +2,21 @@ import Image from './Image';
 import Title from './Title';
 import Description from './Description';
 
-const DownloadCategory = (props) => {
-
+const DownloadTaxonomy = (props) => {
 	const { showThumbnails, showTitle, showCount, showDescription } = props.attributes;
+	const { name, link, count, description, taxonomy } = props.taxonomy;
+	const image = props.taxonomy.meta.image;
 
-	const { name, link, count, description } = props.category;
-	const image = props.category.meta.image;
+	let taxType;
+
+	if ( 'download_tag' === taxonomy ) {
+		taxType = 'tag';
+	} else if ( 'download_category' === taxonomy ) {
+		taxType = 'category';
+	}
 
 	return (
-		<div className="edd-download-category">
+		<div className={`edd-download-${taxType}`}>
 			<Image 
 				image={image} 
 				showThumbnails={showThumbnails} 
@@ -22,14 +28,14 @@ const DownloadCategory = (props) => {
 				className="edd_download_title"
 				showCount={showCount}
 				count={count}
-				type="download-category"
+				type={`${taxType}`}
 			/>
 			}
 			{ showDescription &&
 			<Description 
-				description={description} 
+				description={description}
 				showDescription={showDescription}
-				className="edd-download-category-description"
+				className="edd-download-term-description"
 			/>
 			}
 		</div>
@@ -37,4 +43,4 @@ const DownloadCategory = (props) => {
 
 }
 
-export default DownloadCategory;
+export default DownloadTaxonomy;

@@ -8,12 +8,19 @@ class EDD_Blocks_Taxonomies {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		add_action( 'download_category_add_form_fields', array( $this, 'add_category_image' ), 10, 2 );
-		add_action( 'created_download_category', array( $this, 'save_category_image' ), 10, 2 );
+		// Download category actions.
+		add_action( 'download_category_add_form_fields', array( $this, 'add_term_image' ), 10, 2 );
+		add_action( 'created_download_category', array( $this, 'save_term_image' ), 10, 2 );
+		add_action( 'download_category_edit_form_fields', array( $this, 'update_term_image' ), 10, 2 );
+		add_action( 'edited_download_category', array( $this, 'updated_term_image' ), 10, 2 );
 
-		add_action( 'download_category_edit_form_fields', array( $this, 'update_category_image' ), 10, 2 );
-		add_action( 'edited_download_category', array( $this, 'updated_category_image' ), 10, 2 );
+		// Download tag actions.
+		add_action( 'download_tag_add_form_fields', array( $this, 'add_term_image' ), 10, 2 );
+		add_action( 'created_download_tag', array( $this, 'save_term_image' ), 10, 2 );
+		add_action( 'download_tag_edit_form_fields', array( $this, 'update_term_image' ), 10, 2 );
+		add_action( 'edited_download_tag', array( $this, 'updated_term_image' ), 10, 2 );
 
+		// Scripts
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_media' ) );
 		add_action( 'admin_footer', array( $this, 'add_script' ) );
 	}
@@ -24,24 +31,27 @@ class EDD_Blocks_Taxonomies {
 	 * @since 1.0.0
 	 */
 	public function enqueue_media() {
-		if ( ! isset( $_GET['taxonomy'] ) || $_GET['taxonomy'] !== 'download_category' ) {
-			return;
-		}
-
-		wp_enqueue_media();
+		if ( 
+			isset( $_GET['taxonomy'] ) && 
+			( 
+				$_GET['taxonomy'] === 'download_category' || 
+				$_GET['taxonomy'] === 'download_tag' ) 
+			) {
+			wp_enqueue_media();
+		} 
 	}
 
 	/**
-	 * Add a form field in the new category page.
+	 * Add form field to the add term page.
 	 * 
 	 * @since 1.0.0
 	 */
-	public function add_category_image( $taxonomy ) { 
+	public function add_term_image( $taxonomy ) { 
 	?>
 		<div class="form-field term-group">
-			<label for="download-category-image-id"><?php _e( 'Image', 'edd-blocks' ); ?></label>
-			<input type="hidden" id="download-category-image-id" name="download_category_image_id">
-			<div id="category-image-wrapper"></div>
+			<label for="download-term-image-id"><?php _e( 'Image', 'edd-blocks' ); ?></label>
+			<input type="hidden" id="download-term-image-id" name="download_term_image_id">
+			<div id="term-image-wrapper"></div>
 			<p>
 				<input type="button" class="button button-secondary" id="edd-blocks-add-term-image" name="edd_blocks_tax_media_button" value="<?php _e( 'Add Image', 'edd-blocks' ); ?>" />
 				<input type="button" class="button button-secondary" id="edd-blocks-remove-term-image" name="edd_blocks_tax_media_remove" value="<?php _e( 'Remove Image', 'edd-blocks' ); ?>" />
@@ -55,9 +65,9 @@ class EDD_Blocks_Taxonomies {
 	 * 
 	 * @since 1.0.0
 	 */
-	public function save_category_image( $term_id, $tt_id ) {
-		if ( isset( $_POST['download_category_image_id'] ) && '' !== $_POST['download_category_image_id'] ){
-			add_term_meta( $term_id, 'download_category_image_id', absint( $_POST['download_category_image_id'] ), true );
+	public function save_term_image( $term_id, $tt_id ) {
+		if ( isset( $_POST['download_term_image_id'] ) && '' !== $_POST['download_term_image_id'] ){
+			add_term_meta( $term_id, 'download_term_image_id', absint( $_POST['download_term_image_id'] ), true );
 		}
 	}
 
@@ -66,15 +76,15 @@ class EDD_Blocks_Taxonomies {
 	 * 
 	 * @since 1.0.0
 	 */
-	public function update_category_image( $term, $taxonomy ) { ?>
+	public function update_term_image( $term, $taxonomy ) { ?>
 		<tr class="form-field term-group-wrap">
 			<th scope="row">
-				<label for="download-category-image-id"><?php _e( 'Image', 'edd-blocks' ); ?></label>
+				<label for="download-term-image-id"><?php _e( 'Image', 'edd-blocks' ); ?></label>
 			</th>
 			<td>
-				<?php $image_id = get_term_meta( $term->term_id, 'download_category_image_id', true ); ?>
-				<input type="hidden" id="download-category-image-id" name="download_category_image_id" value="<?php echo esc_attr( $image_id ); ?>">
-				<div id="category-image-wrapper">
+				<?php $image_id = get_term_meta( $term->term_id, 'download_term_image_id', true ); ?>
+				<input type="hidden" id="download-term-image-id" name="download_term_image_id" value="<?php echo esc_attr( $image_id ); ?>">
+				<div id="term-image-wrapper">
 					<?php if ( $image_id ) { echo wp_get_attachment_image( $image_id, 'thumbnail' ); } ?>
 				</div>
 				<p>
@@ -91,11 +101,11 @@ class EDD_Blocks_Taxonomies {
 	 * 
 	 * @since 1.0.0
 	 */
-	public function updated_category_image( $term_id, $tt_id ) {
-		if ( isset( $_POST['download_category_image_id'] ) && '' !== $_POST['download_category_image_id'] ) {
-			update_term_meta( $term_id, 'download_category_image_id', absint( $_POST['download_category_image_id'] ) );
+	public function updated_term_image( $term_id, $tt_id ) {
+		if ( isset( $_POST['download_term_image_id'] ) && '' !== $_POST['download_term_image_id'] ) {
+			update_term_meta( $term_id, 'download_term_image_id', absint( $_POST['download_term_image_id'] ) );
 		} else {
-			delete_term_meta( $term_id, 'download_category_image_id' );
+			delete_term_meta( $term_id, 'download_term_image_id' );
 		}
 	}
 
@@ -105,9 +115,15 @@ class EDD_Blocks_Taxonomies {
 	 * @since 1.0.0
 	 */
 	public function add_script() {
-		if ( ! isset( $_GET['taxonomy'] ) || $_GET['taxonomy'] !== 'download_category' ) {
+		
+		if ( ! isset( $_GET['taxonomy'] ) ) {
 			return;
 		} 
+
+		if ( ! ( $_GET['taxonomy'] === 'download_category' || $_GET['taxonomy'] === 'download_tag' ) ) {
+			return;
+		} 
+
 	?>
 		<script>
 			jQuery(document).ready( function($) {
@@ -122,9 +138,9 @@ class EDD_Blocks_Taxonomies {
 						_custom_media = true;
 						wp.media.editor.send.attachment = function(props, attachment) {
 							if( _custom_media ) {
-								$('#download-category-image-id').val(attachment.id);
-								$('#category-image-wrapper').html('<img class="custom_media_image" src="" style="margin:0;padding:0;max-height:100px;float:none;" />');
-								$('#category-image-wrapper .custom_media_image').attr('src',attachment.url).css('display','block');
+								$('#download-term-image-id').val(attachment.id);
+								$('#term-image-wrapper').html('<img class="custom_media_image" src="" style="margin:0;padding:0;max-height:100px;float:none;" />');
+								$('#term-image-wrapper .custom_media_image').attr('src',attachment.url).css('display','block');
 							} else {
 								return _orig_send_attachment.apply( button_id, [props, attachment] );
 							}
@@ -135,8 +151,8 @@ class EDD_Blocks_Taxonomies {
 				}
 				ct_media_upload('#edd-blocks-add-term-image');
 				$('body').on('click','#edd-blocks-remove-term-image',function() {
-					$('#download-category-image-id').val('');
-					$('#category-image-wrapper').html('<img class="custom_media_image" src="" style="margin:0;padding:0;max-height:100px;float:none;" />');
+					$('#download-term-image-id').val('');
+					$('#term-image-wrapper').html('<img class="custom_media_image" src="" style="margin:0;padding:0;max-height:100px;float:none;" />');
 				});
 				// Thanks: http://stackoverflow.com/questions/15281995/wordpress-create-category-ajax-response
 				$(document).ajaxComplete(function(event, xhr, settings) {
@@ -146,7 +162,7 @@ class EDD_Blocks_Taxonomies {
 						$response = $(xml).find('term_id').text();
 						if ( $response !== '' ) {
 							// Clear the thumb image
-							$('#category-image-wrapper').html('');
+							$('#term-image-wrapper').html('');
 						}
 					}
 				});
