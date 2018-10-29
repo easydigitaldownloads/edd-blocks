@@ -29,6 +29,7 @@ const Download = (props) => {
 			<Content 
 				content={content} 
 				showFullContent={showFullContent}
+				className="edd_download_full_content"
 			/>
 			<Price 
 				price={price} 
