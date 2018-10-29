@@ -14,7 +14,7 @@ const DownloadTag = (props) => {
 				className="edd_download_title"
 				showCount={showCount}
 				count={count}
-				type="download-tag"
+				type="tag"
 			/>
 			}
 			{ showDescription &&

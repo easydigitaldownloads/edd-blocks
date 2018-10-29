@@ -22,7 +22,7 @@ const DownloadCategory = (props) => {
 				className="edd_download_title"
 				showCount={showCount}
 				count={count}
-				type="download-category"
+				type="category"
 			/>
 			}
 			{ showDescription &&
