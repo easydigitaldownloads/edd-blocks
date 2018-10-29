@@ -113,7 +113,7 @@ class DownloadsEdit extends Component {
 				{ value: 'name', label: __( 'Slug' ) },
 				{ value: 'title', label: __( 'Title' ) },
 			];
-		} else if ( 'download_categories' === type ) {
+		} else if ( 'download_categories' === type || 'download_tags' === type ) {
 			options = [
 				{ value: 'count', label: __( 'Count' ) },
 				{ value: 'id', label: __( 'ID' ) },
