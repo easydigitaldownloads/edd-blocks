@@ -319,31 +319,33 @@ class DownloadsEdit extends Component {
 
 	}
 
-	// Render the downloads in a grid.
 	renderDownloads() {
 		const downloads = this.state.downloads.products;
-		const { columns } = this.props.attributes;
-		const { attributes } = this.props;
-
-		return (
-			<div className={ classnames( 'edd_downloads_list', 'edd_download_columns_' + columns ) }>
-				{ downloads.map( ( download ) => <Download download={download} key={download.info.id.toString()} attributes={attributes} /> ) }
-			</div>
-		);
-		
-	}
-
-	// Render the download categories in a grid.
-	renderDownloadCategories() {
 		const { downloadCategories } = this.state;
 		const { attributes } = this.props;
-		const { columns } = attributes;
+		const { columns, type } = attributes;
 
-		return (
-			<div className={ classnames( 'edd_downloads_list', 'edd-download-categories', 'edd_download_columns_' + columns ) }>
-				{ downloadCategories.map( ( category ) => <DownloadCategory key={category.id} category={category} attributes={attributes} /> ) }
-			</div>
-		);
+		if ( 'downloads' === type ) {
+			return (
+				<div className={ classnames( 'edd_downloads_list', 'edd_download_columns_' + columns ) }>
+					{ downloads.map( ( download ) => <Download download={download} key={download.info.id.toString()} attributes={attributes} /> ) }
+				</div>
+			);
+		}
+		else if ( 'download_categories' === type ) {
+			return (
+				<div className={ classnames( 'edd_downloads_list', 'edd-download-categories', 'edd_download_columns_' + columns ) }>
+					{ downloadCategories.map( ( category ) => <DownloadCategory key={category.id} category={category} attributes={attributes} /> ) }
+				</div>
+			);
+		} else if ('download_tags' === type ) {
+			return (
+				<div>
+					Download tags placeholder
+				</div>
+			);
+		}
+
 	}
 
 	render() {
@@ -397,7 +399,7 @@ class DownloadsEdit extends Component {
 				</Fragment>
 			);
 		}
-		
+
 		const inspectorControls = (
 			<InspectorControls>
 				<PanelBody title={ __( 'Settings' ) }>
@@ -552,7 +554,7 @@ class DownloadsEdit extends Component {
 					/>
 				</BlockControls>
 				<div className={ this.props.className }>
-					{ type === 'downloads' ? this.renderDownloads() : this.renderDownloadCategories() }
+					{ this.renderDownloads() }
 				</div>
 			</Fragment>
 		);
