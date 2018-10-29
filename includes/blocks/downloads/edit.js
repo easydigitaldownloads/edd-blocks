@@ -17,7 +17,6 @@ import DownloadTaxonomy from './components/DownloadTaxonomy';
 const {	Component, Fragment, RawHTML } = wp.element;
 
 const {
-	Disabled,
 	PanelBody,
 	Placeholder,
 	ToggleControl,
