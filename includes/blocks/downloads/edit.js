@@ -207,10 +207,10 @@ class DownloadsEdit extends Component {
 
 	fetchDownloadCategories() {
 
-		const { showEmpty, order, orderBy, type } = this.props.attributes;
+		const { showEmpty, order, orderBy, type, number } = this.props.attributes;
 
 		const query = {
-			per_page: -1,
+			per_page: number,
 		};
 
 		// Set additional parameters for download categories.
@@ -246,10 +246,10 @@ class DownloadsEdit extends Component {
 
 	fetchDownloadTags() {
 
-		const { showEmpty, order, orderBy, type } = this.props.attributes;
+		const { showEmpty, order, orderBy, type, number } = this.props.attributes;
 
 		const query = {
-			per_page: -1,
+			per_page: number,
 		};
 
 		// Set additional parameters for download tags.
