@@ -329,6 +329,7 @@ function edd_blocks_download_taxonomy_list( $atts = array() ) {
 		'orderby'    => $atts['orderBy'],
 		'order'      => $atts['order'],
 		'hide_empty' => true !== $atts['showEmpty'] ? true : false,
+		'number'     => (int) $atts['number']
 	) );
 
 	// Classes.
