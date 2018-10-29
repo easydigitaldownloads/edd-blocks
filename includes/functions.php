@@ -381,6 +381,15 @@ function edd_blocks_register_rest_fields() {
 		)
 	);
 
+	register_rest_field( 'download_tag',
+		'meta',
+		array(
+			'get_callback'    => 'edd_blocks_term_meta_callback',
+			'update_callback' => null,
+			'schema'          => null,
+		)
+	);
+
 }
 add_action( 'rest_api_init', 'edd_blocks_register_rest_fields' );
 
