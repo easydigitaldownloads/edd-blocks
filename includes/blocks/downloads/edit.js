@@ -65,6 +65,7 @@ class DownloadsEdit extends Component {
 	componentWillUnmount() {
 		delete this.downloadsRequest;
 		delete this.downloadCategoriesRequest;
+		delete this.downloadTagsRequest;
 	}
 
 	componentDidUpdate( prevProps ) {
