@@ -58,7 +58,6 @@ class DownloadsEdit extends Component {
 	componentDidMount() {
 		this.fetchDownloads();
 		this.fetchDownloadCategories();
-		this.fetchDownloadTags();
 	}
 
 	componentWillUnmount() {
@@ -81,9 +80,14 @@ class DownloadsEdit extends Component {
 		}
 
 		if ( 'download_tags' === type ) {
+			// Fetch the download tags when "Download Tags" is selected.
+			this.fetchDownloadTags();
+			
+			// Fetch new download tags when various controls are selected.
 			if ( showEmpty !== prevProps.attributes.showEmpty || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
 				this.fetchDownloadTags();
 			}
+
 		}
 
 	}
