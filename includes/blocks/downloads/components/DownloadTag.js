@@ -2,17 +2,21 @@ import Title from './Title';
 import Description from './Description';
 
 const DownloadTag = (props) => {
-	const { showDescription } = props.attributes;
-	const { name, link, description } = props.tag;
+	const { showTitle, showCount, showDescription } = props.attributes;
+	const { name, link, count, description } = props.tag;
 
 	return (
 		<div className="edd-download-tag">
+			{ showTitle && 
 			<Title 
 				title={name} 
 				link={link} 
 				className="edd_download_title"
+				showCount={showCount}
+				count={count}
 				type="download-tag"
 			/>
+			}
 			{ showDescription &&
 			<Description 
 				description={description}
