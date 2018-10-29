@@ -228,6 +228,45 @@ class DownloadsEdit extends Component {
 
 	}
 
+	fetchDownloadTags() {
+
+		const { showEmpty, order, orderBy, type } = this.props.attributes;
+
+		const query = {
+			per_page: -1,
+		};
+
+		// Set additional parameters for download tags.
+		if ( 'download_tags' === type ) {
+
+			// Must be lowercase.
+			query['order'] = order.toLowerCase();
+			query['orderby'] = orderBy.toLowerCase();
+
+			// Hide download tags that have no downloads.
+			query['hide_empty'] = true !== showEmpty ? true : false;
+		}
+
+		const request = apiFetch( {
+			path: `/wp/v2/download_tag?${ stringify( {
+				...query
+			} ) }`,
+		} );
+
+		request.then( ( downloadTags ) => {
+
+			if ( this.downloadTagsRequest !== request ) {
+				return;
+			}
+
+			this.setState( { downloadTags } );
+
+		} );
+
+		this.downloadTagsRequest = request;
+
+	}
+
 	fetchDownloads() {
 		
 		const { category, number, order } = this.props.attributes;
