@@ -468,7 +468,7 @@ class DownloadsEdit extends Component {
 						onChange={ this.showDescription }
 					/>
 
-					{ showTitle && type === 'download_categories' &&
+					{ showTitle && ( type === 'download_categories' || type === 'download_tags' ) &&
 					<ToggleControl
 						label={ __( 'Show Count' ) }
 						checked={ !! showCount }
