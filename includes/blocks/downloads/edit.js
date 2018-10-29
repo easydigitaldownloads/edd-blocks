@@ -59,6 +59,7 @@ class DownloadsEdit extends Component {
 	componentDidMount() {
 		this.fetchDownloads();
 		this.fetchDownloadCategories();
+		this.fetchDownloadTags();
 	}
 
 	componentWillUnmount() {
