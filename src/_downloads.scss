@@ -39,6 +39,21 @@
 	}
 }
 
+// Price
+.edd_price {
+
+	.edd_download_excerpt + & {
+		margin-top: 10px;
+	}
+}
+
+.edd_download_excerpt,
+.edd_download_full_content {
+	+ .components-disabled > .edd_download_buy_button {
+		margin-top: 10px;
+	}
+}
+
 .edd-submit.button {
 	box-shadow: none;
 	vertical-align: middle;
