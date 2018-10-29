@@ -14,7 +14,7 @@ import DownloadTaxonomy from './components/DownloadTaxonomy';
 /**
  * WordPress dependencies
  */
-const {	Component, Fragment, RawHTML } = wp.element;
+const {	Component, Fragment } = wp.element;
 
 const {
 	PanelBody,
