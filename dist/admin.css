@@ -93,6 +93,13 @@
 .edd_download_image + .edd_download_title {
   margin-top: 10px; }
 
+.edd_download_excerpt + .edd_price {
+  margin-top: 10px; }
+
+.edd_download_excerpt + .components-disabled > .edd_download_buy_button,
+.edd_download_full_content + .components-disabled > .edd_download_buy_button {
+  margin-top: 10px; }
+
 .edd-submit.button {
   -webkit-box-shadow: none;
           box-shadow: none;
