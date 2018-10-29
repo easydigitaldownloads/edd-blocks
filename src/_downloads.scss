@@ -23,9 +23,35 @@
 
 }
 
-.edd_download .edd_download_title,
-.edd_download .edd_price {
-	margin-bottom: 10px;
+.edd_download .edd_price,
+.edd_download_title {
+	margin: 0 0 10px 0;
+}
+
+// Download image
+.edd_download_image {
+	img {
+		display: block;
+	}
+
+	+ .edd_download_title {
+		margin-top: 10px;
+	}
+}
+
+// Price
+.edd_price {
+
+	.edd_download_excerpt + & {
+		margin-top: 10px;
+	}
+}
+
+.edd_download_excerpt,
+.edd_download_full_content {
+	+ .components-disabled > .edd_download_buy_button {
+		margin-top: 10px;
+	}
 }
 
 .edd-submit.button {

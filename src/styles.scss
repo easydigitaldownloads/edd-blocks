@@ -1,14 +1,6 @@
 // Grid styling
+// Revise after EDD v3.0 is released which implements CSS Grid: https://github.com/easydigitaldownloads/easy-digital-downloads/issues/6852
 @import 'grid';
 
 // Download category block styling.
 @import 'download-categories';
-
-.edd_downloads_list {
-
-	&.alignfull {
-		padding-left: 2rem;
-		padding-right: 2rem;
-	}
-
-}

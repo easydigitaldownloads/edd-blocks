@@ -2,9 +2,14 @@
  * External dependencies
  */
 import isUndefined from 'lodash/isundefined';
-import unescape from 'lodash/unescape';
 import classnames from 'classnames';
 import { stringify } from 'querystringify';
+
+/**
+ * Components
+ */
+import Download from './components/Download';
+import DownloadCategory from './components/DownloadCategory';
 
 /**
  * WordPress dependencies
@@ -31,51 +36,18 @@ const {
 
 const apiFetch = wp.apiFetch;
 
-/**
- * Minimum number of downloads a user can show using this block.
- *
- * @type {number}
- */
-const MIN_DOWNLOADS = 1;
-
-/**
- * Maximum number of comments a user can show using this block.
- *
- * @type {number}
- */
-const MAX_DOWNLOADS = 100;
-
-/**
- * Minimum number of columns a user can show using this block.
- *
- * @type {number}
- */
-const MIN_COLUMNS = 1;
-
-/**
- * Maximum number of columns a user can show using this block.
- *
- * @type {number}
- */
-const MAX_COLUMNS = 6;
-
 class DownloadsEdit extends Component {
 
 	constructor() {
 		super( ...arguments );
 
-		this.setColumns = this.setColumns.bind( this );
-		this.setAlignment = this.setAlignment.bind( this );
-		this.setDownloadsToShow = this.setDownloadsToShow.bind( this );
-		this.setOrderOption = this.setOrderOption.bind( this );
-		this.setOrderByOption = this.setOrderByOption.bind( this );
 		this.setDownloadCategory = this.setDownloadCategory.bind( this );
-		this.showExcerpt = this.showExcerpt.bind( this );
+		this.showDescription = this.showDescription.bind( this );
 		this.showFullContent = this.showFullContent.bind( this );
 
 		this.state = {
 			isLoading: true,
-			showExcerpt: true,
+			showDescription: true,
 			showFullContent: false,
 			downloads: [],
 			downloadCategories: [],
@@ -90,28 +62,22 @@ class DownloadsEdit extends Component {
 
 	componentWillUnmount() {
 		delete this.downloadsRequest;
-		delete this.downloadCategoriesRequest;	
+		delete this.downloadCategoriesRequest;
 	}
 
 	componentDidUpdate( prevProps ) {
-		const { category, number, order, orderBy } = this.props.attributes;
+		const { category, number, order, orderBy, showEmpty, type } = this.props.attributes;
 
 		if ( category !== prevProps.attributes.category || number !== prevProps.attributes.number || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
 			this.fetchDownloads();
 		}
 
-	}
+		if ( 'download_categories' === type ) {
+			if ( showEmpty !== prevProps.attributes.showEmpty || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
+				this.fetchDownloadCategories();
+			}
+		}
 
-	setColumns( columns ) {
-		this.props.setAttributes( { columns } );
-	}
-
-	setAlignment( align ) {
-		this.props.setAttributes( { align } );
-	}
-
-	setDownloadsToShow( number ) {
-		this.props.setAttributes( { number } );
 	}
 
 	getOrderOptions() {
@@ -120,24 +86,34 @@ class DownloadsEdit extends Component {
 			{ value: 'DESC', label: __( 'Descending' ) },
 		];
 	}
-
-	setOrderOption( value ) {
-		this.props.setAttributes( {
-			order: value,
-		} );
-	}
-
+	
 	getOrderByOptions() {
-		return [
-			{ value: 'date', label: __( 'Date Created' ) },
-			{ value: 'earnings', label: __( 'Earnings' ) },
-			{ value: 'id', label: __( 'ID' ) },
-			{ value: 'price', label: __( 'Price' ) },
-			{ value: 'random', label: __( 'Random' ) },
-			{ value: 'sales', label: __( 'Sales' ) },
-			{ value: 'name', label: __( 'Slug' ) },
-			{ value: 'title', label: __( 'Title' ) },
-		];
+
+		const { type } = this.props.attributes;
+
+		let options;
+
+		if ( 'downloads' === type ) {
+			options = [
+				{ value: 'date', label: __( 'Date Created' ) },
+				{ value: 'earnings', label: __( 'Earnings' ) },
+				{ value: 'id', label: __( 'ID' ) },
+				{ value: 'price', label: __( 'Price' ) },
+				{ value: 'random', label: __( 'Random' ) },
+				{ value: 'sales', label: __( 'Sales' ) },
+				{ value: 'name', label: __( 'Slug' ) },
+				{ value: 'title', label: __( 'Title' ) },
+			];
+		} else if ( 'download_categories' === type ) {
+			options = [
+				{ value: 'count', label: __( 'Count' ) },
+				{ value: 'id', label: __( 'ID' ) },
+				{ value: 'name', label: __( 'Name' ) },
+				{ value: 'slug', label: __( 'Slug' ) },
+			];
+		}
+
+		return options;
 	}
 
 	getDownloadCategories() {
@@ -161,6 +137,19 @@ class DownloadsEdit extends Component {
 		return categories;
 	}
 
+	getBlockTypes() {
+		return [
+			{ 
+				'value': 'downloads', 
+				'label': __( 'Downloads' )
+			},
+			{ 
+				'value': 'download_categories', 
+				'label': __( 'Download Categories' )
+			}
+		];
+	}
+
 	setDownloadCategory( value ) {
 	
 		if ( 'all' === value ) {
@@ -173,18 +162,12 @@ class DownloadsEdit extends Component {
 
 	}
 
-	setOrderByOption( value ) {
-		this.props.setAttributes( {
-			orderBy: value,
-		} );
-	}
-
-	showExcerpt() {
-		const value = this.state.showExcerpt;
+	showDescription() {
+		const value = this.state.showDescription;
 		
 		// Update the state.
-		this.setState({ 'showExcerpt': ! value, 'showFullContent': value }, function () {
-			this.props.setAttributes( { showExcerpt: ! value } );
+		this.setState({ 'showDescription': ! value, 'showFullContent': value }, function () {
+			this.props.setAttributes( { showDescription: ! value } );
 			this.props.setAttributes( { showFullContent: false } );
 		});
 	}
@@ -193,17 +176,34 @@ class DownloadsEdit extends Component {
 		const value = this.state.showFullContent;
 		
 		// Update the state.
-		this.setState({ 'showFullContent': ! value, 'showExcerpt': value }, function () {
+		this.setState({ 'showFullContent': ! value, 'showDescription': value }, function () {
 			this.props.setAttributes( { showFullContent: ! value } );
-			this.props.setAttributes( { showExcerpt: false } );
+			this.props.setAttributes( { showDescription: false } );
 		});
 	}
 
 	fetchDownloadCategories() {
 
+		const { showEmpty, order, orderBy, type } = this.props.attributes;
+
+		const query = {
+			per_page: -1,
+		};
+
+		// Set additional parameters for download categories.
+		if ( 'download_categories' === type ) {
+
+			// Must be lowercase.
+			query['order'] = order.toLowerCase();
+			query['orderby'] = orderBy.toLowerCase();
+
+			// Hide download categories that have no downloads.
+			query['hide_empty'] = true !== showEmpty ? true : false;
+		}
+
 		const request = apiFetch( {
 			path: `/wp/v2/download_category?${ stringify( {
-				per_page: -1,
+				...query
 			} ) }`,
 		} );
 
@@ -273,72 +273,31 @@ class DownloadsEdit extends Component {
 
 	}
 
+	// Render the downloads in a grid.
 	renderDownloads() {
 		const downloads = this.state.downloads.products;
 		const { columns } = this.props.attributes;
+		const { attributes } = this.props;
 
 		return (
 			<div className={ classnames( 'edd_downloads_list', 'edd_download_columns_' + columns ) }>
-				{ downloads.map( ( download ) => this.renderDownloadListItem( download ) ) }
+				{ downloads.map( ( download ) => <Download download={download} key={download.info.id.toString()} attributes={attributes} /> ) }
 			</div>
 		);
 		
 	}
 
-	renderDownloadListItem( download ) {
-
-		const { showBuyButton, showExcerpt, showFullContent, showPrice } = this.props.attributes;
+	// Render the download categories in a grid.
+	renderDownloadCategories() {
+		const { downloadCategories } = this.state;
+		const { attributes } = this.props;
+		const { columns } = attributes;
 
 		return (
-			<div className="edd_download" key={ download.info.id }>
-
-				{ this.renderDownloadImage( download ) }
-
-				<h3 className="edd_download_title"><a href={ download.info.link } target="_blank">{ this.renderDownloadName( download ) }</a></h3>
-
-				{ showExcerpt &&
-					<RawHTML>{ download.info.excerpt }</RawHTML>
-				}
-				
-				{ showFullContent &&
-					<RawHTML>{ download.info.content }</RawHTML>
-				}
-
-				{ showPrice &&
-				<div className="edd_price"><RawHTML>{ download.info.price }</RawHTML></div>
-				}
-				
-				{ showBuyButton &&
-				<Disabled>
-					<div className="edd_download_buy_button">
-						<RawHTML>{ download.info.purchase_link }</RawHTML>
-					</div>
-				</Disabled>
-				}
+			<div className={ classnames( 'edd_downloads_list', 'edd-download-categories', 'edd_download_columns_' + columns ) }>
+				{ downloadCategories.map( ( category ) => <DownloadCategory key={category.id} category={category} attributes={attributes} /> ) }
 			</div>
 		);
-	}
-
-	renderDownloadName( download ) {
-		const title = download.info.title;
-
-		if ( ! title ) {
-			return __( '(Untitled)' );
-		}
-
-		return unescape( title ).trim();
-	}
-
-	renderDownloadImage( download ) {
-
-		const { showThumbnails } = this.props.attributes;
-		const image = download.info.image;
-
-		if ( ! showThumbnails || ! image ) {
-			return;
-		}
-
-		return <RawHTML>{ image }</RawHTML>
 	}
 
 	render() {
@@ -355,16 +314,30 @@ class DownloadsEdit extends Component {
 			showBuyButton,
 			showPrice,
 			showThumbnails,
-			showExcerpt,
+			showDescription,
 			showFullContent,
 			showPagination,
 			order,
 			orderBy,
-			category
+			category,
+			type,
+			showTitle,
+			showCount,
+			showEmpty,
 		} = attributes;
 
 		const downloads = this.state.downloads.products;
 		const isLoading = this.state.isLoading;
+
+		let showDescriptionLabel;
+
+		if ( type === 'downloads' ) {
+			showDescriptionLabel = __( 'Show Excerpt' );
+		} else if ( type === 'download_categories' ) {
+			showDescriptionLabel = __( 'Show Category Description' );
+		} else {
+			showDescriptionLabel = __( 'Show Description' );
+		}
 
 		if ( isLoading ) {
 			return (
@@ -381,69 +354,124 @@ class DownloadsEdit extends Component {
 
 		const inspectorControls = (
 			<InspectorControls>
-				<PanelBody title={ __( 'Download Settings' ) }>
+				<PanelBody title={ __( 'Settings' ) }>
+					
+					<SelectControl
+						label={ __( 'Display' ) }
+						value={ type }
+						options={ this.getBlockTypes() }
+						onChange={ (value) => setAttributes( { type: value } ) }
+					/>
+
+					{ type === 'downloads' &&
 					<RangeControl
 						label={ __( 'Number of downloads' ) }
 						value={ number }
-						onChange={ this.setDownloadsToShow }
-						min={ MIN_DOWNLOADS }
-						max={ MAX_DOWNLOADS }
+						onChange={ (number) => setAttributes( { number } ) }
+						min={ 1 }
+						max={ 100 }
 					/>
+					}
+
 					<RangeControl
 						label={ __( 'Columns' ) }
 						value={ columns }
-						onChange={ this.setColumns }
-						min={ MIN_COLUMNS }
-						max={ MAX_COLUMNS }
+						onChange={ (columns) => setAttributes( { columns } ) }
+						min={ 1 }
+						max={ 6 }
 					/>
+					
+					{ type === 'downloads' &&
 					<ToggleControl
 						label={ __( 'Show Buy Button' ) }
 						checked={ !! showBuyButton }
 						onChange={ () => setAttributes( { showBuyButton: ! showBuyButton } ) }
 					/>
+					}
+					
+					{ type === 'downloads' &&
 					<ToggleControl
 						label={ __( 'Show Price' ) }
 						checked={ !! showPrice }
 						onChange={ () => setAttributes( { showPrice: ! showPrice } ) }
 					/>
+					}
+
 					<ToggleControl
 						label={ __( 'Show Thumbnails' ) }
 						checked={ !! showThumbnails }
 						onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
 					/>
+					
+					{ type === 'download_categories' &&
 					<ToggleControl
-						label={ __( 'Show Excerpt' ) }
-						checked={ !! showExcerpt }
-						onChange={ this.showExcerpt }
+						label={ __( 'Show Category Name' ) }
+						checked={ !! showTitle }
+						onChange={ () => setAttributes( { showTitle: ! showTitle } ) }
 					/>
+					}
+
+					<ToggleControl
+						label={ showDescriptionLabel }
+						checked={ !! showDescription }
+						onChange={ this.showDescription }
+					/>
+
+					{ showTitle && type === 'download_categories' &&
+					<ToggleControl
+						label={ __( 'Show Count' ) }
+						checked={ !! showCount }
+						onChange={ () => setAttributes( { showCount: ! showCount } ) }
+					/>
+					}
+					
+					{ type === 'download_categories' &&
+					<ToggleControl
+						label={ __( 'Show Empty Categories' ) }
+						checked={ !! showEmpty }
+						onChange={ () => setAttributes( { showEmpty: ! showEmpty } ) }
+					/>
+					}
+
+					{ type === 'downloads' &&
 					<ToggleControl
 						label={ __( 'Show Full Content' ) }
 						checked={ !! showFullContent }
 						onChange={ this.showFullContent }
 					/>
+					}
+
+					{ type === 'downloads' &&
 					<ToggleControl
 						label={ __( 'Show Pagination' ) }
 						checked={ !! showPagination }
 						onChange={ () => setAttributes( { showPagination: ! showPagination } ) }
 					/>
+					}
+
 					<SelectControl
 						label={ __( 'Order By' ) }
 						value={ orderBy }
 						options={ this.getOrderByOptions() }
-						onChange={ this.setOrderByOption }
+						onChange={ (orderBy) => setAttributes( { orderBy } ) }
 					/>
+
 					<SelectControl
 						label={ __( 'Order' ) }
 						value={ order }
 						options={ this.getOrderOptions() }
-						onChange={ this.setOrderOption }
+						onChange={ ( order ) => setAttributes( { order } ) }
 					/>
+
+					{ type === 'downloads' &&
 					<SelectControl
 						label={ __( 'Show Downloads From Category' ) }
 						value={ category }
 						options={ this.getDownloadCategories() }
 						onChange={ this.setDownloadCategory }
 					/>
+					}
+
 				</PanelBody>
 			</InspectorControls>
 		);
@@ -473,12 +501,12 @@ class DownloadsEdit extends Component {
 				<BlockControls>
 					<BlockAlignmentToolbar
 						value={ align }
-						onChange={ this.setAlignment }
+						onChange={ ( align ) => setAttributes( { align } ) }
 						controls={ [ 'wide', 'full' ] }
 					/>
 				</BlockControls>
 				<div className={ this.props.className }>
-					{ this.renderDownloads() }
+					{ type === 'downloads' ? this.renderDownloads() : this.renderDownloadCategories() }
 				</div>
 			</Fragment>
 		);
