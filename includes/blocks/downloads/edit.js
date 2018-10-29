@@ -458,9 +458,9 @@ class DownloadsEdit extends Component {
 						onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
 					/>
 					
-					{ type === 'download_categories' &&
+					{ isDownloadTaxonomy &&
 					<ToggleControl
-						label={ __( 'Show Category Name' ) }
+						label={ 'download_categories' === type ? __( 'Show Category Name' ) : __( 'Show Tag Name' ) }
 						checked={ !! showTitle }
 						onChange={ () => setAttributes( { showTitle: ! showTitle } ) }
 					/>
@@ -472,7 +472,7 @@ class DownloadsEdit extends Component {
 						onChange={ this.showDescription }
 					/>
 
-					{ showTitle && ( type === 'download_categories' || type === 'download_tags' ) &&
+					{ showTitle && isDownloadTaxonomy &&
 					<ToggleControl
 						label={ __( 'Show Count' ) }
 						checked={ !! showCount }
@@ -480,9 +480,9 @@ class DownloadsEdit extends Component {
 					/>
 					}
 					
-					{ type === 'download_categories' &&
+					{ isDownloadTaxonomy &&
 					<ToggleControl
-						label={ __( 'Show Empty Categories' ) }
+						label={ 'download_categories' === type ? __( 'Show Empty Categories' ) : __( 'Show Empty Tags' ) }
 						checked={ !! showEmpty }
 						onChange={ () => setAttributes( { showEmpty: ! showEmpty } ) }
 					/>
