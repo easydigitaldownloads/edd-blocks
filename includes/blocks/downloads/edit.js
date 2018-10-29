@@ -81,6 +81,12 @@ class DownloadsEdit extends Component {
 			}
 		}
 
+		if ( 'download_tags' === type ) {
+			if ( showEmpty !== prevProps.attributes.showEmpty || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
+				this.fetchDownloadTags();
+			}
+		}
+
 	}
 
 	getOrderOptions() {
