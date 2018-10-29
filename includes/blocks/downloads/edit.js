@@ -384,6 +384,8 @@ class DownloadsEdit extends Component {
 			showDescriptionLabel = __( 'Show Excerpt' );
 		} else if ( type === 'download_categories' ) {
 			showDescriptionLabel = __( 'Show Category Description' );
+		} else if ( type === 'download_tags' ) {
+			showDescriptionLabel = __( 'Show Tag Description' );
 		} else {
 			showDescriptionLabel = __( 'Show Description' );
 		}
