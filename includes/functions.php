@@ -327,7 +327,7 @@ function edd_blocks_download_categories_list( $atts = array() ) {
 		<?php foreach ( $terms as $term ) :
 			$description   = $term->description;
 			$count         = $term->count;
-			$attachment_id = get_term_meta( $term->term_id, 'download_category_image_id', true );
+			$attachment_id = get_term_meta( $term->term_id, 'download_term_image_id', true );
 		?>
 			<div class="edd-download-category edd_download">
 				<div class="edd_download_inner">
@@ -404,7 +404,7 @@ function edd_blocks_term_meta_callback( $object, $field_name, $request ) {
 	$term_id = $object['id'];
 
 	// Get the image ID.
-	$image_id = get_term_meta( $term_id, 'download_category_image_id', true );
+	$image_id = get_term_meta( $term_id, 'download_term_image_id', true );
 
 	// Build meta array.
 	$meta = array( 'image' => wp_get_attachment_image( $image_id ) );
