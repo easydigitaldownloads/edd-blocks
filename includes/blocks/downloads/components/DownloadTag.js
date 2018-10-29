@@ -1,12 +1,18 @@
+import Image from './Image';
 import Title from './Title';
 import Description from './Description';
 
 const DownloadTag = (props) => {
-	const { showTitle, showCount, showDescription } = props.attributes;
+	const { showThumbnails, showTitle, showCount, showDescription } = props.attributes;
 	const { name, link, count, description } = props.tag;
+	const image = props.tag.meta.image;
 
 	return (
 		<div className="edd-download-tag">
+			<Image 
+				image={image} 
+				showThumbnails={showThumbnails} 
+			/>
 			{ showTitle && 
 			<Title 
 				title={name} 
