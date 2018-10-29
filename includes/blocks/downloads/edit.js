@@ -322,7 +322,7 @@ class DownloadsEdit extends Component {
 
 	renderDownloads() {
 		const downloads = this.state.downloads.products;
-		const { downloadCategories } = this.state;
+		const { downloadCategories, downloadTags } = this.state;
 		const { attributes } = this.props;
 		const { columns, type } = attributes;
 
@@ -341,8 +341,8 @@ class DownloadsEdit extends Component {
 			);
 		} else if ('download_tags' === type ) {
 			return (
-				<div>
-					Download tags placeholder
+				<div className={ classnames( 'edd_downloads_list', 'edd-download-tags', 'edd_download_columns_' + columns ) }>
+					{ downloadTags.map( ( tag ) => <DownloadTag key={tag.id} tag={tag} attributes={attributes} /> ) }
 				</div>
 			);
 		}
