@@ -239,7 +239,7 @@
 .edd-submit.button.dark-gray:active {
   background-image: none; }
 
-.edd-download-category-title {
+.edd-download-term-title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -250,19 +250,19 @@
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 10px; }
-  .edd-download-category-title h3 {
+  .edd-download-term-title h3 {
     margin-bottom: 0; }
 
-.edd-download-category-description {
+.edd-download-term-description {
   margin-bottom: 0; }
 
-.edd-download-category .edd_download_image a,
-.edd-download-category .edd_download_image img {
+.edd-download-term .edd_download_image a,
+.edd-download-term .edd_download_image img {
   display: block; }
 
-.edd-download-category-title + .edd-download-category-description,
-.edd_download_image + .edd-download-category-title,
-.edd_download_image + .edd-download-category-description {
+.edd-download-term-title + .edd-download-term-description,
+.edd_download_image + .edd-download-term-title,
+.edd_download_image + .edd-download-term-description {
   margin-top: 0.5rem; }
 
 .editor-block-list__layout .editor-block-list__block[data-block-type="easy-digital-downloads"][data-align="full"] .edd_downloads_list {
