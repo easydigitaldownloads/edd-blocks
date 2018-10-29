@@ -146,6 +146,10 @@ class DownloadsEdit extends Component {
 			{ 
 				'value': 'download_categories', 
 				'label': __( 'Download Categories' )
+			},
+			{ 
+				'value': 'download_tags', 
+				'label': __( 'Download Tags' )
 			}
 		];
 	}
