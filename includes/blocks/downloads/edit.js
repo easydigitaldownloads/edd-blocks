@@ -349,13 +349,13 @@ class DownloadsEdit extends Component {
 			);
 		} else if ( 'download_categories' === type ) {
 			return (
-				<div className={ classnames( 'edd_downloads_list', 'edd-download-categories', 'edd_download_columns_' + columns ) }>
+				<div className={ classnames( 'edd_downloads_list', 'edd-download-terms', 'edd_download_columns_' + columns ) }>
 					{ downloadCategories.map( ( taxonomy ) => <DownloadTaxonomy key={taxonomy.id} taxonomy={taxonomy} attributes={attributes} /> ) }
 				</div>
 			);
 		} else if ('download_tags' === type ) {
 			return (
-				<div className={ classnames( 'edd_downloads_list', 'edd-download-tags', 'edd_download_columns_' + columns ) }>
+				<div className={ classnames( 'edd_downloads_list', 'edd-download-terms', 'edd_download_columns_' + columns ) }>
 					{ downloadTags.map( ( taxonomy ) => <DownloadTaxonomy key={taxonomy.id} taxonomy={taxonomy} attributes={attributes} /> ) }
 				</div>
 			);
