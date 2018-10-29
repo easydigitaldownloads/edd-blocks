@@ -397,7 +397,7 @@ class DownloadsEdit extends Component {
 				</Fragment>
 			);
 		}
-
+		
 		const inspectorControls = (
 			<InspectorControls>
 				<PanelBody title={ __( 'Settings' ) }>
