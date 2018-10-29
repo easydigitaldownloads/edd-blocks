@@ -3,9 +3,8 @@
 function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 	ob_start();
 
-	if ( 'download_categories' === $block_attributes['type'] ) {
-		// Output a list of download categories.
-		echo edd_blocks_download_categories_list( $block_attributes );
+	if ( 'download_categories' === $block_attributes['type'] || 'download_tags' === $block_attributes['type'] ) {
+		echo edd_blocks_download_taxonomy_list( $block_attributes );
 	} else {
 		$atts = array(
 			'class'        => 'align' . $block_attributes['align'],
