@@ -51,6 +51,7 @@ class DownloadsEdit extends Component {
 			showFullContent: false,
 			downloads: [],
 			downloadCategories: [],
+			downloadTags: [],
 		}
 
 	}
