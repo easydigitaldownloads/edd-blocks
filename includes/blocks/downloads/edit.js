@@ -9,8 +9,7 @@ import { stringify } from 'querystringify';
  * Components
  */
 import Download from './components/Download';
-import DownloadCategory from './components/DownloadCategory';
-import DownloadTag from './components/DownloadTag';
+import DownloadTaxonomy from './components/DownloadTaxonomy';
 
 /**
  * WordPress dependencies
@@ -332,21 +331,19 @@ class DownloadsEdit extends Component {
 					{ downloads.map( ( download ) => <Download download={download} key={download.info.id.toString()} attributes={attributes} /> ) }
 				</div>
 			);
-		}
-		else if ( 'download_categories' === type ) {
+		} else if ( 'download_categories' === type ) {
 			return (
 				<div className={ classnames( 'edd_downloads_list', 'edd-download-categories', 'edd_download_columns_' + columns ) }>
-					{ downloadCategories.map( ( category ) => <DownloadCategory key={category.id} category={category} attributes={attributes} /> ) }
+					{ downloadCategories.map( ( taxonomy ) => <DownloadTaxonomy key={taxonomy.id} taxonomy={taxonomy} attributes={attributes} /> ) }
 				</div>
 			);
 		} else if ('download_tags' === type ) {
 			return (
 				<div className={ classnames( 'edd_downloads_list', 'edd-download-tags', 'edd_download_columns_' + columns ) }>
-					{ downloadTags.map( ( tag ) => <DownloadTag key={tag.id} tag={tag} attributes={attributes} /> ) }
+					{ downloadTags.map( ( taxonomy ) => <DownloadTaxonomy key={taxonomy.id} taxonomy={taxonomy} attributes={attributes} /> ) }
 				</div>
 			);
 		}
-
 	}
 
 	render() {
