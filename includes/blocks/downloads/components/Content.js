@@ -1,3 +1,5 @@
+import { autop } from '@wordpress/autop';
+
 const {	RawHTML } = wp.element;
 
 const Content = ({content, showFullContent, className}) => {
@@ -8,7 +10,7 @@ const Content = ({content, showFullContent, className}) => {
 	
 	return (
 		<RawHTML className={className}>
-			{content}
+			{ autop( content ) }
 		</RawHTML>
 	)
 
