@@ -106,7 +106,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wor
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nvar RawHTML = wp.element.RawHTML;\n\n\nvar Description = function Description(_ref) {\n\tvar description = _ref.description,\n\t    showDescription = _ref.showDescription,\n\t    className = _ref.className;\n\n\n\tif (!showDescription) {\n\t\treturn null;\n\t}\n\n\treturn wp.element.createElement(\n\t\tRawHTML,\n\t\t{ className: className },\n\t\tdescription\n\t);\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Description);\n\n//# sourceURL=webpack:///./includes/blocks/downloads/components/Description.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wordpress_autop__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/autop */ \"./node_modules/@wordpress/autop/build-module/index.js\");\n\n\nvar RawHTML = wp.element.RawHTML;\n\n\nvar Description = function Description(_ref) {\n\tvar description = _ref.description,\n\t    showDescription = _ref.showDescription,\n\t    className = _ref.className;\n\n\n\tif (!showDescription) {\n\t\treturn null;\n\t}\n\n\treturn wp.element.createElement(\n\t\tRawHTML,\n\t\t{ className: className },\n\t\tObject(_wordpress_autop__WEBPACK_IMPORTED_MODULE_0__[\"autop\"])(description)\n\t);\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Description);\n\n//# sourceURL=webpack:///./includes/blocks/downloads/components/Description.js?");
 
 /***/ }),
 
