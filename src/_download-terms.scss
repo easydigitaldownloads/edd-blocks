@@ -1,0 +1,28 @@
+// Provides decent default styling for the download categories/terms block.
+// Used by both the front-end and admin (imported into each stylesheet).
+
+.edd-download-term-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+
+	h3 {
+		margin-bottom: 0;
+	}
+}
+
+.edd-download-term-description {
+	margin-bottom: 0;
+}
+
+.edd-download-term .edd_download_image a,
+.edd-download-term .edd_download_image img {
+	display: block;
+}
+
+.edd-download-term-title + .edd-download-term-description,
+.edd_download_image + .edd-download-term-title,
+.edd_download_image + .edd-download-term-description {
+	margin-top: 0.5rem;
+}
