@@ -428,15 +428,13 @@ class DownloadsEdit extends Component {
 						onChange={ (value) => setAttributes( { type: value } ) }
 					/>
 
-					{ type === 'downloads' || isDownloadTaxonomy &&
 					<RangeControl
-						label={ __( 'Number of downloads' ) }
+						label={ __( 'Number Per Page' ) }
 						value={ number }
 						onChange={ (number) => setAttributes( { number } ) }
 						min={ 1 }
 						max={ 100 }
 					/>
-					}
 
 					<RangeControl
 						label={ __( 'Columns' ) }
