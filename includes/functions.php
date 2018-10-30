@@ -306,31 +306,28 @@ function edd_blocks_downloads_list( $atts = array() ) {
  */
 function edd_blocks_download_taxonomy_list( $atts = array() ) {
 	ob_start();
-	
-	$taxonomy = '';
 
-	switch ( $atts['type'] ) {
-		case 'download_categories':
-			$taxonomy = 'download_category';
-			break;
-
-		case 'download_tags':
-			$taxonomy = 'download_tag';
-			break;
-	}
-
-	if ( ! $taxonomy ) {
-		return;
-	}
-
-	// Get the terms.
-	$terms = get_terms( array(
-		'taxonomy'   => $taxonomy,
+	$args = array(
 		'orderby'    => $atts['orderBy'],
 		'order'      => $atts['order'],
 		'hide_empty' => true !== $atts['showEmpty'] ? true : false,
-		'number'     => (int) $atts['number']
-	) );
+	);
+
+	$type = $atts['type'];
+
+	// Set up taxonomy.
+	if ( 'download_categories' === $type ) {
+		$args['taxonomy'] = 'download_category';
+	} elseif( 'download_tags' === $type ) {
+		$args['taxonomy'] = 'download_tag';
+	}
+
+	// Hide child download categories by default.
+	if ( 'download_categories' === $type ) {
+		$args['parent'] = 0;
+	}
+
+	$query = new WP_Term_Query( $args );
 
 	// Classes.
 	$classes = array( 'edd-download-terms edd_downloads_list' );
@@ -338,17 +335,16 @@ function edd_blocks_download_taxonomy_list( $atts = array() ) {
 	$classes[] = $atts['align'] ? 'align' . $atts['align'] : '';
 	$classes[] = $atts['className'];
 	$classes = implode( ' ', array_filter( $classes ) );
-
-	if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
-		<div class="<?php echo $classes; ?>">
-		<?php foreach ( $terms as $term ) :
+	?>
+	<div class="<?php echo $classes; ?>">
+		<?php foreach ( $query->terms as $term ) :
 			$description   = $term->description;
 			$count         = $term->count;
 			$attachment_id = get_term_meta( $term->term_id, 'download_term_image_id', true );
 		?>
-			<div class="edd-download-term edd_download">
-				<div class="edd_download_inner">
 
+		<div class="edd-download-term edd_download">
+			<div class="edd_download_inner">
 				<?php if ( true === $atts['showThumbnails'] && $attachment_id ) : ?>
 				<div class="edd_download_image">
 					<a href="<?php echo esc_url( get_term_link( $term ) ); ?>">
@@ -369,17 +365,14 @@ function edd_blocks_download_taxonomy_list( $atts = array() ) {
 				<?php if ( true === $atts['showDescription'] && $description ) : ?>
 				<p class="edd-download-term-description"><?php echo $description; ?></p>
 				<?php endif; ?>
-				</div>
 			</div>
-		<?php endforeach; ?>
 		</div>
-	<?php endif; ?>
 
+		<?php endforeach; ?>
+	</div>
 	<?php
 	$display = ob_get_clean();
-
 	return $display;
-
 }
 
 /**
