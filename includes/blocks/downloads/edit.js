@@ -27,6 +27,8 @@ const {
 
 const { __ } = wp.i18n;
 
+const { select } = wp.data;
+
 const {	
 	InspectorControls, 
 	BlockControls, 
@@ -75,6 +77,7 @@ class DownloadsEdit extends Component {
 
 	componentDidUpdate( prevProps ) {
 		const { category, number, order, orderBy, showEmpty, type } = this.props.attributes;
+		const { alignWide } = wp.data.select( "core/editor" ).getEditorSettings();
 
 		if ( category !== prevProps.attributes.category || number !== prevProps.attributes.number || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
 			this.fetchDownloads();
@@ -95,6 +98,11 @@ class DownloadsEdit extends Component {
 				this.fetchDownloadTags();
 			}
 
+		}
+
+		// Clear "align" attribute if theme does not support wide images.
+		if ( ! alignWide ) {
+			this.props.setAttributes( { align: undefined } );
 		}
 
 	}
