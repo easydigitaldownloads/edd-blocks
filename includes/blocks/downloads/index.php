@@ -94,7 +94,7 @@ function edd_blocks_register_block_downloads() {
 			),
 			'align' => array(
 				'type'    => 'string',
-				'default' => 'center',
+				'default' => '',
 			),
 			'order' => array(
 				'type'    => 'string',
