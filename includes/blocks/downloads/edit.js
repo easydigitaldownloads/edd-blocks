@@ -60,51 +60,103 @@ class DownloadsEdit extends Component {
 	componentDidMount() {
 		const { type } = this.props.attributes;
 
-		this.fetchDownloads();
-		this.fetchDownloadCategories();
-
-		// Only fetch tags on component mount if type is already set to download_tags.
-		if ( 'download_tags' === type ) {
-			this.fetchDownloadTags();
+		if ( 'downloads' === type ) {
+			this.fetchDownloads();
+			this.fetchDownloadTaxonomy({ taxonomy: 'download_category' });
 		}
-	}
 
-	componentWillUnmount() {
-		delete this.downloadsRequest;
-		delete this.downloadCategoriesRequest;
-		delete this.downloadTagsRequest;
+		if ( 'download_categories' === type ) {
+			this.fetchDownloadTaxonomy({ taxonomy: 'download_category' });
+		}
+
+		if ( 'download_tags' === type ) {
+			this.fetchDownloadTaxonomy({ taxonomy: 'download_tag' });
+		}
+
 	}
 
 	componentDidUpdate( prevProps ) {
 		const { category, number, order, orderBy, showEmpty, type } = this.props.attributes;
 		const { alignWide } = wp.data.select( "core/editor" ).getEditorSettings();
 
-		if ( category !== prevProps.attributes.category || number !== prevProps.attributes.number || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
-			this.fetchDownloads();
-		}
+		if ( 'downloads' === type ) {
 
-		if ( 'download_categories' === type ) {
-			if ( showEmpty !== prevProps.attributes.showEmpty || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
-				this.fetchDownloadCategories();
+			if ( 
+				category !== prevProps.attributes.category || 
+				number !== prevProps.attributes.number || 
+				order !== prevProps.attributes.order || 
+				orderBy !== prevProps.attributes.orderBy 
+			) {
+				// Fetch new array of downloads when various controls are updated and store them in state.
+				this.fetchDownloads();
+			}
+
+			// Block type was switched to "Downloads" from another block type.
+			if ( 'downloads' !== prevProps.attributes.type ) {
+				// Fetch downloads and store them in state.
+				this.fetchDownloads();
+
+				// Reset the orderBy attribute to "date" once the Downloads block type is selected.
+				this.props.setAttributes( { orderBy: 'date' } );
 			}
 		}
 
+		if ( 'download_categories' === type ) {
+
+			if ( 
+				showEmpty !== prevProps.attributes.showEmpty || 
+				order !== prevProps.attributes.order || 
+				orderBy !== prevProps.attributes.orderBy 
+			) {
+				// Fetch new array of download categories when various controls are updated and store in state.
+				this.fetchDownloadTaxonomy({ taxonomy: 'download_category' });
+			}
+
+			// Fetch download categories once the block type is switched to "Download Categories" from another block type.
+			if ( 'download_categories' !== prevProps.attributes.type ) {
+				// Fetch a new list of download categories and store it in state.
+				this.fetchDownloadTaxonomy({ taxonomy: 'download_category' });
+
+				// Reset the orderBy attribute to "count" once the download categories block type is selected.
+				this.props.setAttributes( { orderBy: 'count' } );
+			}
+
+		}
+
 		if ( 'download_tags' === type ) {
-			// Fetch the download tags when "Download Tags" is selected.
-			this.fetchDownloadTags();
-			
-			// Fetch new download tags when various controls are selected.
-			if ( showEmpty !== prevProps.attributes.showEmpty || order !== prevProps.attributes.order || orderBy !== prevProps.attributes.orderBy ) {
-				this.fetchDownloadTags();
+
+			if ( 
+				showEmpty !== prevProps.attributes.showEmpty || 
+				order !== prevProps.attributes.order || 
+				orderBy !== prevProps.attributes.orderBy 
+			) {
+				// Fetch new array of download tags when various controls are updated and store in state.
+				this.fetchDownloadTaxonomy({ taxonomy: 'download_tag' });
+			}
+
+			// Fetch download tags once the block type is switched to "Download Tags" from another block type.
+			if ( 'download_tags' !== prevProps.attributes.type ) {
+				// Fetch a new list of download tags and store it in state.
+				this.fetchDownloadTaxonomy({ taxonomy: 'download_tag' });
+
+				// Reset the orderBy attribute to "count" once the download tags block type is selected.
+				this.props.setAttributes( { orderBy: 'count' } );
 			}
 
 		}
 
 		// Clear "align" attribute if theme does not support wide images.
+		// This prevents the attribute from being "stuck" on a particular setting if the theme is switched.
 		if ( ! alignWide ) {
 			this.props.setAttributes( { align: undefined } );
 		}
+	}
 
+	componentWillUnmount() {
+		// Delete fetch requests.
+		delete this.downloadsRequest;
+		delete this.downloadCategoriesRequest;
+		delete this.downloadTagsRequest;
 	}
 
 	getOrderOptions() {
@@ -113,9 +165,8 @@ class DownloadsEdit extends Component {
 			{ value: 'DESC', label: __( 'Descending' ) },
 		];
 	}
-	
-	getOrderByOptions() {
 
+	getOrderByOptions() {
 		const { type } = this.props.attributes;
 
 		let options;
@@ -156,8 +207,8 @@ class DownloadsEdit extends Component {
 
 		downloadCategories.forEach(function(category) {
 			categories.push( {
-				'value': category.slug,
-				'label': category.name
+				'label': category.name,
+				'value': category.id
 			} );
 		});
 
@@ -187,8 +238,9 @@ class DownloadsEdit extends Component {
 			value = undefined;
 		}
 
+		// This will support an array of category IDs in the future.
 		this.props.setAttributes( {
-			category: value,
+			category: value, // Store the category's ID.
 		} );
 
 	}
@@ -213,107 +265,105 @@ class DownloadsEdit extends Component {
 		});
 	}
 
-	fetchDownloadCategories() {
+	fetchDownloadTaxonomy( args ) {
 
 		const { showEmpty, order, orderBy, type } = this.props.attributes;
 
+		const taxonomy = args.taxonomy;
+
+		// Get the options
+		const options = this.getOrderByOptions();
+
+		const queryOrderBy = args.orderBy ? args.orderBy.toLowerCase() : orderBy.toLowerCase();
+		const queryOrder = args.order ? args.order.toLowerCase() : order.toLowerCase();
+
 		const query = {
 			per_page: -1,
+			orderby: queryOrderBy,
+			order: queryOrder
 		};
 
-		// Set additional parameters for download categories.
-		if ( 'download_categories' === type ) {
+		// Reset the orderby and order parameters for the downloads block type.
+		// The downloads block type displays a list of categories.
+		if ( 'downloads' === type ) {
+			query['orderby'] = 'name';
+			query['order'] = 'asc';
+		}
 
-			// Must be lowercase.
-			query['order'] = order.toLowerCase();
-			query['orderby'] = orderBy.toLowerCase();
+		if ( 'download_categories' === type || 'download_tags' === type ) {
 
-			// Hide download categories that have no downloads.
+			// If the taxonomy request is for downloads categories or tags,
+			// check to see if the orderby parameter is correct for the block type.
+			// If not, reset it to "count", the first available option for taxonomies.
+			let orderByExists = options.find(obj => obj.value === orderBy);
+			if ( ! orderByExists ) {
+				query['orderby'] = 'count';
+			}
+
+			// Hide download terms that have no downloads by default.
 			query['hide_empty'] = true !== showEmpty ? true : false;
 		}
 
 		const request = apiFetch( {
-			path: `/wp/v2/download_category?${ stringify( {
+			path: `/wp/v2/${taxonomy}?${ stringify( {
 				...query
 			} ) }`,
 		} );
 
-		request.then( ( downloadCategories ) => {
+		// Request download categoies and store in state.
+		if ( 'download_category' === taxonomy ) {
+			request.then( ( downloadCategories ) => {
+				if ( this.downloadCategoriesRequest !== request ) {
+					return;
+				}
+	
+				this.setState( { downloadCategories, isLoading: false } );
+			} );
 
-			if ( this.downloadCategoriesRequest !== request ) {
-				return;
-			}
-
-			this.setState( { downloadCategories } );
-
-		} );
-
-		this.downloadCategoriesRequest = request;
-
-	}
-
-	fetchDownloadTags() {
-
-		const { showEmpty, order, orderBy, type } = this.props.attributes;
-
-		const query = {
-			per_page: -1,
-		};
-
-		// Set additional parameters for download tags.
-		if ( 'download_tags' === type ) {
-
-			// Must be lowercase.
-			query['order'] = order.toLowerCase();
-			query['orderby'] = orderBy.toLowerCase();
-
-			// Hide download tags that have no downloads.
-			query['hide_empty'] = true !== showEmpty ? true : false;
+			this.downloadCategoriesRequest = request;
 		}
 
-		const request = apiFetch( {
-			path: `/wp/v2/download_tag?${ stringify( {
-				...query
-			} ) }`,
-		} );
+		// Request download tags and store in state.
+		if ( 'download_tag' === taxonomy ) {
+			request.then( ( downloadTags ) => {
+				if ( this.downloadTagsRequest !== request ) {
+					return;
+				}
+	
+				this.setState( { downloadTags, isLoading: false } );
+			} );
 
-		request.then( ( downloadTags ) => {
-
-			if ( this.downloadTagsRequest !== request ) {
-				return;
-			}
-
-			this.setState( { downloadTags } );
-
-		} );
-
-		this.downloadTagsRequest = request;
-
+			this.downloadTagsRequest = request;
+		}
 	}
 
 	fetchDownloads() {
 		
-		const { category, number, order } = this.props.attributes;
+		// Get the options
+		const options = this.getOrderByOptions();
 
-		let orderby = this.props.attributes.orderBy;
+		const { category, number, order, orderBy } = this.props.attributes;
 
-		switch (orderby) {
+		let queryOrderBy = orderBy;
+
+		switch (queryOrderBy) {
 			case 'id':
-				orderby = 'ID'
+				queryOrderBy = 'ID'; // EDD expects "ID", not "id".
 				break;
 
 			case 'random':
-				orderby = 'rand'
+				queryOrderBy = 'rand';
 				break;	
 		
 			default:
+				queryOrderBy = orderBy;
 				break;
 		}
 
 		const query = {
 			number,
-			orderby,
 			order,
+			orderby: queryOrderBy
 		};
 
 		// Query downloads by category.
@@ -323,24 +373,29 @@ class DownloadsEdit extends Component {
 
 		const url = edd_blocks_global_vars.url;
 
+		// Reset orderby parameter to "date", in case it's set to something that 
+		// the block type does not support
+		let orderByExists = options.find(obj => obj.value === orderBy);
+		if ( ! orderByExists ) {
+			query['orderby'] = 'date';
+		}
+
 		const request = apiFetch( {
 			url: `${url}/?edd-api=products&${ stringify( {
 				...query
 			} ) }`,
 		} );
 
+		// Request downloads and store in state.
 		request.then( ( downloads ) => {
-
 			if ( this.downloadsRequest !== request ) {
 				return;
 			}
 
 			this.setState( { downloads, isLoading: false } );
-
 		} );
 
 		this.downloadsRequest = request;
-
 	}
 
 	renderDownloads() {
@@ -412,12 +467,23 @@ class DownloadsEdit extends Component {
 			showDescriptionLabel = __( 'Show Description' );
 		}
 
+		// Loading states.
+		let showLoadingLabel;
+
+		if ( type === 'download_categories' ) {
+			showLoadingLabel = __( 'Loading categories' );
+		} else if ( type === 'download_tags' ) {
+			showLoadingLabel = __( 'Loading tags' );
+		} else {
+			showLoadingLabel = __( 'Loading downloads' );
+		}
+
 		if ( isLoading ) {
 			return (
 				<Fragment>
 					<Placeholder
 						icon="download"
-						label={ __( 'Downloads' ) }
+						label={ showLoadingLabel }
 					>
 						<Spinner />
 					</Placeholder>
@@ -551,13 +617,13 @@ class DownloadsEdit extends Component {
 
 		const hasDownloads = Array.isArray( downloads ) && downloads.length;
 
-		if ( ! hasDownloads ) {
+		if ( ! hasDownloads && type === 'downloads' ) {
 			return (
 				<Fragment>
 					{ inspectorControls }
 					<Placeholder
 						icon="download"
-						label={ __( 'Downloads' ) }
+						label={ __( 'Loading downloads' ) }
 					>
 						{ ! Array.isArray( downloads ) ?
 							<Spinner /> :
