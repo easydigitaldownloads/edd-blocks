@@ -114,7 +114,7 @@ function edd_blocks_register_block_downloads() {
 			),
 			'showEmpty' => array(
 				'type'    => 'boolean',
-				'default' => true,
+				'default' => false,
 			),
 		),
 		'render_callback' => 'edd_blocks_render_block_downloads',
