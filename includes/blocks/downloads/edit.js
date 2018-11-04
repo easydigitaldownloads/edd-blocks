@@ -310,7 +310,7 @@ class DownloadsEdit extends Component {
 			} ) }`,
 		} );
 
-		// Request download categoies and store in state.
+		// Request download categories and store in state.
 		if ( 'download_category' === taxonomy ) {
 			request.then( ( downloadCategories ) => {
 				if ( this.downloadCategoriesRequest !== request ) {
@@ -374,7 +374,7 @@ class DownloadsEdit extends Component {
 		const url = edd_blocks_global_vars.url;
 
 		// Reset orderby parameter to "date", in case it's set to something that 
-		// the block type does not support
+		// the block type does not support.
 		let orderByExists = options.find(obj => obj.value === orderBy);
 		if ( ! orderByExists ) {
 			query['orderby'] = 'date';
