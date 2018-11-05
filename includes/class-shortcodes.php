@@ -11,37 +11,37 @@ class EDD_Blocks_Shortcodes {
 
 		$atts = shortcode_atts(
 			array(
-				'type'            => 'download_categories',
-				'number'          => 9,
-				'showTitle'       => true,
-				'showThumbnails'  => true,
-				'showDescription' => true,
-				'showEmpty'       => false
+				'thumbnails'  => true,
+				'title'       => true,
+				'description' => true,
+				'show_empty'  => false,
+				'columns'     => 3,
+				'count'       => true,
+				'orderby'     => 'count',
+				'order'       => 'DESC',
 			),
 			$atts,
 			'download_categories'
 		);
 
-		return edd_blocks_download_taxonomy_list( $atts );
+		$args = array(
+			'taxonomy'    => 'download_category',
+			'thumbnails'  => 'false' === $atts['thumbnails'] ? false : $atts['thumbnails'],
+			'title'       => 'false' === $atts['title'] ? false : $atts['title'],
+			'description' => 'false' === $atts['description'] ? false : $atts['description'],
+			'show_empty'  => 'true' === $atts['thumbnails'] ? true : $atts['thumbnails'],
+			'columns'     => isset( $atts['columns'] ) ? $atts['columns'] : $atts['columns'],
+			'count'       => 'false' === $atts['count'] ? false : $atts['count'],
+			'orderby'     => isset( $atts['orderby'] ) ? $atts['orderby'] : $atts['orderby'],
+			'order'       => isset( $atts['order'] ) ? $atts['order'] : $atts['order'],
+		);
+
+		return edd_download_terms( $args );
 	}
 
 	public function download_tags( $atts, $content = null ) {
 
-		$atts = shortcode_atts(
-			array(
-				'type'            => 'download_tags',
-				'number'          => 9,
-				'showTitle'       => true,
-				'showThumbnails'  => true,
-				'showDescription' => true,
-				'showEmpty'       => false
-			),
-			$atts,
-			'download_tags'
-		);
-
-		return edd_blocks_download_taxonomy_list( $atts );
 	}
-
+	
 }
 new EDD_Blocks_Shortcodes;
