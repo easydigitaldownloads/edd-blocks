@@ -460,7 +460,7 @@ function edd_blocks_term_meta_callback( $object, $field_name, $request ) {
 	$term_id = $object['id'];
 
 	// Get the image ID.
-	$image_id = get_term_meta( $term_id, 'download_term_image_id', true );
+	$image_id = get_term_meta( $term_id, 'download_term_image', true );
 
 	// Build meta array.
 	$meta = array( 'image' => wp_get_attachment_image( $image_id ) );
