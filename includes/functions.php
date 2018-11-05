@@ -2,7 +2,9 @@
 
 /**
  * Outputs a list of downloads in a grid.
- * In the future this could be used by the [downloads] shortcode and themes.
+ * 
+ * Very similar to the current [downloads] shortcode function. 
+ * In the future the [downloads] shortcode will pass its attributes to this function instead
  *
  * @since 1.0.0
  */
