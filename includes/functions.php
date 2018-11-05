@@ -6,14 +6,20 @@
  *
  * @since 1.0.0
  */
-function edd_blocks_downloads_list( $atts = array() ) {
+function edd_downloads( $atts = array() ) {
 
 	// Set up the base $query.
 	$query = array(
-		'post_type'      => 'download',
-		'orderby'        => $atts['orderby'],
-		'order'          => $atts['order'],
+		'post_type' => 'download',
+		'orderby'   => $atts['orderby'],
+		'order'     => $atts['order'],	
 	);
+
+	// Define default $atts
+	$atts['relation'] = 'OR';
+	$atts['tags'] = '';
+	$atts['exclude_category'] = '';
+	$atts['exclude_tags'] = '';
 
 	// Pagination.
 	if ( filter_var( $atts['pagination'], FILTER_VALIDATE_BOOLEAN ) || ( ! filter_var( $atts['pagination'], FILTER_VALIDATE_BOOLEAN ) && $atts[ 'number' ] ) ) {
@@ -23,7 +29,7 @@ function edd_blocks_downloads_list( $atts = array() ) {
 		if ( $query['posts_per_page'] < 0 ) {
 			$query['posts_per_page'] = abs( $query['posts_per_page'] );
 		}
-		
+
 	} else {
 		$query['nopaging'] = true;
 	}
@@ -301,54 +307,92 @@ function edd_blocks_downloads_list( $atts = array() ) {
 }
 
 /**
- * Output a list of download categories or tags.
+ * Output download terms.
  *
  * @since 1.0.0
  */
-function edd_blocks_download_taxonomy_list( $atts = array() ) {
+function edd_download_terms( $atts = array() ) {
 
-	$args = array(
-		'orderby'    => $atts['orderBy'],
-		'order'      => $atts['order'],
-		'hide_empty' => true !== $atts['showEmpty'] ? true : false,
+	// Set up defaults.
+	$defaults = array(
+		'thumbnails'  => true,
+		'title'       => true,
+		'description' => true,
+		'show_empty'  => false,
+		'columns'     => 3,
+		'count'       => true,
+		'orderby'     => 'count',
+		'order'       => 'DESC',
 	);
-	
-	$type = $atts['type'];
 
-	// Set up taxonomy.
-	if ( 'download_categories' === $type ) {
-		$args['taxonomy'] = 'download_category';
-	} elseif( 'download_tags' === $type ) {
-		$args['taxonomy'] = 'download_tag';
+	$atts = wp_parse_args( $atts, $defaults );
+
+	// Taxonomy.
+	$taxonomy = isset( $atts['taxonomy'] ) ? $atts['taxonomy'] : false;
+
+	// Taxonomy must be specified.
+	if ( ! $taxonomy ) {
+		return;
 	}
 
+	// Thumbnails.
+	$thumbnails = $atts['thumbnails'];
+
+	// Title.
+	$title = $atts['title'];
+
+	// Description.
+	$description = $atts['description'];
+
+	// Show empty terms.
+	$show_empty = $atts['show_empty'];
+
+	// Columns.
+	$columns = $atts['columns'];
+
+	// Count.
+	$count = $atts['count'];
+
+	// Order By.
+	$orderby = $atts['orderby'];
+
+	// Order.
+	$order = $atts['order'];
+
+	$args = array(
+		'taxonomy'   => $taxonomy,
+		'orderby'    => $orderby,
+		'order'      => $order,
+		'hide_empty' => false === $show_empty ? true : false,
+	);
+
 	// Hide child download categories by default.
-	if ( 'download_categories' === $type ) {
+	if ( 'download_category' === $taxonomy ) {
 		$args['parent'] = 0;
 	}
 
 	$query = new WP_Term_Query( $args );
 
-	// Classes.
-	$classes = array( 'edd-download-terms edd_downloads_list' );
-	$classes[] = 'edd_download_columns_' . $atts['columns'];
-	$classes[] = $atts['align'] ? 'align' . $atts['align'] : '';
-	$classes[] = $atts['className'];
-	$classes = implode( ' ', array_filter( $classes ) );
+	// Set up classes.
+	$classes   = array( 'edd-download-terms edd_downloads_list' );
+	$classes[] = 'edd_download_columns_' . $columns;
+	$classes[] = isset( $atts['align'] ) ? 'align' . $atts['align'] : '';
+	$classes[] = isset( $atts['className'] ) ? $atts['className'] : '';
+	$classes   = implode( ' ', array_filter( $classes ) );
 
 	ob_start();
 
-	?>
+	if ( ! empty( $query->terms ) ) : ?>
 	<div class="<?php echo $classes; ?>">
 		<?php foreach ( $query->terms as $term ) :
-			$description   = $term->description;
-			$count         = $term->count;
-			$attachment_id = get_term_meta( $term->term_id, 'download_term_image_id', true );
+			$term_description  = $term->description;
+			$term_count        = $term->count;
+			$attachment_id     = get_term_meta( $term->term_id, 'download_term_image', true );
 		?>
 		<div class="edd-download-term edd_download">
 			<div class="edd_download_inner">
 
-			<?php if ( true === $atts['showThumbnails'] && $attachment_id ) : ?>
+			<?php if ( $thumbnails && $attachment_id ) : ?>
 			<div class="edd_download_image">
 				<a href="<?php echo esc_url( get_term_link( $term ) ); ?>">
 				<?php echo wp_get_attachment_image( $attachment_id, 'large' );  ?>
@@ -356,28 +400,26 @@ function edd_blocks_download_taxonomy_list( $atts = array() ) {
 			</div>	
 			<?php endif; ?>
 
-			<?php if ( true === $atts['showTitle'] ) : ?>
+			<?php if ( $title ) : ?>
 			<div class="edd-download-term-title">
 				<h3 class="edd_download_title"><a href="<?php echo esc_url( get_term_link( $term ) ); ?>"><?php echo $term->name; ?></a></h3>
-				<?php if ( true === $atts['showCount'] ) : ?>
-				<span class="edd-download-term-count">(<?php echo $count; ?>)</span>
+				<?php if ( $count ) : ?>
+				<span class="edd-download-term-count">(<?php echo $term_count; ?>)</span>
 				<?php endif; ?>
 			</div>
 			<?php endif; ?>
 
-			<?php if ( true === $atts['showDescription'] && $description ) : ?>
-			<p class="edd-download-term-description"><?php echo $description; ?></p>
+			<?php if ( $description && $term_description ) : ?>
+			<p class="edd-download-term-description"><?php echo $term_description; ?></p>
 			<?php endif; ?>
 			</div>
 		</div>
 		<?php endforeach; ?>
 	</div>
+	<?php endif;
 
-	<?php
 	$display = ob_get_clean();
-
 	return $display;
-
 }
 
 /**
@@ -419,7 +461,7 @@ function edd_blocks_term_meta_callback( $object, $field_name, $request ) {
 	$term_id = $object['id'];
 
 	// Get the image ID.
-	$image_id = get_term_meta( $term_id, 'download_term_image_id', true );
+	$image_id = get_term_meta( $term_id, 'download_term_image', true );
 
 	// Build meta array.
 	$meta = array( 'image' => wp_get_attachment_image( $image_id ) );

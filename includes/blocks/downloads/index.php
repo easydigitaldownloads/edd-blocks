@@ -4,7 +4,7 @@ function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 	ob_start();
 
 	if ( 'download_categories' === $block_attributes['type'] || 'download_tags' === $block_attributes['type'] ) {
-		echo edd_blocks_download_taxonomy_list( $block_attributes );
+		echo edd_download_terms( $block_attributes );
 	} else {
 		$atts = array(
 			'class'        => 'align' . $block_attributes['align'],
@@ -31,7 +31,7 @@ function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 		}
 	
 		// Output a list of downloads.
-		echo edd_blocks_downloads_list( $atts );
+		echo edd_downloads( $atts );
 	}
 
 	$display = ob_get_clean();

@@ -210,10 +210,11 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 			if ( is_admin() ) {
 				require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-taxonomies.php';
 			}
-			
+
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-assets.php';
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/blocks/downloads/index.php';
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/functions.php';
+			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-shortcodes.php';
 		}
 
 		/**
