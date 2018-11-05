@@ -225,6 +225,17 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 		private function hooks() {
 			add_filter( 'edd_download_category_args', array( $this, 'show_in_rest' ) );
 			add_filter( 'edd_download_tag_args', array( $this, 'show_in_rest' ) );
+
+			add_action( 'init', array( $this, '_wp_term_images_init' ), 88 );
+		}
+
+		/**
+		 * Instantiate the main WP_Term_Images class.
+		 *
+		 * @since 1.0.0
+		 */
+		public function _wp_term_images_init() {
+			new WP_Term_Images( __FILE__ );
 		}
 
 		/**
