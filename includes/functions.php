@@ -6,14 +6,20 @@
  *
  * @since 1.0.0
  */
-function edd_blocks_downloads_list( $atts = array() ) {
+function edd_downloads( $atts = array() ) {
 
 	// Set up the base $query.
 	$query = array(
-		'post_type'      => 'download',
-		'orderby'        => $atts['orderby'],
-		'order'          => $atts['order'],
+		'post_type' => 'download',
+		'orderby'   => $atts['orderby'],
+		'order'     => $atts['order'],	
 	);
+
+	// Define default $atts
+	$atts['relation'] = 'OR';
+	$atts['tags'] = '';
+	$atts['exclude_category'] = '';
+	$atts['exclude_tags'] = '';
 
 	// Pagination.
 	if ( filter_var( $atts['pagination'], FILTER_VALIDATE_BOOLEAN ) || ( ! filter_var( $atts['pagination'], FILTER_VALIDATE_BOOLEAN ) && $atts[ 'number' ] ) ) {
@@ -23,7 +29,7 @@ function edd_blocks_downloads_list( $atts = array() ) {
 		if ( $query['posts_per_page'] < 0 ) {
 			$query['posts_per_page'] = abs( $query['posts_per_page'] );
 		}
-		
+
 	} else {
 		$query['nopaging'] = true;
 	}
