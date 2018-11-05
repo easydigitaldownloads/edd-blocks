@@ -26,10 +26,11 @@ function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 				break;
 		}
 
+		// Display the terms.
 		echo edd_download_terms( $atts );
 
 	} else {
-		
+
 		$atts = array(
 			'class'        => 'align' . $block_attributes['align'],
 			'number'       => $block_attributes['number'],
@@ -53,8 +54,8 @@ function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 		if ( 'rand' === $block_attributes['orderBy'] ) {
 			$atts['orderby'] = 'random';
 		}
-	
-		// Output a list of downloads.
+
+		// Display the downloads.
 		echo edd_downloads( $atts );
 	}
 
