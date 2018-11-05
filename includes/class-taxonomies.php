@@ -50,7 +50,7 @@ class EDD_Blocks_Taxonomies {
 	?>
 		<div class="form-field term-group">
 			<label for="download-term-image-id"><?php _e( 'Image', 'edd-blocks' ); ?></label>
-			<input type="hidden" id="download-term-image-id" name="download_term_image_id">
+			<input type="hidden" id="download-term-image-id" name="download_term_image">
 			<div id="term-image-wrapper"></div>
 			<p>
 				<input type="button" class="button button-secondary" id="edd-blocks-add-term-image" name="edd_blocks_tax_media_button" value="<?php _e( 'Add Image', 'edd-blocks' ); ?>" />
@@ -66,8 +66,8 @@ class EDD_Blocks_Taxonomies {
 	 * @since 1.0.0
 	 */
 	public function save_term_image( $term_id, $tt_id ) {
-		if ( isset( $_POST['download_term_image_id'] ) && '' !== $_POST['download_term_image_id'] ){
-			add_term_meta( $term_id, 'download_term_image_id', absint( $_POST['download_term_image_id'] ), true );
+		if ( isset( $_POST['download_term_image'] ) && '' !== $_POST['download_term_image'] ){
+			add_term_meta( $term_id, 'download_term_image', absint( $_POST['download_term_image'] ), true );
 		}
 	}
 
@@ -82,8 +82,8 @@ class EDD_Blocks_Taxonomies {
 				<label for="download-term-image-id"><?php _e( 'Image', 'edd-blocks' ); ?></label>
 			</th>
 			<td>
-				<?php $image_id = get_term_meta( $term->term_id, 'download_term_image_id', true ); ?>
-				<input type="hidden" id="download-term-image-id" name="download_term_image_id" value="<?php echo esc_attr( $image_id ); ?>">
+				<?php $image_id = get_term_meta( $term->term_id, 'download_term_image', true ); ?>
+				<input type="hidden" id="download-term-image-id" name="download_term_image" value="<?php echo esc_attr( $image_id ); ?>">
 				<div id="term-image-wrapper">
 					<?php if ( $image_id ) { echo wp_get_attachment_image( $image_id, 'thumbnail' ); } ?>
 				</div>
@@ -102,10 +102,10 @@ class EDD_Blocks_Taxonomies {
 	 * @since 1.0.0
 	 */
 	public function updated_term_image( $term_id, $tt_id ) {
-		if ( isset( $_POST['download_term_image_id'] ) && '' !== $_POST['download_term_image_id'] ) {
-			update_term_meta( $term_id, 'download_term_image_id', absint( $_POST['download_term_image_id'] ) );
+		if ( isset( $_POST['download_term_image'] ) && '' !== $_POST['download_term_image'] ) {
+			update_term_meta( $term_id, 'download_term_image', absint( $_POST['download_term_image'] ) );
 		} else {
-			delete_term_meta( $term_id, 'download_term_image_id' );
+			delete_term_meta( $term_id, 'download_term_image' );
 		}
 	}
 
