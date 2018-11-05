@@ -21,7 +21,7 @@ function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 				$atts['taxonomy'] = 'download_category';
 				break;
 			
-			case 'downldownload_tagsoad_categories':
+			case 'download_tags':
 				$atts['taxonomy'] = 'download_tag';
 				break;
 		}
