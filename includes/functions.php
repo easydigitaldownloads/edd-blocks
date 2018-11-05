@@ -381,7 +381,8 @@ function edd_download_terms( $atts = array() ) {
 	$classes   = implode( ' ', array_filter( $classes ) );
 
 	ob_start();
-	?>
+
+	if ( ! empty( $query->terms ) ) : ?>
 	<div class="<?php echo $classes; ?>">
 		<?php foreach ( $query->terms as $term ) :
 			$term_description  = $term->description;
@@ -415,8 +416,8 @@ function edd_download_terms( $atts = array() ) {
 		</div>
 		<?php endforeach; ?>
 	</div>
+	<?php endif;
 
-	<?php
 	$display = ob_get_clean();
 	return $display;
 }
