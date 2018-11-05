@@ -385,7 +385,7 @@ function edd_download_terms( $atts = array() ) {
 	if ( ! empty( $query->terms ) ) : ?>
 	<div class="<?php echo $classes; ?>">
 		<?php foreach ( $query->terms as $term ) :
-			$term_description  = $term->description;
+			$term_description  = term_description( $term->term_id, $term->taxonomy );
 			$term_count        = $term->count;
 			$attachment_id     = get_term_meta( $term->term_id, 'download_term_image', true );
 		?>
@@ -410,7 +410,9 @@ function edd_download_terms( $atts = array() ) {
 			<?php endif; ?>
 
 			<?php if ( $description && $term_description ) : ?>
-			<p class="edd-download-term-description"><?php echo $term_description; ?></p>
+			<div class="edd-download-term-description">
+				<?php echo $term_description; ?>
+			</div>
 			<?php endif; ?>
 			</div>
 		</div>
