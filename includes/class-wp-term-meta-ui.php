@@ -84,7 +84,7 @@ class WP_Term_Meta_UI {
 	/**
 	 * @var array Which taxonomies are being targeted?
 	 */
-	public $taxonomies = array();
+	public $taxonomies = array( 'download_category', 'download_tag' );
 
 	/**
 	 * @var bool Whether to use fancy UI
