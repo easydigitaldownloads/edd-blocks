@@ -32,7 +32,7 @@ final class WP_Term_Images extends WP_Term_Meta_UI {
 	/**
 	 * @var string Metadata key
 	 */
-	public $meta_key = 'image';
+	public $meta_key = 'download_term_image';
 
 	/**
 	 * Hook into queries, admin screens, and more!
