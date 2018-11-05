@@ -4,8 +4,32 @@ function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 	ob_start();
 
 	if ( 'download_categories' === $block_attributes['type'] || 'download_tags' === $block_attributes['type'] ) {
-		echo edd_download_terms( $block_attributes );
+
+		$atts = array(
+			'thumbnails'  => $block_attributes['showThumbnails'],
+			'title'       => $block_attributes['showTitle'],
+			'description' => $block_attributes['showDescription'],
+			'show_empty'  => $block_attributes['showEmpty'],
+			'columns'     => $block_attributes['columns'],
+			'count'       => $block_attributes['showCount'],
+			'orderby'     => $block_attributes['orderBy'],
+			'order'       => $block_attributes['order'],
+		);
+
+		switch ( $block_attributes['type'] ) {
+			case 'download_categories':
+				$atts['taxonomy'] = 'download_category';
+				break;
+			
+			case 'downldownload_tagsoad_categories':
+				$atts['taxonomy'] = 'download_tag';
+				break;
+		}
+
+		echo edd_download_terms( $atts );
+
 	} else {
+		
 		$atts = array(
 			'class'        => 'align' . $block_attributes['align'],
 			'number'       => $block_attributes['number'],
