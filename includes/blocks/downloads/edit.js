@@ -510,7 +510,7 @@ class DownloadsEdit extends Component {
 
 					{ type === 'downloads' &&
 					<RangeControl
-						label={ __( 'Number of downloads' ) }
+						label={ __( 'Downloads Per Page' ) }
 						value={ number }
 						onChange={ (number) => setAttributes( { number } ) }
 						min={ 1 }
