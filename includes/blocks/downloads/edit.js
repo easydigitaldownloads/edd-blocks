@@ -459,8 +459,9 @@ class DownloadsEdit extends Component {
 			showEmpty,
 		} = attributes;
 
+		const { downloadTags, downloadCategories, isLoading } = this.state;
 		const downloads = this.state.downloads.products;
-		const isLoading = this.state.isLoading;
+
 		const isDownloadTaxonomy = type === 'download_categories' || type === 'download_tags';
 
 		let showDescriptionLabel;
@@ -479,9 +480,9 @@ class DownloadsEdit extends Component {
 		let showLoadingLabel;
 
 		if ( type === 'download_categories' ) {
-			showLoadingLabel = __( 'Loading categories' );
+			showLoadingLabel = __( 'Loading download categories' );
 		} else if ( type === 'download_tags' ) {
-			showLoadingLabel = __( 'Loading tags' );
+			showLoadingLabel = __( 'Loading download tags' );
 		} else {
 			showLoadingLabel = __( 'Loading downloads' );
 		}
@@ -624,6 +625,8 @@ class DownloadsEdit extends Component {
 		);
 
 		const hasDownloads = Array.isArray( downloads ) && downloads.length;
+		const hasDownloadTags = Array.isArray( downloadTags ) && downloadTags.length;
+		const hasDownloadCategories = Array.isArray( downloadCategories ) && downloadCategories.length;
 
 		if ( ! hasDownloads && type === 'downloads' ) {
 			return (
@@ -636,6 +639,40 @@ class DownloadsEdit extends Component {
 						{ ! Array.isArray( downloads ) ?
 							<Spinner /> :
 							__( 'No downloads found.' )
+						}
+					</Placeholder>
+				</Fragment>
+			);
+		}
+
+		if ( ! hasDownloadCategories && type === 'download_categories' ) {
+			return (
+				<Fragment>
+					{ inspectorControls }
+					<Placeholder
+						icon="download"
+						label={ __( 'Loading download categories' ) }
+					>
+						{ ! Array.isArray( downloadCategories ) ?
+							<Spinner /> :
+							__( 'No download categories found.' )
+						}
+					</Placeholder>
+				</Fragment>
+			);
+		}
+
+		if ( ! hasDownloadTags && type === 'download_tags' ) {
+			return (
+				<Fragment>
+					{ inspectorControls }
+					<Placeholder
+						icon="download"
+						label={ __( 'Loading download tags' ) }
+					>
+						{ ! Array.isArray( downloadTags ) ?
+							<Spinner /> :
+							__( 'No download tags found.' )
 						}
 					</Placeholder>
 				</Fragment>
