@@ -96,6 +96,12 @@ class DownloadsEdit extends Component {
 				// Fetch downloads and store them in state.
 				this.fetchDownloads();
 
+				// Re-fetch the download categories if "Show Empty Categories" is false. 
+				// All download categories should show in the select control.
+				if ( ! showEmpty ) {
+					this.fetchDownloadTaxonomy({ taxonomy: 'download_category' });
+				}
+
 				// Reset the orderBy attribute to "date" once the Downloads block type is selected.
 				this.props.setAttributes( { orderBy: 'date' } );
 			}
