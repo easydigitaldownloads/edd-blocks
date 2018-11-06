@@ -645,6 +645,23 @@ class DownloadsEdit extends Component {
 			);
 		}
 
+		if ( ! hasDownloadTags && type === 'download_tags' ) {
+			return (
+				<Fragment>
+					{ inspectorControls }
+					<Placeholder
+						icon="download"
+						label={ __( 'Loading download tags' ) }
+					>
+						{ ! Array.isArray( downloadTags ) ?
+							<Spinner /> :
+							__( 'No download tags found.' )
+						}
+					</Placeholder>
+				</Fragment>
+			);
+		}
+
 		return (
 			<Fragment>
 				{ inspectorControls }
