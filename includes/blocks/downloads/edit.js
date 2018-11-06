@@ -480,9 +480,9 @@ class DownloadsEdit extends Component {
 		let showLoadingLabel;
 
 		if ( type === 'download_categories' ) {
-			showLoadingLabel = __( 'Loading categories' );
+			showLoadingLabel = __( 'Loading download categories' );
 		} else if ( type === 'download_tags' ) {
-			showLoadingLabel = __( 'Loading tags' );
+			showLoadingLabel = __( 'Loading download tags' );
 		} else {
 			showLoadingLabel = __( 'Loading downloads' );
 		}
