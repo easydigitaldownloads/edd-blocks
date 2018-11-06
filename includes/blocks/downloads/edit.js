@@ -626,6 +626,7 @@ class DownloadsEdit extends Component {
 		);
 
 		const hasDownloads = Array.isArray( downloads ) && downloads.length;
+		const hasDownloadTags = Array.isArray( downloadTags ) && downloadTags.length;
 
 		if ( ! hasDownloads && type === 'downloads' ) {
 			return (
