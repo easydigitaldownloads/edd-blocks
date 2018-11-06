@@ -459,11 +459,9 @@ class DownloadsEdit extends Component {
 			showEmpty,
 		} = attributes;
 
+		const { downloadTags, downloadCategories, isLoading } = this.state;
 		const downloads = this.state.downloads.products;
-		const downloadTags = this.state.downloadTags;
-		const downloadCategories = this.state.downloadCategories;
-		
-		const isLoading = this.state.isLoading;
+
 		const isDownloadTaxonomy = type === 'download_categories' || type === 'download_tags';
 
 		let showDescriptionLabel;
