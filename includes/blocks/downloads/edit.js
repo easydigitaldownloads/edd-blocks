@@ -79,20 +79,22 @@ class DownloadsEdit extends Component {
 		const { category, number, order, orderBy, showEmpty, type } = this.props.attributes;
 		const { alignWide } = wp.data.select( "core/editor" ).getEditorSettings();
 
+		const prevProp = prevProps.attributes;
+
 		if ( 'downloads' === type ) {
 
 			if ( 
-				category !== prevProps.attributes.category || 
-				number !== prevProps.attributes.number || 
-				order !== prevProps.attributes.order || 
-				orderBy !== prevProps.attributes.orderBy 
+				category !== prevProp.category || 
+				number !== prevProp.number || 
+				order !== prevProp.order || 
+				orderBy !== prevProp.orderBy 
 			) {
 				// Fetch new array of downloads when various controls are updated and store them in state.
 				this.fetchDownloads();
 			}
 
 			// Block type was switched to "Downloads" from another block type.
-			if ( 'downloads' !== prevProps.attributes.type ) {
+			if ( 'downloads' !== prevProp.type ) {
 				// Fetch downloads and store them in state.
 				this.fetchDownloads();
 
@@ -110,16 +112,16 @@ class DownloadsEdit extends Component {
 		if ( 'download_categories' === type ) {
 
 			if ( 
-				showEmpty !== prevProps.attributes.showEmpty || 
-				order !== prevProps.attributes.order || 
-				orderBy !== prevProps.attributes.orderBy 
+				showEmpty !== prevProp.showEmpty || 
+				order !== prevProp.order || 
+				orderBy !== prevProp.orderBy 
 			) {
 				// Fetch new array of download categories when various controls are updated and store in state.
 				this.fetchDownloadTaxonomy({ taxonomy: 'download_category' });
 			}
 
 			// Fetch download categories once the block type is switched to "Download Categories" from another block type.
-			if ( 'download_categories' !== prevProps.attributes.type ) {
+			if ( 'download_categories' !== prevProp.type ) {
 				// Fetch a new list of download categories and store it in state.
 				this.fetchDownloadTaxonomy({ taxonomy: 'download_category' });
 
@@ -132,16 +134,16 @@ class DownloadsEdit extends Component {
 		if ( 'download_tags' === type ) {
 
 			if ( 
-				showEmpty !== prevProps.attributes.showEmpty || 
-				order !== prevProps.attributes.order || 
-				orderBy !== prevProps.attributes.orderBy 
+				showEmpty !== prevProp.showEmpty || 
+				order !== prevProp.order || 
+				orderBy !== prevProp.orderBy 
 			) {
 				// Fetch new array of download tags when various controls are updated and store in state.
 				this.fetchDownloadTaxonomy({ taxonomy: 'download_tag' });
 			}
 
 			// Fetch download tags once the block type is switched to "Download Tags" from another block type.
-			if ( 'download_tags' !== prevProps.attributes.type ) {
+			if ( 'download_tags' !== prevProp.type ) {
 				// Fetch a new list of download tags and store it in state.
 				this.fetchDownloadTaxonomy({ taxonomy: 'download_tag' });
 
