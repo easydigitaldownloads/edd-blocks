@@ -461,6 +461,7 @@ class DownloadsEdit extends Component {
 
 		const downloads = this.state.downloads.products;
 		const downloadTags = this.state.downloadTags;
+		const downloadCategories = this.state.downloadCategories;
 		
 		const isLoading = this.state.isLoading;
 		const isDownloadTaxonomy = type === 'download_categories' || type === 'download_tags';
@@ -627,6 +628,7 @@ class DownloadsEdit extends Component {
 
 		const hasDownloads = Array.isArray( downloads ) && downloads.length;
 		const hasDownloadTags = Array.isArray( downloadTags ) && downloadTags.length;
+		const hasDownloadCategories = Array.isArray( downloadCategories ) && downloadCategories.length;
 
 		if ( ! hasDownloads && type === 'downloads' ) {
 			return (
@@ -639,6 +641,23 @@ class DownloadsEdit extends Component {
 						{ ! Array.isArray( downloads ) ?
 							<Spinner /> :
 							__( 'No downloads found.' )
+						}
+					</Placeholder>
+				</Fragment>
+			);
+		}
+
+		if ( ! hasDownloadCategories && type === 'download_categories' ) {
+			return (
+				<Fragment>
+					{ inspectorControls }
+					<Placeholder
+						icon="download"
+						label={ __( 'Loading download categories' ) }
+					>
+						{ ! Array.isArray( downloadCategories ) ?
+							<Spinner /> :
+							__( 'No download categories found.' )
 						}
 					</Placeholder>
 				</Fragment>
