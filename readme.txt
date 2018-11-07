@@ -13,9 +13,27 @@ Blocks for Easy Digital Downloads and the new WordPress editor.
 
 This plugin requires [Easy Digital Downloads](https://wordpress.org/plugins/easy-digital-downloads/ "Easy Digital Downloads").
 
-EDD Blocks adds a new "Downloads" block to the new WordPress editor, also known as Gutenberg (more blocks may be added in the future).
+EDD Blocks adds a "Downloads" block to the new WordPress editor, also known as Gutenberg.
 
-The Downloads block allows you to display a grid of Downloads on your site, similar to the [downloads] shortcode already provided by Easy Digital Downloads.
+The Downloads block allows you to display a grid of Downloads on your site similar to the [downloads] shortcode already provided by Easy Digital Downloads. The Downloads block provides a visual representation of your downloads, allowing you to see a real-time preview of your downloads as you configure the various settings.
+
+As well as being able to display downloads, a grid of Download Categories or Download Tags can be shown.
+
+Additional blocks may be created in a future version.
+
+Display a grid of Downloads:
+
+1. Set how many downloads should show per page
+1. Set how many columns of downloads should show
+1. Show or hide the buy button
+1. Show or hide the price
+1. Show or hide thumbnail images
+1. Show or hide the excerpt
+1. Show or hide the full content
+1. Show or hide the pagination
+1. Order downloads by "Date Created", "Earnings", "ID", "Price", "Random", "Sales", "Slug" or "Title"
+1. Order downloads in an "Ascending" or "Descending" order
+1. Show downloads from a specific category
 
 == Installation ==
 
