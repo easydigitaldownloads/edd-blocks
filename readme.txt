@@ -19,8 +19,6 @@ The Downloads block allows you to display a grid of Downloads on your site simil
 
 As well as being able to display downloads, a grid of Download Categories or Download Tags can be shown.
 
-Additional blocks may be created in a future version.
-
 Display a grid of Downloads:
 
 1. Set how many downloads should show per page
@@ -35,7 +33,7 @@ Display a grid of Downloads:
 1. Order downloads in an "Ascending" or "Descending" order
 1. Show downloads from a specific category
 
-Display a grid of Download Categories
+= Display a grid of Download Categories =
 
 1. Set how many columns of download categories should show
 1. Show or hide download category thumbnail images
@@ -46,7 +44,7 @@ Display a grid of Download Categories
 1. Order download categories by "Count", "ID", "Name" or "Slug"
 1. Order download categories in an "Ascending" or "Descending" order
 
-Display a grid of Download Tags
+= Display a grid of Download Tags =
 
 1. Set how many columns of download tags should show
 1. Show or hide download tag thumbnail images
@@ -57,6 +55,64 @@ Display a grid of Download Tags
 1. Order download tags by "Count", "ID", "Name" or "Slug"
 1. Order download tags in an "Ascending" or "Descending" order
 
+= Shortcodes =
+
+Gutenberg also provides a shortcode block so we've added a [download_categories] and [download_tags] shortcode. Each shortcode shares the same attributes, mimicking the options of the Downloads block:
+
+**thumbnails** 
+
+true (default) | false
+
+Whether or not to show the thumbnail image.
+
+**title**
+
+true (default) | false
+
+Whether or not to show the category or tag name.
+
+**description** 
+
+true (default) | false
+
+Whether or not to show the category or tag description. 
+
+**show_empty** 
+
+true | false (default)
+
+Whether or not to show empty terms.
+
+**columns**
+
+1 | 2 | 3 (default) | 4 | 5 | 6
+
+The number of columns.
+
+**count**
+
+true (default) | false
+
+Whether or not to show the number of downloads in each term.
+
+**orderby**
+
+count (default) | id | name | slug
+
+What to order the terms by.
+
+**order** 
+
+ASC | DESC (default)
+
+In which order to display the terms.
+
+**Shortcode examples**
+
+[download_categories count="false" orderby="name" order="ASC" title="false" columns="4"]
+
+[download_tags orderby="id" order="DESC" columns="2"]
+
 == Installation ==
 
 1. Unpack the entire contents of this plugin zip file into your `wp-content/plugins/` folder locally
@@ -65,6 +121,22 @@ Display a grid of Download Tags
 1. Activate this plugin
 
 OR you can just install it with WordPress by going to Plugins >> Add New >> and type this plugin's name
+
+== Frequently Asked Questions ==
+
+= How do I add images to download categories and tags? =
+
+1. Edit the download category or tag
+1. At the bottom of the edit screen, click to add an image in the "image section"
+1. Click "Update" to save your changes 
+
+= Will more blocks be added? =
+
+Additional blocks may be added in a future update.
+
+= Can I change the purchase button color? =
+
+Yes, the purchase button color can be changed from Downloads &rarr; Settings &rarr; Styles. Simply change the "Default Button Color" to a color of your choosing and save.
 
 == Changelog ==
 
