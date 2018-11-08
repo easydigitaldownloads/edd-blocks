@@ -35,6 +35,28 @@ Display a grid of Downloads:
 1. Order downloads in an "Ascending" or "Descending" order
 1. Show downloads from a specific category
 
+Display a grid of Download Categories
+
+1. Set how many columns of download categories should show
+1. Show or hide download category thumbnail images
+1. Show or hide download category names
+1. Show or hide download category descriptions
+1. Show or hide download category counts
+1. Show or hide emprt download categories
+1. Order download categories by "Count", "ID", "Name" or "Slug"
+1. Order download categories in an "Ascending" or "Descending" order
+
+Display a grid of Download Tags
+
+1. Set how many columns of download tags should show
+1. Show or hide download tag thumbnail images
+1. Show or hide download tag names
+1. Show or hide download tag descriptions
+1. Show or hide download tag counts
+1. Show or hide emprt download tags
+1. Order download tags by "Count", "ID", "Name" or "Slug"
+1. Order download tags in an "Ascending" or "Descending" order
+
 == Installation ==
 
 1. Unpack the entire contents of this plugin zip file into your `wp-content/plugins/` folder locally
