@@ -12,7 +12,7 @@ jQuery( document ).ready( function( $ ) {
 		 *
 		 * @param {object} event The event
 		 */
-		.on( 'click', '.wp-term-images-media', function ( event ) {
+		.on( 'click', '.edd-term-images-media', function ( event ) {
 			wp_term_images_show_media_modal( this, event );
 		} )
 
@@ -21,7 +21,7 @@ jQuery( document ).ready( function( $ ) {
 		 *
 		 * @param {object} event The event
 		 */
-		.on( 'click', '.wp-term-images-remove', function ( event ) {
+		.on( 'click', '.edd-term-images-remove', function ( event ) {
 			wp_term_images_reset( this, event );
 		} );
 
@@ -45,20 +45,20 @@ jQuery( document ).ready( function( $ ) {
 	 */
     $( '#the-list' ).on( 'click', 'a.editinline', function() {
         var tag_id    = $( this ).parents( 'tr' ).attr( 'id' ),
-			image     = $( 'td.image img', '#' + tag_id ),
+			image     = $( 'td.download_term_image img', '#' + tag_id ),
 			image_src = image.attr( 'src' ),
 			image_id  = image.data( 'attachment-id' );
 
 		if ( typeof( image_id ) !== 'undefined' ) {
-			$( 'button.wp-term-images-media' ).hide();
-			$( ':input[name="term-image"]', '.inline-edit-row' ).val( image_id );
-			$( 'a.button', '.inline-edit-row' ).show();
-			$( 'img.wp-term-images-media', '.inline-edit-row' ).attr( 'src', image_src ).show();
+			$( 'button.edd-term-images-media' ).hide();
+			$( ':input[name="term-download_term_image"]', '.inline-edit-row' ).val( image_id );
+			$( 'a.button.edd-term-images-remove', '.inline-edit-row' ).show();
+			$( 'img.edd-term-images-media', '.inline-edit-row' ).attr( 'src', image_src ).show();
 		} else {
-			$( 'a.button', '.inline-edit-row' ).hide();
-			$( ':input[name="term-image"]', '.inline-edit-row' ).val( '' );
-			$( 'img.wp-term-images-media', '.inline-edit-row' ).attr( 'src', '' ).hide();
-			$( 'button.wp-term-images-media' ).show();
+			$( 'a.button.edd-term-images-remove', '.inline-edit-row' ).hide();
+			$( ':input[name="term-download_term_image"]', '.inline-edit-row' ).val( '' );
+			$( 'img.edd-term-images-media', '.inline-edit-row' ).attr( 'src', '' ).hide();
+			$( 'button.edd-term-images-media' ).show();
 		}
     } );
 
@@ -90,13 +90,13 @@ jQuery( document ).ready( function( $ ) {
 				if ( '' !== image ) {
 					if ( ! $( element ).hasClass( 'quick' ) ) {
 						$( '#term-download_term_image' ).val( image.id );
-						$( '#wp-term-images-photo' ).attr( 'src', image.url ).show();
-						$( '.wp-term-images-remove' ).show();
+						$( '#edd-term-images-photo' ).attr( 'src', image.url ).show();
+						$( '.edd-term-images-remove' ).show();
 					} else {
-						$( 'button.wp-term-images-media' ).hide();
+						$( 'button.edd-term-images-media' ).hide();
 						$( 'a.button', '.inline-edit-row' ).show();
-						$( ':input[name="term-image"]', '.inline-edit-row' ).val( image.id );
-						$( 'img.wp-term-images-media', '.inline-edit-row' ).attr( 'src', image.url ).show();
+						$( ':input[name="term-download_term_image"]', '.inline-edit-row' ).val( image.id );
+						$( 'img.edd-term-images-media', '.inline-edit-row' ).attr( 'src', image.url ).show();
 					}
 				}
 			} );
@@ -119,13 +119,13 @@ jQuery( document ).ready( function( $ ) {
 		// Clear image metadata
 		if ( ! $( element ).hasClass( 'quick' ) ) {
 			$( '#term-download_term_image' ).val( 0 );
-			$( '#wp-term-images-photo' ).attr( 'src', '' ).hide();
-			$( '.wp-term-images-remove' ).hide();
+			$( '#edd-term-images-photo' ).attr( 'src', '' ).hide();
+			$( '.edd-term-images-remove' ).hide();
 		} else {
-			$( ':input[name="term-image"]', '.inline-edit-row' ).val( '' );
-			$( 'img.wp-term-images-media', '.inline-edit-row' ).attr( 'src', '' ).hide();
-			$( 'a.button', '.inline-edit-row' ).hide();
-			$( 'button.wp-term-images-media' ).show();
+			$( ':input[name="term-download_term_image"]', '.inline-edit-row' ).val( '' );
+			$( 'img.edd-term-images-media', '.inline-edit-row' ).attr( 'src', '' ).hide();
+			$( 'a.button.edd-term-images-remove', '.inline-edit-row' ).hide();
+			$( 'button.edd-term-images-media' ).show();
 		}
 	}
 } );

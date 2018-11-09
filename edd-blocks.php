@@ -206,8 +206,8 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 		 * @return void
 		 */
 		private function includes() {
-			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-wp-term-meta-ui.php';
-			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-wp-term-images.php';
+			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-edd-term-meta-ui.php';
+			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-edd-term-images.php';
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-assets.php';
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/blocks/downloads/index.php';
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/functions.php';
@@ -235,7 +235,7 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 		 * @since 1.0.0
 		 */
 		public function _wp_term_images_init() {
-			new WP_Term_Images( __FILE__ );
+			new EDD_Term_Images( __FILE__ );
 		}
 
 		/**

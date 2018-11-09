@@ -1,8 +1,8 @@
-.column-image {
+.column-download_term_image {
 	width: 74px;
 }
-img.wp-term-images-media,
-.column-image img {
+img.edd-term-images-media,
+.column-download_term_image img {
 	max-height: 25px;
 	max-width: 25px;
 	height: auto;
@@ -10,7 +10,7 @@ img.wp-term-images-media,
 	display: inline-block;
 	border: 2px solid #eee;
 }
-#wp-term-images-photo {
+#edd-term-images-photo {
 	max-height: 125px;
 	max-width: 125px;
 	height: auto;
