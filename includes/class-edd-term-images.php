@@ -2,9 +2,9 @@
 
 /**
  * Term Images Class
- *
+ * Based off the WP Terms Images plugin (https://github.com/stuttter/wp-term-images) by John James Jacoby (https://github.com/JJJ)
+ * 
  * @since 1.0.0
- *
  */
 
 // Exit if accessed directly

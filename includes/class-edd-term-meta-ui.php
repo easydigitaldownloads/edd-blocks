@@ -2,7 +2,9 @@
 
 /**
  * Term Meta UI Class
- *
+ * 
+ * Based off the WP Terms Images plugin (https://github.com/stuttter/wp-term-images) by John James Jacoby (https://github.com/JJJ)
+ * 
  * This class is base helper to be extended by other plugins that may want to
  * provide a UI for term meta values. It hooks into several different WordPress
  * core actions & filters to add columns to list tables, add fields to forms,
