@@ -14,6 +14,7 @@ function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 			'count'       => $block_attributes['showCount'],
 			'orderby'     => $block_attributes['orderBy'],
 			'order'       => $block_attributes['order'],
+			'class'       => $block_attributes['className'],
 		);
 
 		switch ( $block_attributes['type'] ) {

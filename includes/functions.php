@@ -379,7 +379,7 @@ function edd_download_terms( $atts = array() ) {
 	$classes   = array( 'edd-download-terms edd_downloads_list' );
 	$classes[] = 'edd_download_columns_' . $columns;
 	$classes[] = isset( $atts['align'] ) ? 'align' . $atts['align'] : '';
-	$classes[] = isset( $atts['className'] ) ? $atts['className'] : '';
+	$classes[] = isset( $atts['class'] ) ? $atts['class'] : '';
 	$classes   = implode( ' ', array_filter( $classes ) );
 
 	ob_start();
