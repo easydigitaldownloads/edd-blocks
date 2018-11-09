@@ -89,7 +89,7 @@ jQuery( document ).ready( function( $ ) {
 
 				if ( '' !== image ) {
 					if ( ! $( element ).hasClass( 'quick' ) ) {
-						$( '#term-image' ).val( image.id );
+						$( '#term-download_term_image' ).val( image.id );
 						$( '#wp-term-images-photo' ).attr( 'src', image.url ).show();
 						$( '.wp-term-images-remove' ).show();
 					} else {
@@ -118,7 +118,7 @@ jQuery( document ).ready( function( $ ) {
 
 		// Clear image metadata
 		if ( ! $( element ).hasClass( 'quick' ) ) {
-			$( '#term-image' ).val( 0 );
+			$( '#term-download_term_image' ).val( 0 );
 			$( '#wp-term-images-photo' ).attr( 'src', '' ).hide();
 			$( '.wp-term-images-remove' ).hide();
 		} else {
