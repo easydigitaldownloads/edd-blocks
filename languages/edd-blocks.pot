@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Easy Digital Downloads - Blocks\n"
-"POT-Creation-Date: 2018-07-21 17:51+1200\n"
+"POT-Creation-Date: 2018-11-19 18:19+1300\n"
 "PO-Revision-Date: 2015-04-04 11:12-0600\n"
 "Last-Translator: Andrew Munro, Sumobi <andrew@sumobi.com>\n"
 "Language-Team: Easy Digital Downloads <support@easydigitaldownloads.com>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.9\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -18,44 +18,180 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 
-#: assets/js/editor.blocks.js:802 includes/blocks/downloads/index.js:14
+#: edd-blocks.php:90 edd-blocks.php:103
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: includes/blocks/downloads/components/Title.js:9
+msgid "(Untitled)"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:172
+msgid "Ascending"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:173
+msgid "Descending"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:184
+msgid "Date Created"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:185
+msgid "Earnings"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:186 includes/blocks/downloads/edit.js:196
+msgid "ID"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:187
+msgid "Price"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:188
+msgid "Random"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:189
+msgid "Sales"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:190 includes/blocks/downloads/edit.js:198
+msgid "Slug"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:191
+msgid "Title"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:195
+msgid "Count"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:197
+msgid "Name"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:212
+msgid "All"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:230 includes/blocks/downloads/index.js:14
 msgid "Downloads"
 msgstr ""
 
-#: assets/js/editor.blocks.js:804 includes/blocks/downloads/index.js:16
-msgid "Display downloads from Easy Digital Downloads."
+#: includes/blocks/downloads/edit.js:234
+msgid "Download Categories"
 msgstr ""
 
-#: assets/js/editor.blocks.js:810 includes/blocks/downloads/index.js:23
-msgid "downloads"
+#: includes/blocks/downloads/edit.js:238
+msgid "Download Tags"
 msgstr ""
 
-#: assets/js/editor.blocks.js:810 includes/blocks/downloads/index.js:24
-msgid "edd"
+#: includes/blocks/downloads/edit.js:505
+msgid "Settings"
 msgstr ""
 
-#: assets/js/editor.blocks.js:961 includes/blocks/downloads/edit.js:97
-msgid "Download Settings"
+#: includes/blocks/downloads/edit.js:508
+msgid "Display"
 msgstr ""
 
-#: assets/js/editor.blocks.js:963 includes/blocks/downloads/edit.js:100
-msgid "Number of downloads"
+#: includes/blocks/downloads/edit.js:516
+msgid "Downloads Per Page"
 msgstr ""
 
-#: assets/js/editor.blocks.js:970 includes/blocks/downloads/edit.js:108
+#: includes/blocks/downloads/edit.js:525
 msgid "Columns"
 msgstr ""
 
-#: assets/js/editor.blocks.js:977 includes/blocks/downloads/edit.js:116
+#: includes/blocks/downloads/edit.js:534
 msgid "Show Buy Button"
 msgstr ""
 
-#: assets/js/editor.blocks.js:984 includes/blocks/downloads/edit.js:122
+#: includes/blocks/downloads/edit.js:542
 msgid "Show Price"
 msgstr ""
 
-#: edd-blocks.php:91 edd-blocks.php:104
-msgid "Cheatin&#8217; huh?"
+#: includes/blocks/downloads/edit.js:549
+msgid "Show Thumbnails"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:556
+msgid "Show Category Name"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:556
+msgid "Show Tag Name"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:570
+msgid "Show Count"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:578
+msgid "Show Empty Categories"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:578
+msgid "Show Empty Tags"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:586
+msgid "Show Full Content"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:594
+msgid "Show Pagination"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:601
+msgid "Order By"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:608
+msgid "Order"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:616
+msgid "Show Downloads From Category"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:637
+msgid "Loading downloads"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:641
+msgid "No downloads found."
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:654
+msgid "Loading download categories"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:658
+msgid "No download categories found."
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:671
+msgid "Loading download tags"
+msgstr ""
+
+#: includes/blocks/downloads/edit.js:675
+msgid "No download tags found."
+msgstr ""
+
+#: includes/blocks/downloads/index.js:16
+msgid "Display Downloads, Categories and Tags from Easy Digital Downloads."
+msgstr ""
+
+#: includes/blocks/downloads/index.js:23
+msgid "downloads"
+msgstr ""
+
+#: includes/blocks/downloads/index.js:24
+msgid "edd"
 msgstr ""
 
 #: includes/class-activation.php:47
@@ -70,4 +206,28 @@ msgstr ""
 #: includes/class-activation.php:83
 #, php-format
 msgid " requires %sEasy Digital Downloads%s. Please install it to continue."
+msgstr ""
+
+#: includes/class-taxonomies.php:52 includes/class-taxonomies.php:82
+msgid "Image"
+msgstr ""
+
+#: includes/class-taxonomies.php:56 includes/class-taxonomies.php:91
+msgid "Add Image"
+msgstr ""
+
+#: includes/class-taxonomies.php:57 includes/class-taxonomies.php:92
+msgid "Remove Image"
+msgstr ""
+
+#: includes/class-taxonomies.php:130
+msgid "Insert"
+msgstr ""
+
+#: includes/term-images/class-edd-term-images.php:83
+msgid "Term Image"
+msgstr ""
+
+#: includes/term-images/class-edd-term-images.php:84
+msgid "Terms can have unique images to help separate them from each other."
 msgstr ""
