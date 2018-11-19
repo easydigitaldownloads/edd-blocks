@@ -206,15 +206,12 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 		 * @return void
 		 */
 		private function includes() {
-			
-			if ( is_admin() ) {
-				require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-taxonomies.php';
-			}
-
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-assets.php';
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/blocks/downloads/index.php';
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/functions.php';
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-shortcodes.php';
+			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/term-images/class-edd-term-meta-ui.php';
+			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/term-images/class-edd-term-images.php';
 		}
 
 		/**
@@ -228,6 +225,17 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 		private function hooks() {
 			add_filter( 'edd_download_category_args', array( $this, 'show_in_rest' ) );
 			add_filter( 'edd_download_tag_args', array( $this, 'show_in_rest' ) );
+
+			add_action( 'init', array( $this, '_wp_term_images_init' ), 88 );
+		}
+
+		/**
+		 * Instantiate the main WP_Term_Images class.
+		 *
+		 * @since 1.0.0
+		 */
+		public function _wp_term_images_init() {
+			new EDD_Term_Images( __FILE__ );
 		}
 
 		/**

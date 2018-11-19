@@ -1,0 +1,131 @@
+/* global i10n_WPTermImages, ajaxurl */
+jQuery( document ).ready( function( $ ) {
+    'use strict';
+
+	/* Globals */
+	var wp_term_images_modal;
+
+	$( '#addtag, #edittag, #the-list' )
+
+		/**
+		 * Invoke the media modal
+		 *
+		 * @param {object} event The event
+		 */
+		.on( 'click', '.edd-term-images-media', function ( event ) {
+			wp_term_images_show_media_modal( this, event );
+		} )
+
+		/**
+		 * Remove image
+		 *
+		 * @param {object} event The event
+		 */
+		.on( 'click', '.edd-term-images-remove', function ( event ) {
+			wp_term_images_reset( this, event );
+		} );
+
+	/**
+	 * Reset the form on submit.
+	 *
+	 * Since the form is never *actually* submitted (but instead serialized on
+	 * #submit being clicked), we'll have to do the same.
+	 *
+	 * @see wp-admin/js/tags.js
+	 * @link https://core.trac.wordpress.org/ticket/36956
+	 *
+	 * @param {object} event The event.
+	 */
+	$( document ).on( 'term-added', function ( event ) {
+		wp_term_images_reset( $( '#addtag #submit' ), event );
+	} );
+
+	/**
+	 * Quick edit interactions
+	 */
+    $( '#the-list' ).on( 'click', 'a.editinline', function() {
+        var tag_id    = $( this ).parents( 'tr' ).attr( 'id' ),
+			image     = $( 'td.download_term_image img', '#' + tag_id ),
+			image_src = image.attr( 'src' ),
+			image_id  = image.data( 'attachment-id' );
+
+		if ( typeof( image_id ) !== 'undefined' ) {
+			$( 'button.edd-term-images-media' ).hide();
+			$( ':input[name="term-download_term_image"]', '.inline-edit-row' ).val( image_id );
+			$( 'a.button.edd-term-images-remove', '.inline-edit-row' ).show();
+			$( 'img.edd-term-images-media', '.inline-edit-row' ).attr( 'src', image_src ).show();
+		} else {
+			$( 'a.button.edd-term-images-remove', '.inline-edit-row' ).hide();
+			$( ':input[name="term-download_term_image"]', '.inline-edit-row' ).val( '' );
+			$( 'img.edd-term-images-media', '.inline-edit-row' ).attr( 'src', '' ).hide();
+			$( 'button.edd-term-images-media' ).show();
+		}
+    } );
+
+	/**
+	 * Shows media modal, and sets image in placeholder
+	 *
+	 * @param {type} element
+	 * @param {type} event
+	 * @returns {void}
+	 */
+	function wp_term_images_show_media_modal( element, event ) {
+		event.preventDefault();
+
+		// Initialize the modal the first time.
+		if ( ! wp_term_images_modal ) {
+			wp_term_images_modal = wp.media.frames.wp_term_images_modal || wp.media( {
+				title:    i10n_WPTermImages.insertMediaTitle,
+				button:   { text: i10n_WPTermImages.insertIntoPost },
+				library:  { type: 'image' },
+				multiple: false
+			} );
+
+			// Picking an image
+			wp_term_images_modal.on( 'select', function () {
+
+				// Get the image URL
+				var image = wp_term_images_modal.state().get( 'selection' ).first().toJSON();
+
+				if ( '' !== image ) {
+					if ( ! $( element ).hasClass( 'quick' ) ) {
+						$( '#term-download_term_image' ).val( image.id );
+						$( '#edd-term-images-photo' ).attr( 'src', image.url ).show();
+						$( '.edd-term-images-remove' ).show();
+					} else {
+						$( 'button.edd-term-images-media' ).hide();
+						$( 'a.button', '.inline-edit-row' ).show();
+						$( ':input[name="term-download_term_image"]', '.inline-edit-row' ).val( image.id );
+						$( 'img.edd-term-images-media', '.inline-edit-row' ).attr( 'src', image.url ).show();
+					}
+				}
+			} );
+		}
+
+		// Open the modal
+		wp_term_images_modal.open();
+	}
+
+	/**
+	 * Reset the add-tag form
+	 *
+	 * @param {element} element
+	 * @param {event} event
+	 * @returns {void}
+	 */
+	function wp_term_images_reset( element, event ) {
+		event.preventDefault();
+
+		// Clear image metadata
+		if ( ! $( element ).hasClass( 'quick' ) ) {
+			$( '#term-download_term_image' ).val( 0 );
+			$( '#edd-term-images-photo' ).attr( 'src', '' ).hide();
+			$( '.edd-term-images-remove' ).hide();
+		} else {
+			$( ':input[name="term-download_term_image"]', '.inline-edit-row' ).val( '' );
+			$( 'img.edd-term-images-media', '.inline-edit-row' ).attr( 'src', '' ).hide();
+			$( 'a.button.edd-term-images-remove', '.inline-edit-row' ).hide();
+			$( 'button.edd-term-images-media' ).show();
+		}
+	}
+} );
