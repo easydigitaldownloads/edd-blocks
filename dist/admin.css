@@ -1,7 +1,6 @@
-.edd_downloads_list {
-  display: grid;
-  grid-column-gap: 20px;
-  grid-row-gap: 40px; }
+.editor-block-list__layout .editor-block-list__block[data-block-type="easy-digital-downloads"][data-align="full"] .edd_downloads_list {
+  padding-left: 2rem;
+  padding-right: 2rem; }
 
 .edd_downloads_list:after {
   content: "";
@@ -44,6 +43,11 @@
 .edd_download_image {
   max-width: 100%; }
 
+.edd_downloads_list {
+  display: grid;
+  grid-column-gap: 20px;
+  grid-row-gap: 40px; }
+
 @media (min-width: 768px) {
   .edd_downloads_list:not(.edd_download_columns_1) {
     grid-template-columns: repeat(2, 1fr); } }
@@ -73,10 +77,6 @@
 
 .editor-block-list__layout .editor-block-list__block[data-type="easydigitaldownloads/downloads"] h3 {
   font-size: 18px; }
-
-.edd_download_inner {
-  padding: 0;
-  margin: 0 0 20px; }
 
 .edit-post-visual-editor .edd_download_purchase_form .edd_price_options ul {
   margin: 0;
@@ -264,7 +264,3 @@
 .edd_download_image + .edd-download-term-title,
 .edd_download_image + .edd-download-term-description {
   margin-top: 0.5rem; }
-
-.editor-block-list__layout .editor-block-list__block[data-block-type="easy-digital-downloads"][data-align="full"] .edd_downloads_list {
-  padding-left: 2rem;
-  padding-right: 2rem; }
