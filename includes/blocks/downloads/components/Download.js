@@ -12,34 +12,36 @@ const Download = (props) => {
 
 	return (
 		<div className="edd_download">
-			<Image 
-				image={image} 
-				showThumbnails={showThumbnails} 
-			/>
-			<Title 
-				title={title} 
-				link={link} 
-				className="edd_download_title"
-			/>
-			<Excerpt 
-				description={description} 
-				showDescription={showDescription}
-				className="edd_download_excerpt"
-			/>
-			<Content 
-				content={content} 
-				showFullContent={showFullContent}
-				className="edd_download_full_content"
-			/>
-			<Price 
-				price={price} 
-				showPrice={showPrice}
-			/>
-			<PurchaseLink 
-				purchaseLink={purchase_link} 
-				showBuyButton={showBuyButton}
-			/>
-		</div>	
+			<div className="edd_download_inner">
+				<Image 
+					image={image} 
+					showThumbnails={showThumbnails} 
+				/>
+				<Title 
+					title={title} 
+					link={link} 
+					className="edd_download_title"
+				/>
+				<Excerpt 
+					description={description} 
+					showDescription={showDescription}
+					className="edd_download_excerpt"
+				/>
+				<Content 
+					content={content} 
+					showFullContent={showFullContent}
+					className="edd_download_full_content"
+				/>
+				<Price 
+					price={price} 
+					showPrice={showPrice}
+				/>
+				<PurchaseLink 
+					purchaseLink={purchase_link} 
+					showBuyButton={showBuyButton}
+				/>
+			</div>
+		</div>
 	)
 
 }
