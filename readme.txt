@@ -124,19 +124,21 @@ OR you can just install it with WordPress by going to Plugins >> Add New >> and 
 
 == Frequently Asked Questions ==
 
-= How do I add images to download categories and tags? =
+= How do I add images to Download Categories and Download Tags? =
 
-1. Edit the download category or tag
-1. At the bottom of the edit screen, click to add an image in the "image section"
-1. Click "Update" to save your changes 
-
-= Will more blocks be added? =
-
-Additional blocks may be added in a future update.
+1. Click either "Categories" or "Tags" from the Downloads section in the WordPress sidebar
+1. Click the "Edit" link on the category or tag you wish to add an image to
+1. At the bottom of the edit screen, click "Choose Image" in the "Image" section
+1. Select an image and click "Set as image"
+1. Click "Update"
 
 = Can I change the purchase button color? =
 
 Yes, the purchase button color can be changed from Downloads &rarr; Settings &rarr; Styles. Simply change the "Default Button Color" to a color of your choosing and save.
+
+== Screenshots ==
+
+1. The Downloads block and its settings
 
 == Changelog ==
 
