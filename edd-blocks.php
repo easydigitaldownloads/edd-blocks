@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Easy Digital Downloads - Blocks
  * Plugin URI: https://easydigitaldownloads.com
- * Description: Blocks for Easy Digital Downloads
+ * Description: Display Downloads, Categories and Tags using the new WordPress editor
  * Author: Easy Digital Downloads
  * Author URI: https://easydigitaldownloads.com
  * Version: 1.0.0
