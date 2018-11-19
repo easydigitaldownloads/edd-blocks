@@ -206,12 +206,12 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 		 * @return void
 		 */
 		private function includes() {
-			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-edd-term-meta-ui.php';
-			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-edd-term-images.php';
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-assets.php';
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/blocks/downloads/index.php';
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/functions.php';
 			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/class-shortcodes.php';
+			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/term-images/class-edd-term-meta-ui.php';
+			require_once EDD_BLOCKS_PLUGIN_DIR . 'includes/term-images/class-edd-term-images.php';
 		}
 
 		/**

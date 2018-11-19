@@ -54,8 +54,8 @@ final class EDD_Term_Images extends EDD_Term_Meta_UI {
 		wp_enqueue_media();
 
 		// Enqueue media handler; includes quick-edit
-		wp_enqueue_style( 'edd-term-images',  $this->url . 'assets/css/term-image.css', array(),           EDD_BLOCKS_VERSION       );
-		wp_enqueue_script( 'edd-term-images', $this->url . 'assets/js/term-image.js',   array( 'jquery' ), EDD_BLOCKS_VERSION, true );
+		wp_enqueue_style( 'edd-term-images',  $this->url . 'includes/term-images/assets/css/term-image.css', array(),           EDD_BLOCKS_VERSION       );
+		wp_enqueue_script( 'edd-term-images', $this->url . 'includes/term-images/assets/js/term-image.js',   array( 'jquery' ), EDD_BLOCKS_VERSION, true );
 
 		// Term ID
 		$term_id = ! empty( $_GET['tag_ID'] )
