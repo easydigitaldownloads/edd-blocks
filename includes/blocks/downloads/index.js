@@ -13,7 +13,7 @@ export const name = 'easydigitaldownloads/downloads';
 export const settings = {
 	title: __( 'Downloads' ),
 
-	description: __( 'Display downloads from Easy Digital Downloads.' ),
+	description: __( 'Display Downloads, Categories and Tags from Easy Digital Downloads.' ),
 
 	icon: 'download',
 
