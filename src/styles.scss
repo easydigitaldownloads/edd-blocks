@@ -1,6 +1,9 @@
-// Grid styling
-// Revise after EDD v3.0 is released which implements CSS Grid: https://github.com/easydigitaldownloads/easy-digital-downloads/issues/6852
+// Styling for the front-end.
+
+// CSS grid styling
+// In the future we should build both the front-end and admin CSS styling from the same source file.
 @import 'grid';
 
-// Download category/tag block styling.
+// Styling for the download terms (download categories and tags).
+// In the future we should build both the front-end and admin CSS styling from the same source file.
 @import 'download-terms';

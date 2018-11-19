@@ -1,11 +1,18 @@
-// Admin styling
+// Styling for the admin.
 
+// Layout styling for the admin editor.
+// In the future we should build both the front-end and admin CSS styling from the same source file.
+@import 'admin-layout';
+
+// CSS grid styling
+// In the future we should build both the front-end and admin CSS styling from the same source file.
 @import 'grid';
-@import 'downloads';
-@import 'download-terms';
 
-// Admin CSS.
-.editor-block-list__layout .editor-block-list__block[data-block-type="easy-digital-downloads"][data-align="full"] .edd_downloads_list {
-	padding-left: 2rem;
-	padding-right: 2rem;
-}
+// Styling for the downloads shown in the admin editor.
+// Most of this is identical to the front-end CSS already provided by EDD.
+// In the future we should build both the front-end and admin CSS styling from the same source file.
+@import 'admin-downloads';
+
+// Styling for the download terms (download categories and tags).
+// In the future we should build both the front-end and admin CSS styling from the same source file.
+@import 'download-terms';

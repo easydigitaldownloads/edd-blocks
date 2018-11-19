@@ -1,0 +1,40 @@
+// Misc CSS required by the editor.
+.editor-block-list__layout .editor-block-list__block[data-block-type="easy-digital-downloads"][data-align="full"] .edd_downloads_list {
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
+
+// Fallback layout for the editor in case CSS Grid isn't supported.
+.edd_downloads_list:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.edd_download {
+	float: left;
+}
+
+.edd_download_columns_1 .edd_download { width: 100%; }
+.edd_download_columns_2 .edd_download { width: 50%; }
+.edd_download_columns_0 .edd_download,
+.edd_download_columns_3 .edd_download { width: 33%; }
+.edd_download_columns_4 .edd_download { width: 25%; }
+.edd_download_columns_5 .edd_download { width: 20%; }
+.edd_download_columns_6 .edd_download { width: 16.6%; }
+.edd_download_inner {
+	padding: 0 8px 8px;
+	margin: 0 0 10px;
+}
+
+.edd_download_columns_2 .edd_download:nth-child(2n+1),
+.edd_download_columns_3 .edd_download:nth-child(3n+1),
+.edd_download_columns_4 .edd_download:nth-child(4n+1),
+.edd_download_columns_5 .edd_download:nth-child(5n+1),
+.edd_download_columns_6 .edd_download:nth-child(6n+1) {
+	clear: left;
+}
+
+.edd_download_image {
+	max-width: 100%;
+}
