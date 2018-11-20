@@ -7,17 +7,20 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Blocks for Easy Digital Downloads and the new WordPress editor.
-
 == Description ==
-
-This plugin requires [Easy Digital Downloads](https://wordpress.org/plugins/easy-digital-downloads/ "Easy Digital Downloads").
 
 EDD Blocks adds a "Downloads" block to the new WordPress editor, also known as Gutenberg.
 
 The Downloads block allows you to display a grid of Downloads on your site similar to the [downloads] shortcode already provided by Easy Digital Downloads. The Downloads block provides a visual representation of your downloads, allowing you to see a real-time preview of your downloads as you configure the various settings.
 
 As well as being able to display downloads, a grid of Download Categories or Download Tags can be shown.
+
+== Requirements ==
+
+* The latest version of the Gutenberg plugin OR WordPress 5.0 or greater
+* [Easy Digital Downloads](https://wordpress.org/plugins/easy-digital-downloads/ "Easy Digital Downloads").
+
+== Features ==
 
 Display a grid of Downloads:
 
