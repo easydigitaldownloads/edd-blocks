@@ -47,7 +47,7 @@ class EDD_Blocks_Assets {
 		wp_enqueue_script(
 			'edd-blocks-js',
 			EDD_BLOCKS_PLUGIN_URL . 'dist/main.js',
-			array(),
+			array( 'wp-editor' ),
 			filemtime( EDD_BLOCKS_PLUGIN_DIR . 'dist/main.js' ),
 			false
 		);
