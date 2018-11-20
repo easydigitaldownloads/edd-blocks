@@ -22,7 +22,7 @@ As well as being able to display downloads, a grid of Download Categories or Dow
 
 == Features ==
 
-Display a grid of Downloads:
+= Display a grid of Downloads =
 
 1. Set how many downloads should show per page
 1. Set how many columns of downloads should show
