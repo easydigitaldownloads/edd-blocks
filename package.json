@@ -1,6 +1,6 @@
 {
 	"name": "edd-blocks",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"scripts": {
 		"dev": "webpack --mode development --watch",
 		"build": "webpack --mode production"
