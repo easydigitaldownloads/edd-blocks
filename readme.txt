@@ -3,7 +3,7 @@ Contributors: easydigitaldownloads, sumobi
 Tags: easy digital downloads, digital downloads, e-downloads, edd, blocks, gutenberg, editor
 Requires at least: 4.9
 Tested up to: 5.0.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -144,6 +144,9 @@ Yes, the purchase button color can be changed from Downloads &rarr; Settings &ra
 1. The Downloads block and its settings
 
 == Changelog ==
+
+= 1.0.1 = 
+* Fix: Undefined index PHP notices could be triggered during block updates
 
 = 1.0 =
 * Initial release
