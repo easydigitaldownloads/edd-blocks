@@ -85,6 +85,7 @@ function edd_blocks_register_block_downloads() {
 			),
 			'className' => array(
 				'type' => 'string',
+				'default' => '',
 			),
 			'showBuyButton' => array(
 				'type'    => 'boolean',
