@@ -78,6 +78,7 @@ function edd_blocks_register_block_downloads() {
 		'attributes' => array(
 			'category' => array(
 				'type' => 'string',
+				'default' => '',
 			),
 			'type' => array(
 				'type' => 'string',
