@@ -4,7 +4,7 @@
  * Description: Display Downloads, Categories and Tags using the new WordPress editor
  * Author: Easy Digital Downloads
  * Author URI: https://easydigitaldownloads.com
- * Version: 1.0.0
+ * Version: 1.0.1
  * License: GPL-2.0+
  * License URI: http://www.opensource.org/licenses/gpl-license.php
  */
@@ -46,7 +46,7 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 		 * @since  1.0
 		 * @var    string
 		 */
-		private $version = '1.0.0';
+		private $version = '1.0.1';
 
 		/**
 		 * Generates the main EDD_Blocks instance.
