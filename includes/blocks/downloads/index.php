@@ -14,14 +14,18 @@ function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 			'count'       => $block_attributes['showCount'],
 			'orderby'     => $block_attributes['orderBy'],
 			'order'       => $block_attributes['order'],
-			'class'       => $block_attributes['className'],
+			'class'       => 'align' . $block_attributes['align'],
 		);
+
+		if ( $block_attributes['className'] ) {
+			$atts['class'] .= ' ' .  $block_attributes['className'];
+		}
 
 		switch ( $block_attributes['type'] ) {
 			case 'download_categories':
 				$atts['taxonomy'] = 'download_category';
 				break;
-			
+
 			case 'download_tags':
 				$atts['taxonomy'] = 'download_tag';
 				break;
@@ -46,11 +50,11 @@ function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 			'category'     => $block_attributes['category'],
 			'pagination'   => ! $block_attributes['showPagination'] ? 'false' : 'true'
 		);
-	
+
 		if ( $block_attributes['className'] ) {
 			$atts['class'] .= ' ' .  $block_attributes['className'];
 		}
-	
+
 		// Shortcode requires "random" instead of "rand".
 		if ( 'rand' === $block_attributes['orderBy'] ) {
 			$atts['orderby'] = 'random';
