@@ -1,6 +1,7 @@
 <?php
 /**
  * Plugin Name: Easy Digital Downloads - Blocks
+ * Plugin URI: https://easydigitaldownloads.com
  * Description: Display Downloads, Categories and Tags using the new WordPress editor
  * Author: Sandhills Development, LLC
  * Author URI: https://sandhillsdev.com
