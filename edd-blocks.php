@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Easy Digital Downloads - Blocks
  * Description: Display Downloads, Categories and Tags using the new WordPress editor
- * Author: Easy Digital Downloads
- * Author URI: https://easydigitaldownloads.com
+ * Author: Sandhills Development, LLC
+ * Author URI: https://sandhillsdev.com
  * Version: 1.0.1
  * License: GPL-2.0+
  * License URI: http://www.opensource.org/licenses/gpl-license.php
