@@ -5,7 +5,7 @@
  * Description: Display Downloads, Categories and Tags using the new WordPress editor
  * Author: Sandhills Development, LLC
  * Author URI: https://sandhillsdev.com
- * Version: 1.0.1
+ * Version: 1.0.2
  * License: GPL-2.0+
  * License URI: http://www.opensource.org/licenses/gpl-license.php
  */
@@ -47,7 +47,7 @@ if ( ! class_exists( 'EDD_Blocks' ) ) {
 		 * @since  1.0
 		 * @var    string
 		 */
-		private $version = '1.0.1';
+		private $version = '1.0.2';
 
 		/**
 		 * Generates the main EDD_Blocks instance.
