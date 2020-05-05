@@ -1,5 +1,3 @@
-import './styles.scss';
-import './admin.scss';
 import * as downloads from '../includes/blocks/downloads';
 
 const {

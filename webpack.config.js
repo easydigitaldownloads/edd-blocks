@@ -18,10 +18,9 @@ module.exports = {
 	},
 	entry: {
 		// JS
-		main: './dist/main.js',
+		main: './src/main.js',
 		// CSS
-		style: './dist/styles.css',
-		// 'admin-style': './dist/admin.css',
+		style: './src/styles.scss',
 	},
 	output: {
 		filename: 'dist/[name].js',
@@ -42,7 +41,7 @@ module.exports = {
 		rules: [
 			...defaultConfig.module.rules,
 			{
-				test: /\.css$/,
+				test: /\.s?css$/,
 				use: [
 					MiniCssExtractPlugin.loader,
 					{
