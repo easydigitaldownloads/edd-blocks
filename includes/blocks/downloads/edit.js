@@ -1,8 +1,7 @@
 /**
  * External dependencies
  */
-// Commenting out so script will run, this causes error
-// import isUndefined from 'lodash/isundefined';
+import isUndefined from 'lodash/isUndefined';
 import classnames from 'classnames';
 import { stringify } from 'querystringify';
 

@@ -459,12 +459,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/element */ "./node_modules/@wordpress/element/build-module/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var querystringify__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! querystringify */ "./node_modules/querystringify/index.js");
-/* harmony import */ var querystringify__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(querystringify__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _components_Download__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Download */ "./includes/blocks/downloads/components/Download.js");
-/* harmony import */ var _components_DownloadTaxonomy__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/DownloadTaxonomy */ "./includes/blocks/downloads/components/DownloadTaxonomy.js");
+/* harmony import */ var lodash_isUndefined__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lodash/isUndefined */ "./node_modules/lodash/isUndefined.js");
+/* harmony import */ var lodash_isUndefined__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(lodash_isUndefined__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var querystringify__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! querystringify */ "./node_modules/querystringify/index.js");
+/* harmony import */ var querystringify__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(querystringify__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _components_Download__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Download */ "./includes/blocks/downloads/components/Download.js");
+/* harmony import */ var _components_DownloadTaxonomy__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/DownloadTaxonomy */ "./includes/blocks/downloads/components/DownloadTaxonomy.js");
 
 
 
@@ -486,7 +488,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
  * External dependencies
  */
 // Commenting out so script will run, this causes error
-// import isUndefined from 'lodash/isundefined';
+
 
 
 /**
@@ -847,7 +849,7 @@ var DownloadsEdit = /*#__PURE__*/function (_Component) {
       }
 
       var request = apiFetch({
-        path: "/wp/v2/".concat(taxonomy, "?").concat(Object(querystringify__WEBPACK_IMPORTED_MODULE_9__["stringify"])(_objectSpread({}, query)))
+        path: "/wp/v2/".concat(taxonomy, "?").concat(Object(querystringify__WEBPACK_IMPORTED_MODULE_10__["stringify"])(_objectSpread({}, query)))
       }); // Request download categories and store in state.
 
       if ('download_category' === taxonomy) {
@@ -914,7 +916,7 @@ var DownloadsEdit = /*#__PURE__*/function (_Component) {
         orderby: queryOrderBy
       }; // Query downloads by category.
 
-      if (!isUndefined(category)) {
+      if (!lodash_isUndefined__WEBPACK_IMPORTED_MODULE_8___default()(category)) {
         query['category'] = category;
       }
 
@@ -930,7 +932,7 @@ var DownloadsEdit = /*#__PURE__*/function (_Component) {
       }
 
       var request = apiFetch({
-        url: "".concat(url, "/?edd-api=products&").concat(Object(querystringify__WEBPACK_IMPORTED_MODULE_9__["stringify"])(_objectSpread({}, query)))
+        url: "".concat(url, "/?edd-api=products&").concat(Object(querystringify__WEBPACK_IMPORTED_MODULE_10__["stringify"])(_objectSpread({}, query)))
       }); // Request downloads and store in state.
 
       request.then(function (downloads) {
@@ -958,9 +960,9 @@ var DownloadsEdit = /*#__PURE__*/function (_Component) {
 
       if ('downloads' === type) {
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("div", {
-          className: classnames__WEBPACK_IMPORTED_MODULE_8___default()('edd_downloads_list', 'edd_download_columns_' + columns)
+          className: classnames__WEBPACK_IMPORTED_MODULE_9___default()('edd_downloads_list', 'edd_download_columns_' + columns)
         }, downloads.map(function (download) {
-          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_components_Download__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_components_Download__WEBPACK_IMPORTED_MODULE_11__["default"], {
             download: download,
             key: download.info.id.toString(),
             attributes: attributes
@@ -968,9 +970,9 @@ var DownloadsEdit = /*#__PURE__*/function (_Component) {
         }));
       } else if ('download_categories' === type) {
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("div", {
-          className: classnames__WEBPACK_IMPORTED_MODULE_8___default()('edd_downloads_list', 'edd-download-terms', 'edd_download_columns_' + columns)
+          className: classnames__WEBPACK_IMPORTED_MODULE_9___default()('edd_downloads_list', 'edd-download-terms', 'edd_download_columns_' + columns)
         }, downloadCategories.map(function (taxonomy) {
-          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_components_DownloadTaxonomy__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_components_DownloadTaxonomy__WEBPACK_IMPORTED_MODULE_12__["default"], {
             key: taxonomy.id,
             taxonomy: taxonomy,
             attributes: attributes
@@ -978,9 +980,9 @@ var DownloadsEdit = /*#__PURE__*/function (_Component) {
         }));
       } else if ('download_tags' === type) {
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("div", {
-          className: classnames__WEBPACK_IMPORTED_MODULE_8___default()('edd_downloads_list', 'edd-download-terms', 'edd_download_columns_' + columns)
+          className: classnames__WEBPACK_IMPORTED_MODULE_9___default()('edd_downloads_list', 'edd-download-terms', 'edd_download_columns_' + columns)
         }, downloadTags.map(function (taxonomy) {
-          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_components_DownloadTaxonomy__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_components_DownloadTaxonomy__WEBPACK_IMPORTED_MODULE_12__["default"], {
             key: taxonomy.id,
             taxonomy: taxonomy,
             attributes: attributes
@@ -32717,6 +32719,39 @@ function isSymbol(value) {
 }
 
 module.exports = isSymbol;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/isUndefined.js":
+/*!********************************************!*\
+  !*** ./node_modules/lodash/isUndefined.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is `undefined`.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is `undefined`, else `false`.
+ * @example
+ *
+ * _.isUndefined(void 0);
+ * // => true
+ *
+ * _.isUndefined(null);
+ * // => false
+ */
+function isUndefined(value) {
+  return value === undefined;
+}
+
+module.exports = isUndefined;
 
 
 /***/ }),
