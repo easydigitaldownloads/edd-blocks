@@ -18,8 +18,8 @@ module.exports = {
 	},
 	entry: {
 		// JS
-		main: './src/main.js',
-		// CSS
+		main: './src/index.js',
+		// SCSS
 		style: './src/styles.scss',
 	},
 	output: {
@@ -57,6 +57,9 @@ module.exports = {
 								require('autoprefixer'),
 							],
 						},
+					},
+					{
+						loader: 'sass-loader',
 					},
 				],
 			},
