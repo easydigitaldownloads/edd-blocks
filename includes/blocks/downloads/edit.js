@@ -3,7 +3,6 @@
  */
 import { isUndefined } from 'lodash';
 import classnames from 'classnames';
-import { stringify } from 'querystringify';
 
 /**
  * Components
@@ -28,6 +27,7 @@ const {
 const { __ } = wp.i18n;
 
 const { select } = wp.data;
+const { addQueryArgs } = wp.url;
 
 const {	
 	InspectorControls, 
@@ -313,7 +313,7 @@ class DownloadsEdit extends Component {
 		}
 
 		const request = apiFetch( {
-			path: `/wp/v2/${taxonomy}?${ stringify( {
+			path: `/wp/v2/${taxonomy}?${ addQueryArgs( {
 				...query
 			} ) }`,
 		} );
@@ -389,7 +389,7 @@ class DownloadsEdit extends Component {
 		}
 
 		const request = apiFetch( {
-			url: `${url}/?edd-api=products&${ stringify( {
+			url: `${url}/?edd-api=products&${ addQueryArgs( {
 				...query
 			} ) }`,
 		} );
