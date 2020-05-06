@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import isUndefined from 'lodash/isUndefined';
+import { isUndefined } from 'lodash';
 import classnames from 'classnames';
 import { stringify } from 'querystringify';
 
