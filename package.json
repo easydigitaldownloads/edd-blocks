@@ -2,9 +2,8 @@
 	"name": "edd-blocks",
 	"version": "1.0.2",
 	"scripts": {
-		"dev": "wp-scripts start",
-		"build": "wp-scripts build",
-		"start": "wp-scripts start"
+		"dev": "cross-env NODE_ENV=production wp-scripts start",
+		"build": "wp-scripts build"
 	},
 	"main": "src/index.js",
 	"browserslist": "last 2 versions",
