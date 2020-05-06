@@ -487,7 +487,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 /**
  * External dependencies
  */
-// Commenting out so script will run, this causes error
 
 
 
