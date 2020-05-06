@@ -27,7 +27,6 @@ const {
 const { __ } = wp.i18n;
 
 const { select } = wp.data;
-const { addQueryArgs } = wp.url;
 
 const {	
 	InspectorControls, 
@@ -389,9 +388,9 @@ class DownloadsEdit extends Component {
 		}
 
 		const request = apiFetch( {
-			url: `${url}/?edd-api=products&${ addQueryArgs( {
+			url: `${url}/?edd-api=products&${ {
 				...query
-			} ) }`,
+			} }`,
 		} );
 
 		// Request downloads and store in state.
