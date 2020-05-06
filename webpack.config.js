@@ -27,6 +27,7 @@ module.exports = {
 		path: __dirname
 	},
 	plugins: [
+		...defaultConfig.plugins,
 		new FixStyleOnlyEntriesPlugin(),
 		new OptimizeCssAssetsPlugin(),
 		new webpack.ProvidePlugin( {
