@@ -32,8 +32,6 @@
 		"webpack-fix-style-only-entries": "^0.4.0"
 	},
 	"dependencies": {
-		"querystringify": "1.0.0",
-		"react": "^16.6.3",
-		"react-dom": "^16.6.3"
+		"querystringify": "1.0.0"
 	}
 }
