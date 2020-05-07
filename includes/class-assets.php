@@ -58,8 +58,8 @@ class EDD_Blocks_Assets {
 
 		wp_enqueue_style(
 			'edd-blocks-admin',
-			EDD_BLOCKS_PLUGIN_URL . 'dist/admin.css',
-			filemtime( EDD_BLOCKS_PLUGIN_DIR . 'dist/admin.css' )
+			EDD_BLOCKS_PLUGIN_URL . 'build/admin.css',
+			filemtime( EDD_BLOCKS_PLUGIN_DIR . 'build/admin.css' )
 		);
 
 	}

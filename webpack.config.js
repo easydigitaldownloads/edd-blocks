@@ -21,6 +21,7 @@ module.exports = {
 		main: './src/index.js',
 		// SCSS
 		style: './src/styles.scss',
+		admin: './src/admin.scss'
 	},
 	output: {
 		filename: 'build/[name].js',
@@ -35,7 +36,7 @@ module.exports = {
 			$: 'jquery',
 		} ),
 		new MiniCssExtractPlugin( {
-			filename: 'dist/styles.css',
+			filename: 'build/[name].css',
 		} )
 	],
 	module: {
