@@ -1,5 +1,4 @@
 import { autop } from '@wordpress/autop';
-
 import { RawHTML } from '@wordpress/element';
 
 const Content = ({content, showFullContent, className}) => {
