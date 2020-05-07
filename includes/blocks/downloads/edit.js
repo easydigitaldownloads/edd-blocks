@@ -29,6 +29,7 @@ import {
 	BlockAlignmentToolbar 
 } from '@wordpress/editor';
 import apiFetch from '@wordpress/api-fetch';
+import { addQueryArgs } from '@wordpress/url';
 
 class DownloadsEdit extends Component {
 
@@ -306,8 +307,7 @@ class DownloadsEdit extends Component {
 		}
 
 		const request = apiFetch( {
-			path: `/wp/v2/${taxonomy}`,
-			data: query,
+			path: addQueryArgs( `/wp/v2/${taxonomy}`, query )
 		} );
 
 		// Request download categories and store in state.
@@ -381,8 +381,7 @@ class DownloadsEdit extends Component {
 		}
 
 		const request = apiFetch( {
-			url: `${url}/?edd-api=products`,
-			data: query,
+			url: addQueryArgs(`${url}/?edd-api=products`, query)
 		} );
 
 		// Request downloads and store in state.
