@@ -1,8 +1,5 @@
 import * as downloads from '../includes/blocks/downloads';
-
-const {
-	registerBlockType,
-} = wp.blocks;
+import { registerBlockType } from '@wordpress/blocks';
 
 const registerCoreBlocks = () => {
 	[
