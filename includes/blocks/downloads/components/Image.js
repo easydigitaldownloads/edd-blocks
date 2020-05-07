@@ -1,4 +1,4 @@
-const {	RawHTML } = wp.element;
+import { RawHTML } from '@wordpress/element';
 
 const Image = ( {showThumbnails, image} ) => {
 	// Return null if thumbnails aren't enabled, or do not exist for the download.

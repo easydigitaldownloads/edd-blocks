@@ -1,7 +1,6 @@
 import unescape from 'lodash/unescape';
-
-const { __ } = wp.i18n;
-const {	Fragment } = wp.element;
+import { __ } from '@wordpress/i18n';
+import { Fragment } from '@wordpress/element';
 
 function renderTitle(title) {
 

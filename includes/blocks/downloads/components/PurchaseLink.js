@@ -1,5 +1,5 @@
-const {	RawHTML } = wp.element;
-const {	Disabled } = wp.components;
+import { RawHTML } from '@wordpress/element';
+import { Disabled } from '@wordpress/components';
 
 const PurchaseLink = ({purchaseLink, showBuyButton}) => {
 
