@@ -312,9 +312,8 @@ class DownloadsEdit extends Component {
 		}
 
 		const request = apiFetch( {
-			path: `/wp/v2/${taxonomy}?${ ( {
-				...query
-			} ) }`,
+			path: `/wp/v2/${taxonomy}`,
+			data: query,
 		} );
 
 		// Request download categories and store in state.
@@ -388,9 +387,8 @@ class DownloadsEdit extends Component {
 		}
 
 		const request = apiFetch( {
-			url: `${url}/?edd-api=products&${ {
-				...query
-			} }`,
+			url: `${url}/?edd-api=products`,
+			data: query,
 		} );
 
 		// Request downloads and store in state.
