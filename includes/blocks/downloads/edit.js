@@ -13,28 +13,23 @@ import DownloadTaxonomy from './components/DownloadTaxonomy';
 /**
  * WordPress dependencies
  */
-const {	Component, Fragment } = wp.element;
-
-const {
+import { Component, Fragment } from '@wordpress/element';
+import {
 	PanelBody,
 	Placeholder,
 	ToggleControl,
 	RangeControl,
 	SelectControl,
 	Spinner,
-} = wp.components;
-
-const { __ } = wp.i18n;
-
-const { select } = wp.data;
-
-const {	
+} from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import { select } from '@wordpress/data';
+import {	
 	InspectorControls, 
 	BlockControls, 
 	BlockAlignmentToolbar 
-} = wp.editor;
-
-const apiFetch = wp.apiFetch;
+} from '@wordpress/editor';
+import apiFetch from '@wordpress/api-fetch';
 
 class DownloadsEdit extends Component {
 
