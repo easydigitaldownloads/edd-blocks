@@ -23,7 +23,7 @@ module.exports = {
 		style: './src/styles.scss',
 	},
 	output: {
-		filename: 'dist/[name].js',
+		filename: 'build/[name].js',
 		path: __dirname
 	},
 	plugins: [

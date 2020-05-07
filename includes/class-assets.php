@@ -44,12 +44,12 @@ class EDD_Blocks_Assets {
 	 */
 	public function block_editor_assets() {
 
+		$asset_file = include( EDD_BLOCKS_PLUGIN_DIR . 'build/main.asset.php' );
 		wp_enqueue_script(
 			'edd-blocks-js',
-			EDD_BLOCKS_PLUGIN_URL . 'dist/main.js',
-			array( 'wp-editor' ),
-			filemtime( EDD_BLOCKS_PLUGIN_DIR . 'dist/main.js' ),
-			false
+			EDD_BLOCKS_PLUGIN_URL . 'build/main.js',
+			$asset_file['dependencies'],
+			$asset_file['version']
 		);
 
 		wp_localize_script( 'edd-blocks-js', 'edd_blocks_global_vars', array(
