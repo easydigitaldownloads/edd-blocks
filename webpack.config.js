@@ -12,10 +12,6 @@ const OptimizeCssAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
 module.exports = {
 	...defaultConfig,
 	devtool: 'source-map',
-	externals: {
-		jquery: 'jQuery',
-		$: 'jQuery'
-	},
 	entry: {
 		// JS
 		main: './src/index.js',
@@ -31,10 +27,6 @@ module.exports = {
 		...defaultConfig.plugins,
 		new FixStyleOnlyEntriesPlugin(),
 		new OptimizeCssAssetsPlugin(),
-		new webpack.ProvidePlugin( {
-			Promise: 'es6-promise-promise',
-			$: 'jquery',
-		} ),
 		new MiniCssExtractPlugin( {
 			filename: 'build/[name].css',
 		} )
