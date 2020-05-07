@@ -312,7 +312,7 @@ class DownloadsEdit extends Component {
 		}
 
 		const request = apiFetch( {
-			path: `/wp/v2/${taxonomy}?${ addQueryArgs( {
+			path: `/wp/v2/${taxonomy}?${ ( {
 				...query
 			} ) }`,
 		} );
