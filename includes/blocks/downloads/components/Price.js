@@ -1,4 +1,4 @@
-const {	RawHTML } = wp.element;
+import { RawHTML } from '@wordpress/element';
 
 const Price = ({price, showPrice}) => {
 

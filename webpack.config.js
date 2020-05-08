@@ -1,62 +1,61 @@
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// WordPress dependencies
 
-const stylesCSSPlugin = new ExtractTextPlugin( {
-	filename: './styles.css',
-} );
+const defaultConfig = require( '@wordpress/scripts/config/webpack.config.js' );
 
-const adminCSSPlugin = new ExtractTextPlugin( {
-	filename: './admin.css',
-} );
-
-// Configuration for the ExtractTextPlugin.
-const extractConfig = {
-	use: [
-		{ loader: 'raw-loader' },
-		{
-			loader: 'postcss-loader',
-			options: {
-				plugins: [
-					require( 'autoprefixer' ),
-				],
-			},
-		},
-		{
-			loader: 'sass-loader',
-			query: {
-				outputStyle: 'production' === process.env.NODE_ENV ? 'compressed' : 'nested',
-			},
-		},
-	],
-};
+// External dependencies
+const webpack = require( 'webpack' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const FixStyleOnlyEntriesPlugin = require( 'webpack-fix-style-only-entries' );
+const OptimizeCssAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
 
 module.exports = {
-	entry: { main: './src/index.js' },
-	output: {
-		path: path.resolve(__dirname, 'dist'),
-		filename: 'main.js'
+	...defaultConfig,
+	devtool: 'source-map',
+	entry: {
+		// JS
+		main: './src/index.js',
+		// SCSS
+		style: './src/styles.scss',
+		admin: './src/admin.scss'
 	},
-	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-				use: {
-					loader: 'babel-loader'
-				}
-			},
-			{
-				test: /styles\.s?css$/,
-				use: stylesCSSPlugin.extract( extractConfig ),
-			},
-			{
-				test: /admin\.s?css$/,
-				use: adminCSSPlugin.extract( extractConfig ),
-			},
-		]
+	output: {
+		filename: 'build/[name].js',
+		path: __dirname
 	},
 	plugins: [
-		stylesCSSPlugin,
-		adminCSSPlugin
-	]
-};
+		...defaultConfig.plugins,
+		new FixStyleOnlyEntriesPlugin(),
+		new OptimizeCssAssetsPlugin(),
+		new MiniCssExtractPlugin( {
+			filename: 'build/[name].css',
+		} )
+	],
+	module: {
+		rules: [
+			...defaultConfig.module.rules,
+			{
+				test: /\.s?css$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							importLoaders: 1,
+						},
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							plugins: () => [
+								require('autoprefixer'),
+							],
+						},
+					},
+					{
+						loader: 'sass-loader',
+					},
+				],
+			},
+		],
+	},
+}

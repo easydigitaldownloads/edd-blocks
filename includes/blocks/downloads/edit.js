@@ -1,9 +1,8 @@
 /**
  * External dependencies
  */
-import isUndefined from 'lodash/isundefined';
+import { isUndefined } from 'lodash';
 import classnames from 'classnames';
-import { stringify } from 'querystringify';
 
 /**
  * Components
@@ -14,28 +13,23 @@ import DownloadTaxonomy from './components/DownloadTaxonomy';
 /**
  * WordPress dependencies
  */
-const {	Component, Fragment } = wp.element;
-
-const {
+import { Component, Fragment } from '@wordpress/element';
+import {
 	PanelBody,
 	Placeholder,
 	ToggleControl,
 	RangeControl,
 	SelectControl,
 	Spinner,
-} = wp.components;
-
-const { __ } = wp.i18n;
-
-const { select } = wp.data;
-
-const {	
+} from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import {	
 	InspectorControls, 
 	BlockControls, 
 	BlockAlignmentToolbar 
-} = wp.editor;
-
-const apiFetch = wp.apiFetch;
+} from '@wordpress/editor';
+import apiFetch from '@wordpress/api-fetch';
+import { addQueryArgs } from '@wordpress/url';
 
 class DownloadsEdit extends Component {
 
@@ -313,9 +307,7 @@ class DownloadsEdit extends Component {
 		}
 
 		const request = apiFetch( {
-			path: `/wp/v2/${taxonomy}?${ stringify( {
-				...query
-			} ) }`,
+			path: addQueryArgs( `/wp/v2/${taxonomy}`, query )
 		} );
 
 		// Request download categories and store in state.
@@ -389,9 +381,7 @@ class DownloadsEdit extends Component {
 		}
 
 		const request = apiFetch( {
-			url: `${url}/?edd-api=products&${ stringify( {
-				...query
-			} ) }`,
+			url: addQueryArgs(`${url}/?edd-api=products`, query)
 		} );
 
 		// Request downloads and store in state.
