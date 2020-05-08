@@ -3,7 +3,6 @@
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config.js' );
 
 // External dependencies
-const path = require('path');
 const webpack = require( 'webpack' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const FixStyleOnlyEntriesPlugin = require( 'webpack-fix-style-only-entries' );
@@ -60,4 +59,3 @@ module.exports = {
 		],
 	},
 }
-
