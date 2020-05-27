@@ -130,11 +130,11 @@ function edd_blocks_register_block_downloads() {
 			),
 			'order' => array(
 				'type'    => 'string',
-				'default' => 'DESC',
+				'default' => 'desc',
 			),
 			'orderBy'  => array(
 				'type'    => 'string',
-				'default' => 'date',
+				'default' => 'count',
 			),
 			'showTitle' => array(
 				'type'    => 'boolean',
