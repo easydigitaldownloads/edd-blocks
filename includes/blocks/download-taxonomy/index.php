@@ -34,9 +34,9 @@ function edd_blocks_render_block_download_taxonomy( $block_attributes = array() 
 		// Display the terms.
         echo edd_download_terms( $atts );
 
-    } else {
-        // do something
-    }
+	} else {
+		continue;
+	}
 
 	$display = ob_get_clean();
 
@@ -52,58 +52,61 @@ function edd_blocks_register_block_download_taxonomy() {
 		return;
 	}
 
-	register_block_type( 'easydigitaldownloads/downloads', array(
-		'attributes' => array(
-			'category' => array(
-				'type' => 'string',
-				'default' => '',
+	register_block_type(
+		'easydigitaldownloads/downloads',
+		array(
+			'attributes'      => array(
+				'category'        => array(
+					'type'    => 'string',
+					'default' => '',
+				),
+				'type'            => array(
+					'type'    => 'string',
+					'default' => 'downloads',
+				),
+				'className'       => array(
+					'type'    => 'string',
+					'default' => '',
+				),
+				'showThumbnails'  => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
+				'showDescription' => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
+				'columns'         => array(
+					'type'    => 'number',
+					'default' => 3,
+				),
+				'align'           => array(
+					'type'    => 'string',
+					'default' => '',
+				),
+				'order'           => array(
+					'type'    => 'string',
+					'default' => 'desc',
+				),
+				'orderBy'         => array(
+					'type'    => 'string',
+					'default' => 'count',
+				),
+				'showTitle'       => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
+				'showCount'       => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
+				'showEmpty'       => array(
+					'type'    => 'boolean',
+					'default' => false,
+				),
 			),
-			'type' => array(
-				'type' => 'string',
-				'default' => 'downloads',
-			),
-			'className' => array(
-				'type' => 'string',
-				'default' => '',
-			),
-			'showThumbnails' => array(
-				'type'    => 'boolean',
-				'default' => true,
-			),
-			'showDescription' => array(
-				'type'    => 'boolean',
-				'default' => true,
-			),
-			'columns' => array(
-				'type'    => 'number',
-				'default' => 3,
-			),
-			'align' => array(
-				'type'    => 'string',
-				'default' => '',
-			),
-			'order' => array(
-				'type'    => 'string',
-				'default' => 'desc',
-			),
-			'orderBy'  => array(
-				'type'    => 'string',
-				'default' => 'count',
-			),
-			'showTitle' => array(
-				'type'    => 'boolean',
-				'default' => true,
-			),
-			'showCount' => array(
-				'type'    => 'boolean',
-				'default' => true,
-			),
-			'showEmpty' => array(
-				'type'    => 'boolean',
-				'default' => false,
-			),
-		),
-		'render_callback' => 'edd_blocks_render_block_download_taxonomy',
-	) );
+			'render_callback' => 'edd_blocks_render_block_download_taxonomy',
+		)
+	);
 }
 add_action( 'init', 'edd_blocks_register_block_download_taxonomy' );
