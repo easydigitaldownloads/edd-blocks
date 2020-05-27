@@ -42,7 +42,7 @@ class DownloadsEdit extends Component {
 		this.showFullContent = this.showFullContent.bind( this );
 
 		this.state = {
-			isLoading: true,
+			isLoading: false,
 			showDescription: true,
 			showFullContent: false,
 			downloads: [],
@@ -50,12 +50,7 @@ class DownloadsEdit extends Component {
 	}
 
 	componentDidMount() {
-		const { type } = this.props.attributes;
-
-		if ( 'downloads' === type ) {
-			this.fetchDownloads();
-		}
-
+		this.fetchDownloads();
 	}
 
 	componentDidUpdate( prevProps ) {
@@ -78,11 +73,11 @@ class DownloadsEdit extends Component {
 
 			// Block type was switched to "Downloads" from another block type.
 			if ( 'downloads' !== prevProp.type ) {
-				// Fetch downloads and store them in state.
-				this.fetchDownloads();
-
 				// Reset the orderBy attribute to "date" once the Downloads block type is selected.
 				this.props.setAttributes( { orderBy: 'id' } );
+
+				// Fetch downloads and store them in state.
+				this.fetchDownloads();
 			}
 		}
 
@@ -94,7 +89,6 @@ class DownloadsEdit extends Component {
 	}
 
 	componentWillUnmount() {
-		// Delete fetch requests.
 		delete this.downloadsRequest;
 	}
 
@@ -141,7 +135,10 @@ class DownloadsEdit extends Component {
 				'value': 'all', 
 				'label': __( 'All' )
 			},
-			...downloadCategories,
+			...downloadCategories.map( ( { id, name } ) => ( {
+				value: id,
+				label: name,
+			} ) ),
 		];
 	}
 
