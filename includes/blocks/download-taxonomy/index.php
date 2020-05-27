@@ -18,7 +18,7 @@ function edd_blocks_render_block_download_taxonomy( $block_attributes = array() 
 		);
 
 		if ( $block_attributes['className'] ) {
-			$atts['class'] .= ' ' .  $block_attributes['className'];
+			$atts['class'] .= ' ' . $block_attributes['className'];
 		}
 
 		switch ( $block_attributes['type'] ) {
@@ -32,10 +32,10 @@ function edd_blocks_render_block_download_taxonomy( $block_attributes = array() 
 		}
 
 		// Display the terms.
-        echo edd_download_terms( $atts );
+		echo edd_download_terms( $atts );
 
 	} else {
-		continue;
+		// do something.
 	}
 
 	$display = ob_get_clean();
@@ -56,18 +56,18 @@ function edd_blocks_register_block_download_taxonomy() {
 		'easydigitaldownloads/downloads',
 		array(
 			'attributes'      => array(
-				'category'        => array(
-					'type'    => 'string',
-					'default' => '',
-				),
-				'type'            => array(
-					'type'    => 'string',
-					'default' => 'downloads',
-				),
-				'className'       => array(
-					'type'    => 'string',
-					'default' => '',
-				),
+				// 'category'        => array(
+				// 	'type'    => 'string',
+				// 	'default' => '',
+				// ),
+				// 'type'            => array(
+				// 	'type'    => 'string',
+				// 	'default' => 'downloads',
+				// ),
+				// 'className'       => array(
+				// 	'type'    => 'string',
+				// 	'default' => '',
+				// ),
 				'showThumbnails'  => array(
 					'type'    => 'boolean',
 					'default' => true,
