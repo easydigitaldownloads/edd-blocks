@@ -30,7 +30,7 @@ import {
 } from '@wordpress/editor';
 import { addQueryArgs } from '@wordpress/url';
 import { useSelect } from '@wordpress/data';
-const apiFetch = wp.apiFetch;
+import apiFetch from '@wordpress/api-fetch';
 
 class DownloadsEdit extends Component {
 
