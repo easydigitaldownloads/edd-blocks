@@ -28,8 +28,9 @@ import {
 	BlockControls, 
 	BlockAlignmentToolbar 
 } from '@wordpress/editor';
-import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
+import { useSelect } from '@wordpress/data';
+const apiFetch = wp.apiFetch;
 
 class DownloadsEdit extends Component {
 
@@ -306,9 +307,9 @@ class DownloadsEdit extends Component {
 			query['hide_empty'] = true !== showEmpty ? true : false;
 		}
 
-		const request = apiFetch( {
-			path: addQueryArgs( `/wp/v2/${taxonomy}`, query )
-		} );
+		const request = useSelect( ( select) => {
+			return select( 'core' ).getEntityRecords( 'taxonomy', ...query );
+		});
 
 		// Request download categories and store in state.
 		if ( 'download_category' === taxonomy ) {
@@ -380,6 +381,7 @@ class DownloadsEdit extends Component {
 			query['orderby'] = 'date';
 		}
 
+		// const request = addQueryArgs(`${url}/?edd-api=products`, ...query );
 		const request = apiFetch( {
 			url: addQueryArgs(`${url}/?edd-api=products`, query)
 		} );
