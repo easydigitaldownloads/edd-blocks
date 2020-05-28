@@ -16,7 +16,6 @@ function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 			'orderby'      => $block_attributes['orderBy'],
 			'excerpt'      => $block_attributes['showDescription'] ? 'yes' : 'no',
 			'full_content' => $block_attributes['showFullContent'] ? 'yes' : 'no',
-			'category'     => $block_attributes['category'],
 			'pagination'   => ! $block_attributes['showPagination'] ? 'false' : 'true',
 		);
 
