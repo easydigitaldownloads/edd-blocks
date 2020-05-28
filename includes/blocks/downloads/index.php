@@ -17,7 +17,7 @@ function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 			'excerpt'      => $block_attributes['showDescription'] ? 'yes' : 'no',
 			'full_content' => $block_attributes['showFullContent'] ? 'yes' : 'no',
 			'category'     => $block_attributes['category'],
-			'pagination'   => ! $block_attributes['showPagination'] ? 'false' : 'true'
+			'pagination'   => ! $block_attributes['showPagination'] ? 'false' : 'true',
 		);
 
 		if ( $block_attributes['className'] ) {
@@ -50,7 +50,7 @@ function edd_blocks_register_block_downloads() {
 	register_block_type(
 		'easydigitaldownloads/downloads',
 		array(
-			'attributes'  => array(
+			'attributes'      => array(
 				'category'        => array(
 					'type'    => 'string',
 					'default' => '',
@@ -72,10 +72,6 @@ function edd_blocks_register_block_downloads() {
 					'default' => true,
 				),
 				'showThumbnails'  => array(
-					'type'    => 'boolean',
-					'default' => true,
-				),
-				'showDescription' => array(
 					'type'    => 'boolean',
 					'default' => true,
 				),
@@ -110,14 +106,6 @@ function edd_blocks_register_block_downloads() {
 				'showTitle'       => array(
 					'type'    => 'boolean',
 					'default' => true,
-				),
-				'showCount'       => array(
-					'type'    => 'boolean',
-					'default' => true,
-				),
-				'showEmpty'       => array(
-					'type'    => 'boolean',
-					'default' => false,
 				),
 			),
 			'render_callback' => 'edd_blocks_render_block_downloads',
