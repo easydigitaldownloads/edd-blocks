@@ -60,14 +60,14 @@ function edd_blocks_register_block_download_taxonomy() {
 				// 	'type'    => 'string',
 				// 	'default' => '',
 				// ),
-				// 'type'            => array(
-				// 	'type'    => 'string',
-				// 	'default' => 'downloads',
-				// ),
 				// 'className'       => array(
-				// 	'type'    => 'string',
-				// 	'default' => '',
-				// ),
+					// 	'type'    => 'string',
+					// 	'default' => '',
+					// ),
+				'type'            => array(
+					'type'    => 'string',
+					'default' => 'download_taxonomy',
+				),
 				'showThumbnails'  => array(
 					'type'    => 'boolean',
 					'default' => true,
