@@ -264,19 +264,7 @@ class DownloadsEdit extends Component {
 					{ downloads.map( ( download ) => <Download download={download} key={download.info.id.toString()} attributes={attributes} /> ) }
 				</div>
 			);
-		} else if ( 'download_categories' === type ) {
-			return (
-				<div className={ classnames( 'edd_downloads_list', 'edd-download-terms', 'edd_download_columns_' + columns ) }>
-					{ downloadCategories.map( ( taxonomy ) => <DownloadTaxonomy key={taxonomy.id} taxonomy={taxonomy} attributes={attributes} /> ) }
-				</div>
-			);
-		} else if ('download_tags' === type ) {
-			return (
-				<div className={ classnames( 'edd_downloads_list', 'edd-download-terms', 'edd_download_columns_' + columns ) }>
-					{ downloadTags.map( ( taxonomy ) => <DownloadTaxonomy key={taxonomy.id} taxonomy={taxonomy} attributes={attributes} /> ) }
-				</div>
-			);
-		}
+		} 
 	}
 
 	render() {
@@ -310,28 +298,17 @@ class DownloadsEdit extends Component {
 		const { isLoading } = this.state;
 		const downloads = this.state.downloads.products;
 
-		const isDownloadTaxonomy = type === 'download_categories' || type === 'download_tags';
-
 		let showDescriptionLabel;
 
 		if ( type === 'downloads' ) {
 			showDescriptionLabel = __( 'Show Excerpt' );
-		} else if ( type === 'download_categories' ) {
-			showDescriptionLabel = __( 'Show Category Description' );
-		} else if ( type === 'download_tags' ) {
-			showDescriptionLabel = __( 'Show Tag Description' );
 		} else {
 			showDescriptionLabel = __( 'Show Description' );
 		}
 
 		// Loading states.
 		let showLoadingLabel;
-
-		if ( type === 'download_categories' ) {
-			showLoadingLabel = __( 'Loading download categories' );
-		} else if ( type === 'download_tags' ) {
-			showLoadingLabel = __( 'Loading download tags' );
-		} else {
+		if ( type === 'downloads' ){
 			showLoadingLabel = __( 'Loading downloads' );
 		}
 
@@ -399,13 +376,13 @@ class DownloadsEdit extends Component {
 						onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
 					/>
 					
-					{ isDownloadTaxonomy &&
+					{/* { isDownloadTaxonomy &&
 					<ToggleControl
 						label={ 'download_categories' === type ? __( 'Show Category Name' ) : __( 'Show Tag Name' ) }
 						checked={ !! showTitle }
 						onChange={ () => setAttributes( { showTitle: ! showTitle } ) }
 					/>
-					}
+					} */}
 
 					<ToggleControl
 						label={ showDescriptionLabel }
@@ -413,21 +390,21 @@ class DownloadsEdit extends Component {
 						onChange={ this.showDescription }
 					/>
 
-					{ showTitle && isDownloadTaxonomy &&
+					{/* { showTitle && isDownloadTaxonomy &&
 					<ToggleControl
 						label={ __( 'Show Count' ) }
 						checked={ !! showCount }
 						onChange={ () => setAttributes( { showCount: ! showCount } ) }
 					/>
-					}
+					} */}
 					
-					{ isDownloadTaxonomy &&
+					{/* { isDownloadTaxonomy &&
 					<ToggleControl
 						label={ 'download_categories' === type ? __( 'Show Empty Categories' ) : __( 'Show Empty Tags' ) }
 						checked={ !! showEmpty }
 						onChange={ () => setAttributes( { showEmpty: ! showEmpty } ) }
 					/>
-					}
+					} */}
 
 					{ type === 'downloads' &&
 					<ToggleControl
@@ -473,8 +450,8 @@ class DownloadsEdit extends Component {
 		);
 
 		const hasDownloads = Array.isArray( downloads ) && downloads.length;
-		const hasDownloadTags = Array.isArray( downloadTags ) && downloadTags.length;
-		const hasDownloadCategories = Array.isArray( downloadCategories ) && downloadCategories.length;
+		// const hasDownloadTags = Array.isArray( downloadTags ) && downloadTags.length;
+		// const hasDownloadCategories = Array.isArray( downloadCategories ) && downloadCategories.length;
 
 		if ( ! hasDownloads && type === 'downloads' ) {
 			return (
@@ -487,40 +464,6 @@ class DownloadsEdit extends Component {
 						{ ! Array.isArray( downloads ) ?
 							<Spinner /> :
 							__( 'No downloads found.' )
-						}
-					</Placeholder>
-				</Fragment>
-			);
-		}
-
-		if ( ! hasDownloadCategories && type === 'download_categories' ) {
-			return (
-				<Fragment>
-					{ inspectorControls }
-					<Placeholder
-						icon="download"
-						label={ __( 'Loading download categories' ) }
-					>
-						{ ! Array.isArray( downloadCategories ) ?
-							<Spinner /> :
-							__( 'No download categories found.' )
-						}
-					</Placeholder>
-				</Fragment>
-			);
-		}
-
-		if ( ! hasDownloadTags && type === 'download_tags' ) {
-			return (
-				<Fragment>
-					{ inspectorControls }
-					<Placeholder
-						icon="download"
-						label={ __( 'Loading download tags' ) }
-					>
-						{ ! Array.isArray( downloadTags ) ?
-							<Spinner /> :
-							__( 'No download tags found.' )
 						}
 					</Placeholder>
 				</Fragment>
