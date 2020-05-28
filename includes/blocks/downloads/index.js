@@ -20,7 +20,8 @@ export const settings = {
 	category: 'widgets',
 
 	keywords: [ 
-		__( 'downloads' ), 
+		__( 'downloads' ),
+		__('easy_digital_downloads'), 
 		__( 'edd' )
 	],
 

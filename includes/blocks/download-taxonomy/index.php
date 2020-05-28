@@ -34,8 +34,6 @@ function edd_blocks_render_block_download_taxonomy( $block_attributes = array() 
 		// Display the terms.
 		echo edd_download_terms( $atts ); // WPCS: XSS ok.
 
-	} else {
-		// do something.
 	}
 
 	$display = ob_get_clean();
@@ -61,9 +59,9 @@ function edd_blocks_register_block_download_taxonomy() {
 				// 	'default' => '',
 				// ),
 				// 'className'       => array(
-					// 	'type'    => 'string',
-					// 	'default' => '',
-					// ),
+				// 	'type'    => 'string',
+				// 	'default' => '',
+				// ),
 				'type'            => array(
 					'type'    => 'string',
 					'default' => 'download_taxonomy',
