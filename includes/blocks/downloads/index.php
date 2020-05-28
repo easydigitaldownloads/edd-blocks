@@ -30,7 +30,7 @@ function edd_blocks_render_block_downloads( $block_attributes = array() ) {
 		}
 
 		// Display the downloads.
-		echo edd_downloads( $atts );
+		echo edd_downloads( $atts ); // WPCS: XSS ok.
 	}
 
 	$display = ob_get_clean();

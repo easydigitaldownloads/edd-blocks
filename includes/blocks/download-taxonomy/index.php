@@ -32,7 +32,7 @@ function edd_blocks_render_block_download_taxonomy( $block_attributes = array() 
 		}
 
 		// Display the terms.
-		echo edd_download_terms( $atts );
+		echo edd_download_terms( $atts ); // WPCS: XSS ok.
 
 	} else {
 		// do something.
