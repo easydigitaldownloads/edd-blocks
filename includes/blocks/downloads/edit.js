@@ -61,24 +61,25 @@ class DownloadsEdit extends Component {
 
 		if ( 'downloads' === type ) {
 
-			if ( 
-				category !== prevProp.category || 
-				number !== prevProp.number || 
-				order !== prevProp.order || 
-				orderBy !== prevProp.orderBy 
-			) {
-				// Fetch new array of downloads when various controls are updated and store them in state.
-				this.fetchDownloads();
-			}
+			// if ( 
+			// 	category !== prevProp.category || 
+			// 	number !== prevProp.number || 
+			// 	order !== prevProp.order || 
+			// 	orderBy !== prevProp.orderBy 
+			// ) {
+			// 	// Fetch new array of downloads when various controls are updated and store them in state.
+			// 	this.fetchDownloads();
+			// }
 
-			// Block type was switched to "Downloads" from another block type.
-			if ( 'downloads' !== prevProp.type ) {
-				// Reset the orderBy attribute to "date" once the Downloads block type is selected.
-				this.props.setAttributes( { orderBy: 'id' } );
+			// // Block type was switched to "Downloads" from another block type.
+			// if ( 'downloads' !== prevProp.type ) {
+			// 	// Reset the orderBy attribute to "date" once the Downloads block type is selected.
+			// 	this.props.setAttributes( { orderBy: 'id' } );
 
-				// Fetch downloads and store them in state.
-				this.fetchDownloads();
-			}
+			// 	// Fetch downloads and store them in state.
+			// 	this.fetchDownloads();
+			// }
+			this.fetchDownloads();
 		}
 
 		// Clear "align" attribute if theme does not support wide images.
@@ -238,11 +239,11 @@ class DownloadsEdit extends Component {
 			if ( this.downloadsRequest !== request ) {
 				return;
 			}
+		});
+		// 	this.setState( { downloads, isLoading: false } );
+		// } );
 
-			this.setState( { downloads, isLoading: false } );
-		} );
-
-		this.downloadsRequest = request;
+		// this.downloadsRequest = request;
 	}
 
 	renderDownloads() {
@@ -333,7 +334,10 @@ class DownloadsEdit extends Component {
 					<RangeControl
 						label={ __( 'Downloads Per Page' ) }
 						value={ number }
-						onChange={ (number) => setAttributes( { number } ) }
+						onChange={ (number) => { 
+							setAttributes( { number } );
+							this.fetchDownloads();
+						} }
 						min={ 1 }
 						max={ 100 }
 					/>
