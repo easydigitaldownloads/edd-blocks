@@ -82,7 +82,9 @@ class DownloadsEdit extends Component {
 	}
 
 	getDownloadCategories() {
+		console.log('PROPS', this.props);
 		const { downloadCategories } = this.props;
+		console.log('CATS', downloadCategories);
 		return [
 			{ 
 				'value': 'all', 
@@ -200,6 +202,7 @@ class DownloadsEdit extends Component {
 
 	renderDownloads() {
 		const downloads = this.state.downloads.products;
+		const { downloadCategories, downloadTags } = this.props;
 		const { attributes } = this.props;
 		const { columns, type } = attributes;
 
@@ -217,6 +220,8 @@ class DownloadsEdit extends Component {
 		const {
 			attributes,
 			setAttributes,
+			downloadTags,
+			downloadCategories,
 		} = this.props;
 
 		const { 
@@ -235,6 +240,7 @@ class DownloadsEdit extends Component {
 			type,
 			showTitle,
 			showCount,
+			showEmpty,
 		} = attributes;
 
 		const { isLoading } = this.state;
@@ -321,11 +327,35 @@ class DownloadsEdit extends Component {
 						onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
 					/>
 					
+					{/* { isDownloadTaxonomy &&
+					<ToggleControl
+						label={ 'download_categories' === type ? __( 'Show Category Name' ) : __( 'Show Tag Name' ) }
+						checked={ !! showTitle }
+						onChange={ () => setAttributes( { showTitle: ! showTitle } ) }
+					/>
+					} */}
+
 					<ToggleControl
 						label={ showDescriptionLabel }
 						checked={ !! showDescription }
 						onChange={ this.showDescription }
 					/>
+
+					{/* { showTitle && isDownloadTaxonomy &&
+					<ToggleControl
+						label={ __( 'Show Count' ) }
+						checked={ !! showCount }
+						onChange={ () => setAttributes( { showCount: ! showCount } ) }
+					/>
+					} */}
+					
+					{/* { isDownloadTaxonomy &&
+					<ToggleControl
+						label={ 'download_categories' === type ? __( 'Show Empty Categories' ) : __( 'Show Empty Tags' ) }
+						checked={ !! showEmpty }
+						onChange={ () => setAttributes( { showEmpty: ! showEmpty } ) }
+					/>
+					} */}
 
 					{ type === 'downloads' &&
 					<ToggleControl
@@ -371,7 +401,9 @@ class DownloadsEdit extends Component {
 		);
 
 		const hasDownloads = Array.isArray( downloads ) && downloads.length;
-	
+		const hasDownloadTags = Array.isArray( downloadTags ) && downloadTags.length;
+		const hasDownloadCategories = Array.isArray( downloadCategories ) && downloadCategories.length;
+
 		if ( ! hasDownloads && type === 'downloads' ) {
 			return (
 				<Fragment>
@@ -408,7 +440,7 @@ class DownloadsEdit extends Component {
 }
 
 export default withSelect( ( select, ownProps ) => {
-	const { attributes: { order, orderBy } } = ownProps;
+	const { attributes: { showEmpty, order, orderBy } } = ownProps;
 
 	const query = {
 		per_page: -1,
