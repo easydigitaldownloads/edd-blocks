@@ -53,46 +53,6 @@ class DownloadsEdit extends Component {
 		this.fetchDownloads();
 	}
 
-	componentDidUpdate( prevProps ) {
-		const { category, number, order, orderBy, showEmpty, type } = this.props.attributes;
-		const { alignWide } = wp.data.select( "core/editor" ).getEditorSettings();
-
-		const prevProp = prevProps.attributes;
-
-		if ( 'downloads' === type ) {
-
-			// if ( 
-			// 	category !== prevProp.category || 
-			// 	number !== prevProp.number || 
-			// 	order !== prevProp.order || 
-			// 	orderBy !== prevProp.orderBy 
-			// ) {
-			// 	// Fetch new array of downloads when various controls are updated and store them in state.
-			// 	this.fetchDownloads();
-			// }
-
-			// // Block type was switched to "Downloads" from another block type.
-			// if ( 'downloads' !== prevProp.type ) {
-			// 	// Reset the orderBy attribute to "date" once the Downloads block type is selected.
-			// 	this.props.setAttributes( { orderBy: 'id' } );
-
-			// 	// Fetch downloads and store them in state.
-			// 	this.fetchDownloads();
-			// }
-			this.fetchDownloads();
-		}
-
-		// Clear "align" attribute if theme does not support wide images.
-		// This prevents the attribute from being "stuck" on a particular setting if the theme is switched.
-		if ( ! alignWide ) {
-			this.props.setAttributes( { align: undefined } );
-		}
-	}
-
-	componentWillUnmount() {
-		delete this.downloadsRequest;
-	}
-
 	getOrderOptions() {
 		return [
 			{ value: 'asc', label: __( 'Ascending' ) },
@@ -122,8 +82,9 @@ class DownloadsEdit extends Component {
 	}
 
 	getDownloadCategories() {
+		console.log('PROPS', this.props);
 		const { downloadCategories } = this.props;
-
+		console.log('CATS', downloadCategories);
 		return [
 			{ 
 				'value': 'all', 
@@ -190,7 +151,6 @@ class DownloadsEdit extends Component {
 		
 		// Get the options
 		const options = this.getOrderByOptions();
-
 		const { category, number, order, orderBy } = this.props.attributes;
 
 		let queryOrderBy = orderBy;
@@ -229,21 +189,15 @@ class DownloadsEdit extends Component {
 			query['orderby'] = 'date';
 		}
 
-		// const request = addQueryArgs(`${url}/?edd-api=products`, ...query );
 		const request = apiFetch( {
 			url: addQueryArgs(`${url}/?edd-api=products`, query)
 		} );
 
 		// Request downloads and store in state.
 		request.then( ( downloads ) => {
-			if ( this.downloadsRequest !== request ) {
-				return;
-			}
-		});
-		// 	this.setState( { downloads, isLoading: false } );
-		// } );
+				this.setState( { downloads, isLoading: false } );
+		} );
 
-		// this.downloadsRequest = request;
 	}
 
 	renderDownloads() {
