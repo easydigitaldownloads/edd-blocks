@@ -21,7 +21,6 @@ export const settings = {
 
 	keywords: [ 
 		__( 'downloads' ),
-		__('easy_digital_downloads'), 
 		__( 'edd' )
 	],
 
