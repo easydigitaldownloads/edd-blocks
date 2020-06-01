@@ -54,51 +54,51 @@ function edd_blocks_register_block_download_taxonomy() {
 		'easydigitaldownloads/downloads',
 		array(
 			'attributes'      => array(
-				// 'category'        => array(
-				// 	'type'    => 'string',
-				// 	'default' => '',
-				// ),
-				// 'className'       => array(
-				// 	'type'    => 'string',
-				// 	'default' => '',
-				// ),
-				'type'            => array(
-					'type'    => 'string',
-					'default' => 'download_taxonomy',
-				),
-				'showThumbnails'  => array(
-					'type'    => 'boolean',
-					'default' => true,
-				),
-				'showDescription' => array(
-					'type'    => 'boolean',
-					'default' => true,
-				),
-				'columns'         => array(
-					'type'    => 'number',
-					'default' => 3,
-				),
-				'align'           => array(
+				'category'       => array(
 					'type'    => 'string',
 					'default' => '',
 				),
-				'order'           => array(
+				'className'      => array(
+					'type'    => 'string',
+					'default' => '',
+				),
+				'type'           => array(
+					'type'    => 'string',
+					'default' => 'download_taxonomy',
+				),
+				'showThumbnails' => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
+				// 'showDescription' => array(
+				// 	'type'    => 'boolean',
+				// 	'default' => true,
+				// ),
+				'columns'        => array(
+					'type'    => 'number',
+					'default' => 3,
+				),
+				'align'          => array(
+					'type'    => 'string',
+					'default' => '',
+				),
+				'order'          => array(
 					'type'    => 'string',
 					'default' => 'desc',
 				),
-				'orderBy'         => array(
+				'orderBy'        => array(
 					'type'    => 'string',
 					'default' => 'count',
 				),
-				'showTitle'       => array(
+				// 'showTitle'       => array(
+				// 	'type'    => 'boolean',
+				// 	'default' => true,
+				// ),
+				'showCount'      => array(
 					'type'    => 'boolean',
 					'default' => true,
 				),
-				'showCount'       => array(
-					'type'    => 'boolean',
-					'default' => true,
-				),
-				'showEmpty'       => array(
+				'showEmpty'      => array(
 					'type'    => 'boolean',
 					'default' => false,
 				),
