@@ -82,19 +82,22 @@ class DownloadsEdit extends Component {
 	}
 
 	getDownloadCategories() {
-		console.log('PROPS', this.props);
-		const { downloadCategories } = this.props;
-		console.log('CATS', downloadCategories);
-		return [
-			{ 
-				'value': 'all', 
-				'label': __( 'All' )
-			},
-			...downloadCategories.map( ( { id, name } ) => ( {
-				value: id,
-				label: name,
-			} ) ),
-		];
+		const { downloadCategories } = this.props
+		if ( !downloadCategories ) {
+			console.log('LOADING');
+		} else {
+			return [
+				{
+					'value': 'all',
+					'label': __('All')
+				},
+				...downloadCategories.map(({ id, name }) => ({
+					value: id,
+					label: name,
+				})),
+			];
+		}
+		
 	}
 
 	getBlockTypes() {
@@ -115,7 +118,6 @@ class DownloadsEdit extends Component {
 	}
 
 	setDownloadCategory( value ) {
-	
 		if ( 'all' === value ) {
 			value = undefined;
 		}
