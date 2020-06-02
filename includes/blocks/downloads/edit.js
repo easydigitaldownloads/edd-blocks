@@ -28,8 +28,9 @@ import {
 	BlockControls, 
 	BlockAlignmentToolbar 
 } from '@wordpress/editor';
-import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
+import { withSelect } from '@wordpress/data';
+import apiFetch from '@wordpress/api-fetch';
 
 class DownloadsEdit extends Component {
 
@@ -41,130 +42,21 @@ class DownloadsEdit extends Component {
 		this.showFullContent = this.showFullContent.bind( this );
 
 		this.state = {
-			isLoading: true,
+			isLoading: false,
 			showDescription: true,
 			showFullContent: false,
 			downloads: [],
-			downloadCategories: [],
-			downloadTags: [],
 		}
-
 	}
 
 	componentDidMount() {
-		const { type } = this.props.attributes;
-
-		if ( 'downloads' === type ) {
-			this.fetchDownloads();
-			this.fetchDownloadTaxonomy({ taxonomy: 'download_category' });
-		}
-
-		if ( 'download_categories' === type ) {
-			this.fetchDownloadTaxonomy({ taxonomy: 'download_category' });
-		}
-
-		if ( 'download_tags' === type ) {
-			this.fetchDownloadTaxonomy({ taxonomy: 'download_tag' });
-		}
-
-	}
-
-	componentDidUpdate( prevProps ) {
-		const { category, number, order, orderBy, showEmpty, type } = this.props.attributes;
-		const { alignWide } = wp.data.select( "core/editor" ).getEditorSettings();
-
-		const prevProp = prevProps.attributes;
-
-		if ( 'downloads' === type ) {
-
-			if ( 
-				category !== prevProp.category || 
-				number !== prevProp.number || 
-				order !== prevProp.order || 
-				orderBy !== prevProp.orderBy 
-			) {
-				// Fetch new array of downloads when various controls are updated and store them in state.
-				this.fetchDownloads();
-			}
-
-			// Block type was switched to "Downloads" from another block type.
-			if ( 'downloads' !== prevProp.type ) {
-				// Fetch downloads and store them in state.
-				this.fetchDownloads();
-
-				// Re-fetch the download categories if "Show Empty Categories" is false. 
-				// All download categories should show in the select control.
-				if ( ! showEmpty ) {
-					this.fetchDownloadTaxonomy({ taxonomy: 'download_category' });
-				}
-
-				// Reset the orderBy attribute to "date" once the Downloads block type is selected.
-				this.props.setAttributes( { orderBy: 'date' } );
-			}
-		}
-
-		if ( 'download_categories' === type ) {
-
-			if ( 
-				showEmpty !== prevProp.showEmpty || 
-				order !== prevProp.order || 
-				orderBy !== prevProp.orderBy 
-			) {
-				// Fetch new array of download categories when various controls are updated and store in state.
-				this.fetchDownloadTaxonomy({ taxonomy: 'download_category' });
-			}
-
-			// Fetch download categories once the block type is switched to "Download Categories" from another block type.
-			if ( 'download_categories' !== prevProp.type ) {
-				// Fetch a new list of download categories and store it in state.
-				this.fetchDownloadTaxonomy({ taxonomy: 'download_category' });
-
-				// Reset the orderBy attribute to "count" once the download categories block type is selected.
-				this.props.setAttributes( { orderBy: 'count' } );
-			}
-
-		}
-
-		if ( 'download_tags' === type ) {
-
-			if ( 
-				showEmpty !== prevProp.showEmpty || 
-				order !== prevProp.order || 
-				orderBy !== prevProp.orderBy 
-			) {
-				// Fetch new array of download tags when various controls are updated and store in state.
-				this.fetchDownloadTaxonomy({ taxonomy: 'download_tag' });
-			}
-
-			// Fetch download tags once the block type is switched to "Download Tags" from another block type.
-			if ( 'download_tags' !== prevProp.type ) {
-				// Fetch a new list of download tags and store it in state.
-				this.fetchDownloadTaxonomy({ taxonomy: 'download_tag' });
-
-				// Reset the orderBy attribute to "count" once the download tags block type is selected.
-				this.props.setAttributes( { orderBy: 'count' } );
-			}
-
-		}
-
-		// Clear "align" attribute if theme does not support wide images.
-		// This prevents the attribute from being "stuck" on a particular setting if the theme is switched.
-		if ( ! alignWide ) {
-			this.props.setAttributes( { align: undefined } );
-		}
-	}
-
-	componentWillUnmount() {
-		// Delete fetch requests.
-		delete this.downloadsRequest;
-		delete this.downloadCategoriesRequest;
-		delete this.downloadTagsRequest;
+		this.fetchDownloads();
 	}
 
 	getOrderOptions() {
 		return [
-			{ value: 'ASC', label: __( 'Ascending' ) },
-			{ value: 'DESC', label: __( 'Descending' ) },
+			{ value: 'asc', label: __( 'Ascending' ) },
+			{ value: 'desc', label: __( 'Descending' ) },
 		];
 	}
 
@@ -184,37 +76,28 @@ class DownloadsEdit extends Component {
 				{ value: 'name', label: __( 'Slug' ) },
 				{ value: 'title', label: __( 'Title' ) },
 			];
-		} else if ( 'download_categories' === type || 'download_tags' === type ) {
-			options = [
-				{ value: 'count', label: __( 'Count' ) },
-				{ value: 'id', label: __( 'ID' ) },
-				{ value: 'name', label: __( 'Name' ) },
-				{ value: 'slug', label: __( 'Slug' ) },
-			];
 		}
 
 		return options;
 	}
 
 	getDownloadCategories() {
-
-		const { downloadCategories } = this.state;
-
-		const categories = [ 
-			{ 
-				'value': 'all', 
-				'label': __( 'All' )
-			}
-		];
-
-		downloadCategories.forEach(function(category) {
-			categories.push( {
-				'label': category.name,
-				'value': category.id
-			} );
-		});
-
-		return categories;
+		const { downloadCategories } = this.props
+		if ( !downloadCategories ) {
+			console.log('LOADING');
+		} else {
+			return [
+				{
+					'value': 'all',
+					'label': __('All')
+				},
+				...downloadCategories.map(({ id, name }) => ({
+					value: id,
+					label: name,
+				})),
+			];
+		}
+		
 	}
 
 	getBlockTypes() {
@@ -235,7 +118,6 @@ class DownloadsEdit extends Component {
 	}
 
 	setDownloadCategory( value ) {
-	
 		if ( 'all' === value ) {
 			value = undefined;
 		}
@@ -267,81 +149,10 @@ class DownloadsEdit extends Component {
 		});
 	}
 
-	fetchDownloadTaxonomy( args ) {
-
-		const { showEmpty, order, orderBy, type } = this.props.attributes;
-
-		const taxonomy = args.taxonomy;
-
-		// Get the options
-		const options = this.getOrderByOptions();
-
-		const queryOrderBy = args.orderBy ? args.orderBy.toLowerCase() : orderBy.toLowerCase();
-		const queryOrder = args.order ? args.order.toLowerCase() : order.toLowerCase();
-
-		const query = {
-			per_page: -1,
-			orderby: queryOrderBy,
-			order: queryOrder
-		};
-
-		// Reset the orderby and order parameters for the downloads block type.
-		// The downloads block type displays a list of categories.
-		if ( 'downloads' === type ) {
-			query['orderby'] = 'name';
-			query['order'] = 'asc';
-		}
-
-		if ( 'download_categories' === type || 'download_tags' === type ) {
-
-			// If the taxonomy request is for downloads categories or tags,
-			// check to see if the orderby parameter is correct for the block type.
-			// If not, reset it to "count", the first available option for taxonomies.
-			let orderByExists = options.find(obj => obj.value === orderBy);
-			if ( ! orderByExists ) {
-				query['orderby'] = 'count';
-			}
-
-			// Hide download terms that have no downloads by default.
-			query['hide_empty'] = true !== showEmpty ? true : false;
-		}
-
-		const request = apiFetch( {
-			path: addQueryArgs( `/wp/v2/${taxonomy}`, query )
-		} );
-
-		// Request download categories and store in state.
-		if ( 'download_category' === taxonomy ) {
-			request.then( ( downloadCategories ) => {
-				if ( this.downloadCategoriesRequest !== request ) {
-					return;
-				}
-	
-				this.setState( { downloadCategories, isLoading: false } );
-			} );
-
-			this.downloadCategoriesRequest = request;
-		}
-
-		// Request download tags and store in state.
-		if ( 'download_tag' === taxonomy ) {
-			request.then( ( downloadTags ) => {
-				if ( this.downloadTagsRequest !== request ) {
-					return;
-				}
-	
-				this.setState( { downloadTags, isLoading: false } );
-			} );
-
-			this.downloadTagsRequest = request;
-		}
-	}
-
 	fetchDownloads() {
 		
 		// Get the options
 		const options = this.getOrderByOptions();
-
 		const { category, number, order, orderBy } = this.props.attributes;
 
 		let queryOrderBy = orderBy;
@@ -386,19 +197,14 @@ class DownloadsEdit extends Component {
 
 		// Request downloads and store in state.
 		request.then( ( downloads ) => {
-			if ( this.downloadsRequest !== request ) {
-				return;
-			}
-
-			this.setState( { downloads, isLoading: false } );
+				this.setState( { downloads, isLoading: false } );
 		} );
 
-		this.downloadsRequest = request;
 	}
 
 	renderDownloads() {
 		const downloads = this.state.downloads.products;
-		const { downloadCategories, downloadTags } = this.state;
+		const { downloadCategories, downloadTags } = this.props;
 		const { attributes } = this.props;
 		const { columns, type } = attributes;
 
@@ -408,19 +214,7 @@ class DownloadsEdit extends Component {
 					{ downloads.map( ( download ) => <Download download={download} key={download.info.id.toString()} attributes={attributes} /> ) }
 				</div>
 			);
-		} else if ( 'download_categories' === type ) {
-			return (
-				<div className={ classnames( 'edd_downloads_list', 'edd-download-terms', 'edd_download_columns_' + columns ) }>
-					{ downloadCategories.map( ( taxonomy ) => <DownloadTaxonomy key={taxonomy.id} taxonomy={taxonomy} attributes={attributes} /> ) }
-				</div>
-			);
-		} else if ('download_tags' === type ) {
-			return (
-				<div className={ classnames( 'edd_downloads_list', 'edd-download-terms', 'edd_download_columns_' + columns ) }>
-					{ downloadTags.map( ( taxonomy ) => <DownloadTaxonomy key={taxonomy.id} taxonomy={taxonomy} attributes={attributes} /> ) }
-				</div>
-			);
-		}
+		} 
 	}
 
 	render() {
@@ -428,6 +222,8 @@ class DownloadsEdit extends Component {
 		const {
 			attributes,
 			setAttributes,
+			downloadTags,
+			downloadCategories,
 		} = this.props;
 
 		const { 
@@ -449,31 +245,20 @@ class DownloadsEdit extends Component {
 			showEmpty,
 		} = attributes;
 
-		const { downloadTags, downloadCategories, isLoading } = this.state;
+		const { isLoading } = this.state;
 		const downloads = this.state.downloads.products;
-
-		const isDownloadTaxonomy = type === 'download_categories' || type === 'download_tags';
 
 		let showDescriptionLabel;
 
 		if ( type === 'downloads' ) {
 			showDescriptionLabel = __( 'Show Excerpt' );
-		} else if ( type === 'download_categories' ) {
-			showDescriptionLabel = __( 'Show Category Description' );
-		} else if ( type === 'download_tags' ) {
-			showDescriptionLabel = __( 'Show Tag Description' );
 		} else {
 			showDescriptionLabel = __( 'Show Description' );
 		}
 
 		// Loading states.
 		let showLoadingLabel;
-
-		if ( type === 'download_categories' ) {
-			showLoadingLabel = __( 'Loading download categories' );
-		} else if ( type === 'download_tags' ) {
-			showLoadingLabel = __( 'Loading download tags' );
-		} else {
+		if ( type === 'downloads' ){
 			showLoadingLabel = __( 'Loading downloads' );
 		}
 
@@ -493,19 +278,15 @@ class DownloadsEdit extends Component {
 		const inspectorControls = (
 			<InspectorControls>
 				<PanelBody title={ __( 'Settings' ) }>
-					
-					<SelectControl
-						label={ __( 'Display' ) }
-						value={ type }
-						options={ this.getBlockTypes() }
-						onChange={ (value) => setAttributes( { type: value } ) }
-					/>
-
+				
 					{ type === 'downloads' &&
 					<RangeControl
 						label={ __( 'Downloads Per Page' ) }
 						value={ number }
-						onChange={ (number) => setAttributes( { number } ) }
+						onChange={ (number) => { 
+							setAttributes( { number } );
+							this.fetchDownloads();
+						} }
 						min={ 1 }
 						max={ 100 }
 					/>
@@ -514,7 +295,10 @@ class DownloadsEdit extends Component {
 					<RangeControl
 						label={ __( 'Columns' ) }
 						value={ columns }
-						onChange={ (columns) => setAttributes( { columns } ) }
+						onChange={ (columns) => {
+							setAttributes( { columns } );
+							this.fetchDownloads();
+						}}
 						min={ 1 }
 						max={ 6 }
 					/>
@@ -540,36 +324,12 @@ class DownloadsEdit extends Component {
 						checked={ !! showThumbnails }
 						onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
 					/>
-					
-					{ isDownloadTaxonomy &&
-					<ToggleControl
-						label={ 'download_categories' === type ? __( 'Show Category Name' ) : __( 'Show Tag Name' ) }
-						checked={ !! showTitle }
-						onChange={ () => setAttributes( { showTitle: ! showTitle } ) }
-					/>
-					}
 
 					<ToggleControl
 						label={ showDescriptionLabel }
 						checked={ !! showDescription }
 						onChange={ this.showDescription }
 					/>
-
-					{ showTitle && isDownloadTaxonomy &&
-					<ToggleControl
-						label={ __( 'Show Count' ) }
-						checked={ !! showCount }
-						onChange={ () => setAttributes( { showCount: ! showCount } ) }
-					/>
-					}
-					
-					{ isDownloadTaxonomy &&
-					<ToggleControl
-						label={ 'download_categories' === type ? __( 'Show Empty Categories' ) : __( 'Show Empty Tags' ) }
-						checked={ !! showEmpty }
-						onChange={ () => setAttributes( { showEmpty: ! showEmpty } ) }
-					/>
-					}
 
 					{ type === 'downloads' &&
 					<ToggleControl
@@ -635,40 +395,6 @@ class DownloadsEdit extends Component {
 			);
 		}
 
-		if ( ! hasDownloadCategories && type === 'download_categories' ) {
-			return (
-				<Fragment>
-					{ inspectorControls }
-					<Placeholder
-						icon="download"
-						label={ __( 'Loading download categories' ) }
-					>
-						{ ! Array.isArray( downloadCategories ) ?
-							<Spinner /> :
-							__( 'No download categories found.' )
-						}
-					</Placeholder>
-				</Fragment>
-			);
-		}
-
-		if ( ! hasDownloadTags && type === 'download_tags' ) {
-			return (
-				<Fragment>
-					{ inspectorControls }
-					<Placeholder
-						icon="download"
-						label={ __( 'Loading download tags' ) }
-					>
-						{ ! Array.isArray( downloadTags ) ?
-							<Spinner /> :
-							__( 'No download tags found.' )
-						}
-					</Placeholder>
-				</Fragment>
-			);
-		}
-
 		return (
 			<Fragment>
 				{ inspectorControls }
@@ -687,4 +413,22 @@ class DownloadsEdit extends Component {
 	}
 }
 
-export default DownloadsEdit;
+export default withSelect( ( select, ownProps ) => {
+	const { attributes: { showEmpty, order, orderBy } } = ownProps;
+
+	const query = {
+		per_page: -1,
+		orderby: orderBy,
+		order: order,
+	};
+
+	const { getEntityRecords } = select( 'core' );
+
+	const downloadCategories = getEntityRecords( 'taxonomy', 'download_category', query );
+	const downloadTags = getEntityRecords( 'taxonomy', 'download_tag', query );
+
+	return {
+		downloadCategories,
+		downloadTags,
+	}
+} ) ( DownloadsEdit );
