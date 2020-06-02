@@ -278,14 +278,7 @@ class DownloadsEdit extends Component {
 		const inspectorControls = (
 			<InspectorControls>
 				<PanelBody title={ __( 'Settings' ) }>
-					
-					<SelectControl
-						label={ __( 'Display' ) }
-						value={ type }
-						options={ this.getBlockTypes() }
-						onChange={ (value) => setAttributes( { type: value } ) }
-					/>
-
+				
 					{ type === 'downloads' &&
 					<RangeControl
 						label={ __( 'Downloads Per Page' ) }
@@ -302,7 +295,10 @@ class DownloadsEdit extends Component {
 					<RangeControl
 						label={ __( 'Columns' ) }
 						value={ columns }
-						onChange={ (columns) => setAttributes( { columns } ) }
+						onChange={ (columns) => {
+							setAttributes( { columns } );
+							this.fetchDownloads();
+						}}
 						min={ 1 }
 						max={ 6 }
 					/>
@@ -328,36 +324,12 @@ class DownloadsEdit extends Component {
 						checked={ !! showThumbnails }
 						onChange={ () => setAttributes( { showThumbnails: ! showThumbnails } ) }
 					/>
-					
-					{/* { isDownloadTaxonomy &&
-					<ToggleControl
-						label={ 'download_categories' === type ? __( 'Show Category Name' ) : __( 'Show Tag Name' ) }
-						checked={ !! showTitle }
-						onChange={ () => setAttributes( { showTitle: ! showTitle } ) }
-					/>
-					} */}
 
 					<ToggleControl
 						label={ showDescriptionLabel }
 						checked={ !! showDescription }
 						onChange={ this.showDescription }
 					/>
-
-					{/* { showTitle && isDownloadTaxonomy &&
-					<ToggleControl
-						label={ __( 'Show Count' ) }
-						checked={ !! showCount }
-						onChange={ () => setAttributes( { showCount: ! showCount } ) }
-					/>
-					} */}
-					
-					{/* { isDownloadTaxonomy &&
-					<ToggleControl
-						label={ 'download_categories' === type ? __( 'Show Empty Categories' ) : __( 'Show Empty Tags' ) }
-						checked={ !! showEmpty }
-						onChange={ () => setAttributes( { showEmpty: ! showEmpty } ) }
-					/>
-					} */}
 
 					{ type === 'downloads' &&
 					<ToggleControl
