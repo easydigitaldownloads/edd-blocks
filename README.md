@@ -2,7 +2,7 @@
 
 EDD Blocks is a feature plugin and will be eventually merged into the core Easy Digital Downloads plugin.
 
-EDD Blocks currently includes a "Downloads" block, allowing you to display Downloads, Download Categories and Donwload Tags using the new WordPress editor.
+EDD Blocks currently includes a "Downloads" block, allowing you to display Downloads, Download Categories and Download Tags using the new WordPress editor.
 
 To install:
 
