@@ -37,7 +37,7 @@
 		"eslint-plugin-prettier": "^2.7.0",
 		"eslint-plugin-react": "^7.11.1",
 		"extract-text-webpack-plugin": "^4.0.0-beta.0",
-		"node-sass": "^4.11.0",
+		"node-sass": "^4.13.1",
 		"lodash": "4.17.21",
 		"postcss-loader": "^2.1.6",
 		"raw-loader": "^0.5.1",
